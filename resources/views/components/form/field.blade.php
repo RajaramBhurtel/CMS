@@ -1,3 +1,3 @@
-<div class="mt-6">
+<div class="flex mt-6 px-6">
     {{ $slot }}
 </div>

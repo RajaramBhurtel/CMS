@@ -23,7 +23,7 @@
             <!-- End Top navbar -->
 
             <!-- Main Content -->
-            <x-main />
+            {{ $slot }}
             <!-- End Main Content -->
             <footer class="border-t p-4 pb-3 text-xs bg-gray-100">
                 2023 © Design & Develop by Sabin.
