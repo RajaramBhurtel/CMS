@@ -26,7 +26,7 @@
             <x-main />
             <!-- End Main Content -->
             <footer class="border-t p-4 pb-3 text-xs bg-gray-100">
-                2022 © Design & Develop by Farnous.
+                2023 © Design & Develop by Sabin.
             </footer>
         </div>
 

@@ -10,7 +10,9 @@
     </div>
     <div>
         <!-- -->
-        <div class="bg-gray-100 min-h-screen"></div>
-        <div class="bg-gray-100 min-h-screen"></div>
+        <div class="bg-gray-100 min-h-screen">
+            {{ $slot }}
+        </div>
+        {{-- <div class="bg-gray-100 min-h-screen"></div> --}}
     </div>
 </main>
