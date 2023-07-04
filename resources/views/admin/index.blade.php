@@ -1,13 +1,153 @@
 <x-layout >
     <x-main title="Booking">
        <x-panel>
-        <form action="#">
+        {{-- <form action="#">
             <div class="flex">
                  <x-form.input name="title" required />
                   <x-form.input name="title" required />
                    <x-form.input name="title" required />
             </div>
-        </form>
+        </form> --}}
+
+        <div class="max-w-4xl mx-auto my-10">
+            <form>
+                <div class="flex mb-4">
+                <div class="w-1/3 mr-2">
+                     <x-form.label name="CN No." />
+                     <x-form.input name="cn" required />
+                     <x-form.error name="cn"/>
+                   </div>
+                <div class="w-1/3 mx-2">
+                    <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+                    <input id="date" type="text" class="h-10  mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+                <div class="w-1/3 ml-2">
+                    <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                    <input id="category" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+                </div>
+                <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Payment Mode</label>
+                <div class="mt-1">
+                    <label class="inline-flex items-center">
+                    <input type="radio" class="h-10 form-radio text-indigo-500 focus:ring-indigo-500" name="payment-mode" value="cash">
+                    <span class="ml-2">Cash</span>
+                    </label>
+                    <label class="inline-flex items-center ml-6">
+                    <input type="radio" class="h-10 form-radio text-indigo-500 focus:ring-indigo-500" name="payment-mode" value="credit">
+                    <span class="ml-2">Credit</span>
+                    </label>
+                </div>
+                </div>
+                <div class="flex mb-4">
+                <div class="w-1/2 mr-2">
+                    <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="address1" class="block text-sm font-medium text-gray-700">Address 1</label>
+                        <input id="address1" type="text" class="h-10  mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label for="address2" class="block text-sm font-medium text-gray-700">Address 2</label>
+                        <input id="address2" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label for="customer" class="block text-sm font-medium text-gray-700">Customer</label>
+                        <input id="customer" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label for="number" class="block text-sm font-medium text-gray-700">Number</label>
+                        <input id="number" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    </div>
+                </div>
+                <div class="w-1/2 ml-2">
+                    <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label for="consignee-name" class="block text-sm font-medium text-gray-700">Consignee Name</label>
+                        <input id="consignee-name" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
+                        <input id="location" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label for="destination" class="block text-sm font-medium text-gray-700">Destination</label>
+                        <input id="destination" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                        <label for="mobile-number" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                        <input id="mobile-number" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="mb-4">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                    <label for="content-type" class="block text-sm font-medium text-gray-700">Content Type</label>
+                    <select id="content-type" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                    </div>
+                    <div>
+                    <label for="merchandise-type" class="block text-sm font-medium text-gray-700">Merchandise Type</label>
+                    <select id="merchandise-type" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                    </div>
+                    <div>
+                    <label for="mode" class="block text-sm font-medium text-gray-700">Mode</label>
+                    <select id="mode" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                        <option>Option 1</option>
+                        <option>Option 2</option>
+                        <option>Option 3</option>
+                    </select>
+                    </div>
+                    <div>
+                    <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+                    <input id="quantity" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                    <label for="weight" class="block text-sm font-medium text-gray-700">Weight</label>
+                    <input id="weight" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                </div>
+                </div>
+                <div class="mb-4">
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                    <label for="individual-price" class="block text-sm font-medium text-gray-700">Individual Price</label>
+                    <input id="individual-price" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                    <label for="discount" class="block text-sm font-medium text-gray-700">Discount</label>
+                    <input id="discount" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                    <label for="price-before-discount" class="block text-sm font-medium text-gray-700">Price Before Discount</label>
+                    <input id="price-before-discount" type="h-10 text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                    <div>
+                    <label for="price-after-discount" class="block text-sm font-medium text-gray-700">Price After Discount</label>
+                    <input id="price-after-discount" type="text" class="h-10  mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    </div>
+                </div>
+                </div>
+                <div class="mb-4">
+                <label for="biller" class="block text-sm font-medium text-gray-700">Biller</label>
+                <input id="biller" type="text" class="h-10 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                </div>
+                <div class="flex justify-center">
+                <button type="submit" class="h-10  px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">Save Booking</button>
+                </div>
+            </form>
+        </div>
+
+
        </x-panel>
     </x-main >
 </x-layout >
