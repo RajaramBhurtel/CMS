@@ -55,3 +55,7 @@
 .scrollerlight::-webkit-scrollbar-thumb:hover {
     background: #cecece;
 }
+
+input:focus {
+    outline: none;
+  }

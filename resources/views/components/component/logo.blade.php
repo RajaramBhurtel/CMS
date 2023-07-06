@@ -7,6 +7,6 @@
 </div>
 
 <div>
-    <span class="text-2xl font-extrabold">FARNOUS</span>
-    <span class="text-xs block">Project Management</span>
+    <span class="text-2xl font-extrabold">COURIER</span>
+    <span class="text-xs block"> Management System</span>
 </div>
