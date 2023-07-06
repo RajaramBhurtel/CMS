@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin.dashboard');
+    return view('booking.dashboard');
 });
 
 Route::get('booking/single', function () {
-    return view('admin.index');
+    return view('booking.single');
 });
