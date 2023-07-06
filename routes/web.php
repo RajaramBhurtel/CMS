@@ -20,6 +20,11 @@ Route::get('/', function () {
 Route::get('booking/single', function () {
     return view('booking.index');
 });
+
 Route::get('booking/bulk', function () {
     return view('booking.bulk');
+});
+
+Route::get('login', function () {
+    return view('auth.login');
 });

@@ -77,7 +77,7 @@
                                 <x-form.input name="qty[]" type="number" />
                             </td>
                             <td class="p-1">
-                                <select name="payment_mode[]" id="payment_mode_1" class="w-36 h-10 mt-1  block w-36 shadow-md sm:text-sm border-gray-300 rounded-md ">
+                                <select name="payment_mode[]" id="payment_mode_1" class="w-36 h-10 mt-1  block shadow-md sm:text-sm border-gray-300 rounded-md ">
                                     <option value="cash" >Cashs</option>
                                     <option value="credit"  selected>Credit</option>
                                 </select>

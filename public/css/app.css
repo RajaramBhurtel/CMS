@@ -59,4 +59,17 @@
 input:focus , textarea{
     outline: none;
 }
+
+/* .login h2, .login label, .login a{
+    color: white;
+    
+}
+.login input{
+    width: 100%;
+}
+.login button{
+    background: white;
+    margin: 0 15px;
+    border: 1px solid black;
+} */
   
