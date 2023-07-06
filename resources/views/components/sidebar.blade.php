@@ -45,21 +45,21 @@
                             <ul class="flex flex-col mt-2 pl-2 text-gray-500 border-l border-gray-700 space-y-1 text-xs">
                                 <!-- Item -->
                                 <li class="text-sm text-gray-500 ">
-                                    <a href="booking/single"
+                                    <a href="{{ url('booking/single')}}"
                                         class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
                                         <div> Single Booking </div>
                                     </a>
                                 </li>
                                 <!-- Item -->
                                 <li class="text-sm text-gray-500 ">
-                                    <a href="booking/bulk"
+                                    <a href="{{ url('/booking/bulk') }}"
                                         class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
                                         <div> Bulk Booking </div>
                                     </a>
                                 </li>
                                 <!-- Item -->
                                 <li class="text-sm text-gray-500 ">
-                                    <a href="booking/master"
+                                    <a href="{{ url('booking/master')}}"
                                         class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
                                         <div> Master Booking Records </div>
                                     </a>

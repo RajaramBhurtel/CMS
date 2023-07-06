@@ -137,6 +137,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="mb-4">
+                    <div class="grid grid-cols gap-2">
+                        <x-form.label name="description"/>
+                        <textarea name="description" id="description" cols="10" rows="10" class=" mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md"></textarea>
+                    </div>
+                </div>
                 <div class="flex justify-center">
                     <button type="submit" class="h-10  px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">Save Booking</button>
                 </div>

@@ -18,5 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('booking/single', function () {
-    return view('booking.single');
+    return view('booking.index');
+});
+Route::get('booking/bulk', function () {
+    return view('booking.bulk');
 });
