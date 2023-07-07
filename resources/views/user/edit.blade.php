@@ -13,11 +13,11 @@
                       <tr><td colspan="3"></td></tr><tr><td colspan="3"></td></tr><tr><td colspan="3"></td></tr><tr><td colspan="3"></td></tr>
                       <tr>
                         <td>
-                          User Name&nbsp;<b class="street">*</b>
+                          Name&nbsp;<b class="street">*</b>
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="name" id="name" placeholder="User Name" class="ml-2 w-300 h-10 text-blue-500" value="{{$user->name}}">
+                          <input type="text" name="name" id="name" placeholder="Name" class="ml-2 w-300 h-10 text-blue-500" value="{{$user->name}}">
                         </td>
                         @error('name')
                           <p class="text-red-500">{{ $message }}</p>
@@ -25,25 +25,13 @@
                       </tr>
                       <tr>
                         <td>
-                          Address&nbsp;<b class="">*</b>
+                          User Name&nbsp;<b class="street">*</b>
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="address" id="address" placeholder="User Address" class="ml-2 w-300 h-10 text-blue-500" value="{{$user->address}}">
+                          <input type="text" name="username" id="username" placeholder="User Name" class="ml-2 w-300 h-10 text-blue-500" value="{{$user->username}}">
                         </td>
-                        @error('address')
-                          <p class="text-red-500">{{ $message }}</p>
-                        @enderror
-                      </tr>
-                      <tr>
-                        <td>
-                          Phone No.&nbsp;<b class="">*</b>
-                        </td>
-                        <td><span class="ml-1">:</span></td>
-                        <td>
-                          <input type="text" name="phone" id="phone" placeholder="Phone Number" class="ml-2 w-300 h-10 text-blue-500" value="{{$user->phone}}">
-                        </td>
-                        @error('phone')
+                        @error('username')
                           <p class="text-red-500">{{ $message }}</p>
                         @enderror
                       </tr>
@@ -56,6 +44,30 @@
                           <input type="text" name="email" id="email" placeholder="User Email" class="ml-2 w-300 h-10 text-blue-500" value="{{$user->email}}">
                         </td>
                         @error('email')
+                          <p class="text-red-500">{{ $message }}</p>
+                        @enderror
+                      </tr>
+                      <tr>
+                        <td>
+                          Password&nbsp;<b class="">*</b>
+                        </td>
+                        <td><span class="ml-1">:</span></td>
+                        <td>
+                          <input type="text" name="password" id="password" placeholder="User Password" class="ml-2 w-300 h-10 text-blue-500" value="">
+                        </td>
+                        @error('password')
+                          <p class="text-red-500">{{ $message }}</p>
+                        @enderror
+                      </tr>
+                      <tr>
+                        <td>
+                          Phone No.&nbsp;<b class="">*</b>
+                        </td>
+                        <td><span class="ml-1">:</span></td>
+                        <td>
+                          <input type="text" name="phone" id="phone" placeholder="Phone Number" class="ml-2 w-300 h-10 text-blue-500" value="{{$user->phone}}">
+                        </td>
+                        @error('phone')
                           <p class="text-red-500">{{ $message }}</p>
                         @enderror
                       </tr>
