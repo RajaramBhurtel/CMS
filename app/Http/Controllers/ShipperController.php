@@ -20,9 +20,13 @@ class ShipperController extends Controller
         return redirect('shipper/view')->with('success', 'Shipper created successfully.');
     }
     public function view( ) {
-        return view( 'shipper.index', [
-            'shippers' => Shipper::paginate(50)
-        ] );
+        $shipper = Shipper::paginate(10);
+
+        if ($shipper->isEmpty()) {
+            return redirect('shipper/create')->with('success', 'No shipper found. Please create a shipper.');
+        }
+
+        return view('shipper.index', compact('shippers'));
     }
 
     public function edit(Shipper $shipper) {
