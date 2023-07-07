@@ -1,5 +1,5 @@
 <x-layout >
-    <x-main title="Dashboard">
+    <x-main title="View All ">
         <x-panel>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -58,13 +58,13 @@
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="/shippers/{{ $shipper->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                                <a href="/shipper/{{ $shipper->id }}/edit" class="text-blue-500 hover:text-blue-600"> <x-component.icons name="fa-solid fa-pen-to-square" /> Edit</a>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <form method="shipper" action="/shippers/{{ $shipper->id }}">
+                                                <form method="shipper" action="/shipper/{{ $shipper->id }}">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button class="text-xs text-red-400 hover:text-red-600">Delete</button>
+                                                    <button class="text-xs text-red-400 hover:text-red-600"><x-component.icons name="fa-solid fa-trash-can" /> Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

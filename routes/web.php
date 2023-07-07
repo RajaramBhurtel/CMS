@@ -37,3 +37,5 @@ Route::get('shipper/create', function () {
 Route::get('shipper/index', [ShipperController::class, 'index']);
 
 Route::post( 'shipper/create' , [ShipperController::class, 'create'] );
+Route::get('shipper/{shipper:id}/edit', [ShipperController::class, 'edit']);
+Route::patch('shipper/{shipper:id}/update', [ShipperController::class, 'update']);
