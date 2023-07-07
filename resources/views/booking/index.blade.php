@@ -39,7 +39,14 @@
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label for="shipper" class="block text-sm font-medium text-gray-700">Shipper</label>
-                                <input id="shipper" type="text" class="h-10 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                                <select id="shipper" class="h-10 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                    <option>Option 3</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input id="new_shipper" type="text" class="h-10 mt-6  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
                             </div>
                             <div>
                                 <label for="shipper_number" class="block text-sm font-medium text-gray-700">Number</label>
@@ -60,7 +67,14 @@
                         <div class="grid grid-cols-2 gap-2">
                         <div>
                             <label for="consignee_name" class="block text-sm font-medium text-gray-700">Consignee Name</label>
-                            <input id="consignee_name" type="text" class="h-10 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                            <select id="consignee" class="h-10 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                                <option>Option 1</option>
+                                <option>Option 2</option>
+                                <option>Option 3</option>
+                            </select>
+                        </div>
+                        <div>
+                            <input id="new_consignee" type="text" class="h-10 mt-6  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
                         </div>
                         <div>
                             <label for="consignee_number" class="block text-sm font-medium text-gray-700">Mobile Number</label>
