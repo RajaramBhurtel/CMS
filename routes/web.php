@@ -30,9 +30,6 @@ Route::get('login', function () {
     return view('auth.login');
 });
 
-Route::get('shipper/create', function () {
-    return view('shipper/create');
-});
 
 Route::get('shipper/create', [ShipperController::class, 'index']);
 Route::get('shipper/view', [ShipperController::class, 'view']);
