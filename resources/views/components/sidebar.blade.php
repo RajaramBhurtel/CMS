@@ -199,7 +199,7 @@
                                 </li>
                                 <!-- Item -->
                                 <li class="text-sm text-gray-500 ">
-                                    <a href="#"
+                                    <a href="{{ url('shipper/index')}}"
                                         class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
                                         <div> View </div>
                                     </a>

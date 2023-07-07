@@ -34,4 +34,6 @@ Route::get('shipper/create', function () {
     return view('shipper/create');
 });
 
+Route::get('shipper/index', [ShipperController::class, 'index']);
+
 Route::post( 'shipper/create' , [ShipperController::class, 'create'] );

@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ShipperController extends Controller
 {
+    public function index( ) {
+        return view( 'shipper.index', [
+            'shippers' => Shipper::paginate(50)
+        ] );
+    }
+
     public function create(Request $request)
     {
         $validatedData = $request->validate([
