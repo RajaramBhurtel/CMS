@@ -2,7 +2,7 @@
     <div class="mx-auto ">
         <div class="flex items-stretch justify-between h-16">
 
-            <div class="flex items-center md:hidden">
+            <div class="flex items-center">
                 <div class="-mr-2 flex" x-data>
                     <!-- Mobile menu button -->
                     <button type="button" @click="$dispatch('togglesidebar')"
@@ -43,7 +43,7 @@
                 </div>
 
             </div>
-            <div class="hidden md:flex items-stretch">
+            <div class=" md:flex items-stretch">
                 <!-- Profile Menu DT -->
                 <div class="ml-4 flex md:ml-6 ">
 
