@@ -1,22 +1,22 @@
 <x-layout >
-    <x-main title="Create New Shipper">
+    <x-main title="Create New Consignee">
         
           <x-panel>
             <div class="left-0  flex  justify-center bg-gray-200">
               <div class="bg-white rounded shadow-lg p-8">
                 <div class="text-xl font-bold mb-4 text-center">ADD</div>
-                <form id="shipper_add" method="post" action="/shipper/create">
+                <form id="consignee_add" method="post" action="/consignee/create">
                   @csrf
                   <table class="font-bold" style="font-size: 13px;">
                     <tbody>
                       <tr><td colspan="3"></td></tr><tr><td colspan="3"></td></tr><tr><td colspan="3"></td></tr><tr><td colspan="3"></td></tr>
                       <tr>
                         <td>
-                          Shipper Name&nbsp;<b class="street">*</b>
+                          Consignee Name&nbsp;<b class="street">*</b>
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="name" id="name" placeholder="Shipper Name" class="ml-2 w-300 h-10 text-blue-400">
+                          <input type="text" name="name" id="name" placeholder="Consignee Name" class="ml-2 w-300 h-10 text-blue-400">
                         </td>
                         @error('name')
                           <p class="text-red-500">{{ $message }}</p>
@@ -28,7 +28,7 @@
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="address" id="address" placeholder="Shipper Address" class="ml-2 w-300 h-10 text-blue-400">
+                          <input type="text" name="address" id="address" placeholder="Consignee Address" class="ml-2 w-300 h-10 text-blue-400">
                         </td>
                         @error('address')
                           <p class="text-red-500">{{ $message }}</p>
@@ -52,7 +52,7 @@
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="email" id="email" placeholder="Shipper Email" class="ml-2 w-300 h-10 text-blue-400">
+                          <input type="text" name="email" id="email" placeholder="Consignee Email" class="ml-2 w-300 h-10 text-blue-400">
                         </td>
                         @error('email')
                           <p class="text-red-500">{{ $message }}</p>
