@@ -34,8 +34,9 @@ Route::get('shipper/create', function () {
     return view('shipper/create');
 });
 
-Route::get('shipper/index', [ShipperController::class, 'index']);
-
+Route::get('shipper/create', [ShipperController::class, 'index']);
+Route::get('shipper/view', [ShipperController::class, 'view']);
 Route::post( 'shipper/create' , [ShipperController::class, 'create'] );
 Route::get('shipper/{shipper:id}/edit', [ShipperController::class, 'edit']);
 Route::patch('shipper/{shipper:id}/update', [ShipperController::class, 'update']);
+Route::delete('shipper/{shipper:id}', [ShipperController::class, 'delete']);

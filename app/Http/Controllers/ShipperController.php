@@ -3,15 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shipper;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class ShipperController extends Controller
 {
     public function index( ) {
-        return view( 'shipper.index', [
-            'shippers' => Shipper::paginate(50)
-        ] );
+        return view( 'shipper.create');
     }
 
     public function create()
@@ -20,7 +17,12 @@ class ShipperController extends Controller
 
         Shipper::create($validatedData);
 
-        return redirect()->back()->with('success', 'Shipper created successfully.');
+        return redirect('shipper/view')->with('success', 'Shipper created successfully.');
+    }
+    public function view( ) {
+        return view( 'shipper.index', [
+            'shippers' => Shipper::paginate(50)
+        ] );
     }
 
     public function edit(Shipper $shipper) {
@@ -29,12 +31,18 @@ class ShipperController extends Controller
         ]);
     }
 
+    public function delete(Shipper $shipper) {
+        $shipper->delete();
+
+        return back()->with('success', 'Shipper Deleted!');
+    }
+
     public function update(Shipper $shipper) {
         $attributes = $this->validateShipper($shipper);
 
         $shipper->update($attributes);
 
-        return $this->index()->with('success', 'Shipper has been updated' );
+        return redirect('shipper/view')->with('success', 'Shipper has been updated' );
     }
 
     protected function validateShipper(?Shipper $shipper = null): array {

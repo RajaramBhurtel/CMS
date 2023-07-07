@@ -16,7 +16,7 @@
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="name" id="name" placeholder="Shipper Name" class="ml-2 w-300 h-10">
+                          <input type="text" name="name" id="name" placeholder="Shipper Name" class="ml-2 w-300 h-10 text-blue-400">
                         </td>
                         @error('name')
                           <p class="text-red-500">{{ $message }}</p>
@@ -28,7 +28,7 @@
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="address" id="address" placeholder="Shipper Address" class="ml-2 w-300 h-10">
+                          <input type="text" name="address" id="address" placeholder="Shipper Address" class="ml-2 w-300 h-10 text-blue-400">
                         </td>
                         @error('address')
                           <p class="text-red-500">{{ $message }}</p>
@@ -40,7 +40,7 @@
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="phone" id="phone" placeholder="Phone Number" class="ml-2 w-300 h-10">
+                          <input type="text" name="phone" id="phone" placeholder="Phone Number" class="ml-2 w-300 h-10 text-blue-400">
                         </td>
                         @error('phone')
                           <p class="text-red-500">{{ $message }}</p>
@@ -52,7 +52,7 @@
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="email" id="email" placeholder="Shipper Email" class="ml-2 w-300 h-10">
+                          <input type="text" name="email" id="email" placeholder="Shipper Email" class="ml-2 w-300 h-10 text-blue-400">
                         </td>
                         @error('email')
                           <p class="text-red-500">{{ $message }}</p>

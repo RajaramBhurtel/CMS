@@ -61,7 +61,7 @@
                                                 <a href="/shipper/{{ $shipper->id }}/edit" class="text-blue-500 hover:text-blue-600"> <x-component.icons name="fa-solid fa-pen-to-square" /> Edit</a>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <form method="shipper" action="/shipper/{{ $shipper->id }}">
+                                                <form method="POST" action="/shipper/{{ $shipper->id }}">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="text-xs text-red-400 hover:text-red-600"><x-component.icons name="fa-solid fa-trash-can" /> Delete</button>
