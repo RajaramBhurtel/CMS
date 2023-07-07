@@ -20,9 +20,9 @@ class ShipperController extends Controller
         return redirect('shipper/view')->with('success', 'Shipper created successfully.');
     }
     public function view( ) {
-        $shipper = Shipper::paginate(10);
+        $shippers = Shipper::paginate(10);
 
-        if ($shipper->isEmpty()) {
+        if ($shippers->isEmpty()) {
             return redirect('shipper/create')->with('success', 'No shipper found. Please create a shipper.');
         }
 
@@ -36,6 +36,7 @@ class ShipperController extends Controller
     }
 
     public function delete(Shipper $shipper) {
+        
         $shipper->delete();
 
         return back()->with('success', 'Shipper Deleted!');
