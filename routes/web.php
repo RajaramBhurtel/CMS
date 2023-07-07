@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShipperController;
 use App\Http\Controllers\ConsigneeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +47,11 @@ Route::post( 'consignee/create' , [ConsigneeController::class, 'create'] );
 Route::get('consignee/{consignee:id}/edit', [ConsigneeController::class, 'edit']);
 Route::patch('consignee/{consignee:id}/update', [ConsigneeController::class, 'update']);
 Route::delete('consignee/{consignee:id}', [ConsigneeController::class, 'delete']);
+
+// User Routes
+Route::get('user/create', [UserController::class, 'index']);
+Route::get('user/view', [UserController::class, 'view']);
+Route::post( 'user/create' , [UserController::class, 'create'] );
+Route::get('user/{user:id}/edit', [UserController::class, 'edit']);
+Route::patch('user/{user:id}/update', [UserController::class, 'update']);
+Route::delete('user/{user:id}', [UserController::class, 'delete']);
