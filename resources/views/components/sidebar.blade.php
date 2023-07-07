@@ -174,21 +174,56 @@
                     </li>
                     <!-- List ITEM -->
                     <li class="text-sm text-gray-500 ">
-                        <a href="#" @click.prevent="selected = (selected === 'Customers' ? '':'Customers')"
+                        <a href="#" @click.prevent="selected = (selected === 'Shipper' ? '':'Shipper')"
                             class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
                             <div class="pr-2">
                                 <x-component.icons name="fa-solid fa-users" />
                             </div>
-                            <div>Customers</div>
+                            <div>Shipper</div>
                             <div class="absolute right-1.5 transition-transform duration-300"
-                                :class="{ 'rotate-180': (selected === 'Customers') }">
+                                :class="{ 'rotate-180': (selected === 'Shipper') }">
                                 <x-component.icons name="fa-solid fa-angle-down" />
                             </div>
                         </a>
 
 
                         <div class="pl-4 pr-2 overflow-hidden transition-all transform translate duration-300 max-h-0 "
-                            :style="(selected === 'Customers') ? 'max-height: ' + $el.scrollHeight + 'px':''">
+                            :style="(selected === 'Shipper') ? 'max-height: ' + $el.scrollHeight + 'px':''">
+                            <ul class="flex flex-col mt-2 pl-2 text-gray-500 border-l border-gray-700 space-y-1 text-xs">
+                                <!-- Item -->
+                                <li class="text-sm text-gray-500 ">
+                                    <a href="{{ url('shipper/create')}}"
+                                        class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
+                                        <div>Create</div>
+                                    </a>
+                                </li>
+                                <!-- Item -->
+                                <li class="text-sm text-gray-500 ">
+                                    <a href="#"
+                                        class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
+                                        <div> View </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- List ITEM -->
+                    <li class="text-sm text-gray-500 ">
+                        <a href="#" @click.prevent="selected = (selected === 'Consignee' ? '':'Consignee')"
+                            class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
+                            <div class="pr-2">
+                                <x-component.icons name="fa-solid fa-user-tie" />
+                            </div>
+                            <div>Consignee</div>
+                            <div class="absolute right-1.5 transition-transform duration-300"
+                                :class="{ 'rotate-180': (selected === 'Consignee') }">
+                                <x-component.icons name="fa-solid fa-angle-down" />
+                            </div>
+                        </a>
+
+
+                        <div class="pl-4 pr-2 overflow-hidden transition-all transform translate duration-300 max-h-0 "
+                            :style="(selected === 'Consignee') ? 'max-height: ' + $el.scrollHeight + 'px':''">
                             <ul class="flex flex-col mt-2 pl-2 text-gray-500 border-l border-gray-700 space-y-1 text-xs">
                                 <!-- Item -->
                                 <li class="text-sm text-gray-500 ">

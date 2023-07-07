@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ShipperController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,9 @@ Route::get('booking/bulk', function () {
 Route::get('login', function () {
     return view('auth.login');
 });
+
+Route::get('shipper/create', function () {
+    return view('shipper/create');
+});
+
+Route::post( 'shipper/create' , [ShipperController::class, 'create'] );
