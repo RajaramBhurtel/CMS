@@ -25,7 +25,7 @@
                 </div>
             </div>
 
-            <div class="flex items-center pl-6">
+            <div class="md:hidden flex items-center pl-6">
                 <div class="flex-shrink-0 md:hidden">
 
                     <a href="#" class="text-white flex items-center space-x-2 group">
