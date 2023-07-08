@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShipperController;
 use App\Http\Controllers\ConsigneeController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\MerchandiseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,3 +56,11 @@ Route::post( 'user/create' , [UserController::class, 'create'] );
 Route::get('user/{user:id}/edit', [UserController::class, 'edit']);
 Route::patch('user/{user:id}/update', [UserController::class, 'update']);
 Route::delete('user/{user:id}', [UserController::class, 'delete']);
+
+// User Routes
+Route::get('merchandise/create', [MerchandiseController::class, 'index']);
+Route::get('merchandise/view', [MerchandiseController::class, 'view']);
+Route::post( 'merchandise/create' , [MerchandiseController::class, 'create'] );
+Route::get('merchandise/{merchandise:id}/edit', [MerchandiseController::class, 'edit']);
+Route::patch('merchandise/{merchandise:id}/update', [MerchandiseController::class, 'update']);
+Route::delete('merchandise/{merchandise:id}', [MerchandiseController::class, 'delete']);
