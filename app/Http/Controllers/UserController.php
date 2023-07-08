@@ -43,7 +43,6 @@ class UserController extends Controller
 
     public function update(User $user) {
         $attributes = $this->validateUser($user);
-
         $user->update($attributes);
 
         return redirect('user/view')->with('success', 'User has been updated' );
@@ -57,7 +56,7 @@ class UserController extends Controller
             'username' => ['required', 'min:7', Rule::unique('users', 'username')->ignore($user)],
             'email'    => ['required', Rule::unique('users', 'email')->ignore($user)],
             'role'     => 'required',
-            'password' => ['required', 'min:7', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'],
+             'password' => $user->exists ? ['nullable', 'min:7', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'] : ['required', 'min:7', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'],
         ]);
         
     }

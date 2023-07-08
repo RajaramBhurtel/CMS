@@ -47,27 +47,30 @@
                           <p class="text-red-500">{{ $message }}</p>
                         @enderror
                       </tr>
+                       <tr>
+                        <td>
+                          Role&nbsp;<b class="">*</b>
+                        </td>
+                        <td><span class="ml-1">:</span></td>
+                        <td>
+                          <select name="role" id="name" class="ml-2 w-300 h-10 text-blue-400">
+                            <option value="User">General User</option>
+                            <option value="Manager">Manager</option>
+                          </select>
+                        </td>
+                        @error('role')
+                          <p class="text-red-500">{{ $message }}</p>
+                        @enderror
+                      </tr>
                       <tr>
                         <td>
                           Password&nbsp;<b class="">*</b>
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="password" id="password" placeholder="User Password" class="ml-2 w-300 h-10 text-blue-500" value="">
+                          <input type="text" name="password" id="password" placeholder="User Password" class="ml-2 w-300 h-10 text-blue-500 placeholder-blue-400" value="">
                         </td>
                         @error('password')
-                          <p class="text-red-500">{{ $message }}</p>
-                        @enderror
-                      </tr>
-                      <tr>
-                        <td>
-                          Phone No.&nbsp;<b class="">*</b>
-                        </td>
-                        <td><span class="ml-1">:</span></td>
-                        <td>
-                          <input type="text" name="phone" id="phone" placeholder="Phone Number" class="ml-2 w-300 h-10 text-blue-500" value="{{$user->phone}}">
-                        </td>
-                        @error('phone')
                           <p class="text-red-500">{{ $message }}</p>
                         @enderror
                       </tr>
