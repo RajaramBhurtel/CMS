@@ -55,13 +55,13 @@
                             <div class="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full"
+                                {{-- <img class="h-8 w-8 rounded-full"
                                     src="https://assets.codepen.io/3321250/internal/avatars/users/default.png?fit=crop&format=auto&height=512&version=1646800353&width=512"
-                                    alt="">
+                                    alt=""> --}}
                             </div>
 
                             <div class="flex flex-col ml-4">
-                                <span>Fares Arnous</span>
+                                <span>Sabin Bhurtel</span>
                                 <span>Admin</span>
                             </div>
                         </div>
