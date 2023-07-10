@@ -72,4 +72,26 @@ input:focus , textarea{
     margin: 0 15px;
     border: 1px solid black;
 } */
-  
+
+/* geoapify-autocomplete-input */
+.autocomplete-container {
+    position: relative;
+}
+
+.geoapify-autocomplete-input{
+    border: unset !important;
+    width: fit-content !important;
+}
+input.geoapify-autocomplete-input{
+    color: rgb(96, 165, 250);
+
+}
+.geoapify-autocomplete-items{
+    font-size: 12px;
+}
+
+.geoapify-autocomplete-item .icon{
+    display: none !important;
+}
+
+

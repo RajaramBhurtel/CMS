@@ -3,9 +3,11 @@
 <title>CMS</title>
 <link rel="stylesheet" href="{{ URL::asset ('css/app.css') }}">
 <link rel="stylesheet" href="{{ URL::asset ('css/vendor/fontawesome/css/all.min.css') }}">
+<link rel="stylesheet" href="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/styles/minimal.css">
 @vite('resources/css/app.css')
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="{{ URL::asset ('js/vendor/alpine/alpine.min.js') }}"></script>
+<script src="https://unpkg.com/@geoapify/geocoder-autocomplete@^1/dist/index.min.js"></script>
 <body style="font-family: Open Sans, sans-serif">
     <div class="md:flex">
 
@@ -39,4 +41,5 @@
         </div>
 
     </div>
+    @yield('scripts') 
 </body>

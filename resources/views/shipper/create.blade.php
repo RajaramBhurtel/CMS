@@ -5,7 +5,7 @@
             <div class="left-0  flex  justify-center bg-gray-200">
               <div class="bg-white rounded shadow-lg p-8">
                 <div class="text-xl font-bold mb-4 text-center">ADD</div>
-                <form id="shipper_add" method="post" action="/shipper/create">
+                <form id="shipper_add" method="post" action="#">
                   @csrf
                   <table class="font-bold" style="font-size: 13px;">
                     <tbody>
@@ -28,7 +28,11 @@
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="address" id="address" placeholder="Shipper Address" class="ml-2 w-300 h-10 text-blue-400">
+                          <div id="autocomplete" class="autocomplete-container"></div>
+                          <input type="hidden" name="address_1" id="address_1" >
+                          <input type="hidden" name="address_2" id="address_2" >
+                          <input type="hidden" name="longitude" id="longitude" >
+                          <input type="hidden" name="latitude" id="latitude" >
                         </td>
                         @error('address')
                           <p class="text-red-500">{{ $message }}</p>
@@ -73,5 +77,7 @@
             </div>
           </x-panel> 
     </x-main >
+    @section('scripts')
+    <script src="{{ asset('js/map.js') }}"></script>
+@endsection
 </x-layout >
-    
