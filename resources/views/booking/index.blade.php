@@ -6,7 +6,7 @@
                 <div class="flex mb-4">
                     <div class="w-1/3 mr-2">
                         <label for="cn" class="block text-sm font-medium text-gray-700">CN No</label>
-                        <input id="cn" type="text" class="h-10  mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                        <input id="cn" type="text" class="h-10 bg-zinc-500 text-white  mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="{{ generateBookingCode() }}" readonly>
                     </div>
                     <div class="w-1/3 mx-2">
                         <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
@@ -167,4 +167,16 @@
        </x-panel>
     </x-main >
 </x-layout >
-    
+@php
+function generateBookingCode()
+{
+    $lastCode = \App\Models\Booking::orderByDesc('id')->value('cn_no');
+
+    if ($lastCode) {
+        $codeNumber = intval(substr($lastCode, 2)) + 1;
+        return 'BK' . str_pad($codeNumber, 3, '0', STR_PAD_LEFT);
+    }
+
+    return 'BK001';
+}
+@endphp

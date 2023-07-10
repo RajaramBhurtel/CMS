@@ -60,6 +60,10 @@ input:focus , textarea{
     outline: none;
 }
 
+nav.scroller{
+    width: inherit;
+}
+
 /* .login h2, .login label, .login a{
     color: white;
     
