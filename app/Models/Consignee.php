@@ -9,7 +9,7 @@ class Consignee extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['consignee_id', 'name', 'address', 'phone', 'email'];
+    protected $guarded  = ['id'];
 
     public static function boot()
     {

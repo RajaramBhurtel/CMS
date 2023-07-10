@@ -29,7 +29,11 @@
                         </td>
                         <td><span class="ml-1">:</span></td>
                         <td>
-                          <input type="text" name="address" id="address" placeholder="Consignee Address" class="ml-2 w-300 h-10 text-blue-500" value="{{$consignee->address}}">
+                          <div id="autocomplete" class="autocomplete-container"></div>
+                          <input type="hidden" name="address_1" id="address_1" value="{{$consignee->address_1}}">
+                          <input type="hidden" name="address_2" id="address_2" value="{{$consignee->address_2}}">
+                          <input type="hidden" name="longitude" id="longitude" value="{{$consignee->longitude}}">
+                          <input type="hidden" name="latitude" id="latitude"   value="{{$consignee->latitude}}">
                         </td>
                         @error('address')
                           <p class="text-red-500">{{ $message }}</p>
@@ -74,5 +78,8 @@
             </div>
           </x-panel> 
     </x-main >
+    @section('scripts')
+        <script src="{{ asset('js/map.js') }}"></script>
+    @endsection
 </x-layout >
     
