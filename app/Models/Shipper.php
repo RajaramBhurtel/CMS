@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Shipper extends Model
 {
     use HasFactory;
-    protected $fillable = ['shipper_id', 'name', 'address', 'phone', 'email'];
+    protected $guarded  = ['id'];
 
     public static function boot()
     {

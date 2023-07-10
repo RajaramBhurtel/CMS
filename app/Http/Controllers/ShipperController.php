@@ -14,7 +14,7 @@ class ShipperController extends Controller
     public function create()
     {
         $validatedData = $this->validateShipper();
-
+        // dd($validatedData);
         Shipper::create($validatedData);
 
         return redirect('shipper/view')->with('success', 'Shipper created successfully.');
@@ -52,12 +52,16 @@ class ShipperController extends Controller
 
     protected function validateShipper(?Shipper $shipper = null): array {
         $shipper ??= new Shipper();
-
+    
         return request()->validate([
-            'name'      => 'required|min:3|max:255|',
-            'email'     => ['required', Rule::unique('shippers', 'email')->ignore($shipper)],
-            'phone'     => 'required|min:10',
-            'address'   => 'required',
+            'name' => 'required|min:3|max:255',
+            'email' => ['required', Rule::unique('shippers', 'email')->ignore($shipper)],
+            'phone' => 'required|min:10',
+            'address_1' => 'required',
+            'address_2' => 'required',
+            'longitude' => 'required',
+            'latitude' => 'required',
         ]);
+
     }
 }
