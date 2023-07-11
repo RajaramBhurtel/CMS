@@ -19,7 +19,7 @@ class Consignee extends Model
             $lastConsignee = self::orderBy('id', 'desc')->first();
             $lastConsigneeId = $lastConsignee ? $lastConsignee->consignee_id : 'CO000';
 
-            $model->consignee_id = 'SH' . str_pad((int)substr($lastConsigneeId, 2) + 1, 3, '0', STR_PAD_LEFT);
+            $model->consignee_id = 'CO' . str_pad((int)substr($lastConsigneeId, 2) + 1, 3, '0', STR_PAD_LEFT);
         });
     }
 }
