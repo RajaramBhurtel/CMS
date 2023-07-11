@@ -13,21 +13,25 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('cn_no');
+            $table->string('cn_no')->unique();
             $table->date('date');
-            $table->string('category');
+            $table->enum('category', ['domestic', 'international']);
             $table->enum('payment_mode', ['cash', 'credit']);
-            $table->string('shipper');
+            $table->string('shipper_id');
+            $table->string('one_time_shipper');
             $table->string('shipper_number');
-            $table->string('shipper_city');
-            $table->string('shipper_location');
-            $table->string('consignee_name');
-            $table->string('consignee_number');
-            $table->string('consignee_city');
-            $table->string('consignee_location');
-            $table->string('content_type');
-            $table->string('merchandise_type');
-            $table->string('mode');
+            $table->string('shipper_address1');
+            $table->string('shipper_address2');
+            $table->string('shipper_longitude');
+            $table->string('shipper_latitude');
+            $table->string('consignee_id');
+            $table->string('consignee_address1');
+            $table->string('consignee_address2');
+            $table->string('consignee_longitude');
+            $table->string('consignee_latitude');
+            $table->enum('content_type', ['doc', 'non_doc']);
+            $table->string('merchandise_code');
+            $table->enum('mode', ['surface', 'by_air']);
             $table->integer('quantity');
             $table->integer('weight');
             $table->decimal('individual_price', 8, 2);

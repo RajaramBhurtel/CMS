@@ -163,7 +163,7 @@
                 <div class="mb-4">
                     <div class="grid grid-cols gap-2">
                         <x-form.label name="description"/>
-                        <textarea name="description" id="description" cols="10" rows="10" class=" mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md"></textarea>
+                        <textarea name="description" id="description" cols="10" rows="10" class=" mt-1 px-4 block w-full shadow-md sm:text-sm border-gray-300 rounded-md"></textarea>
                     </div>
                 </div>
                 <div class="flex justify-center">

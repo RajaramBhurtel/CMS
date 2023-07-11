@@ -93,6 +93,49 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
 
+    // calculate the price
+
+    // Get the input elements
+    if (document.getElementById('quantity') ){
+      const quantityInput = document.getElementById('quantity');
+      const weightInput = document.getElementById('weight');
+      const individualPriceInput = document.getElementById('individual_price');
+      const priceBeforeDiscountInput = document.getElementById('price-before-discount');
+      const discountInput = document.getElementById('discount');
+      const priceAfterDiscountInput = document.getElementById('price-after-discount');
+
+      // Add event listeners to the input fields
+      quantityInput.addEventListener('input', calculatePrice);
+      weightInput.addEventListener('input', calculatePrice);
+      individualPriceInput.addEventListener('input', calculatePrice);
+      discountInput.addEventListener('input', calculatePrice);
+
+      // Function to calculate the price
+      function calculatePrice() {
+        const quantity = parseFloat(quantityInput.value);
+        const weight = parseFloat(weightInput.value);
+        const individualPrice = parseFloat(individualPriceInput.value);
+        const discount = parseFloat(discountInput.value);
+
+        // Calculate the price before discount
+        const priceBeforeDiscount = quantity * weight * individualPrice;
+        if (isNaN(priceBeforeDiscount)) {
+          priceAfterDiscount = 0; 
+        }
+        priceBeforeDiscountInput.value = priceBeforeDiscount.toFixed(2);
+
+        // Calculate the price after discount
+        const priceAfterDiscount = priceBeforeDiscount - discount;
+        if (isNaN(priceAfterDiscount)) {
+          priceAfterDiscount = 0;
+        }
+        priceAfterDiscountInput.value = priceAfterDiscount.toFixed(2);
+      }
+
+      // Initialize the initial calculation
+      calculatePrice();
+    };
+
 
   });
   
