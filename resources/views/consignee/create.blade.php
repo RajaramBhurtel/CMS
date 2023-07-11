@@ -77,8 +77,5 @@
             </div>
           </x-panel> 
     </x-main >
-    @section('scripts')
-        <script src="{{ asset('js/map.js') }}"></script>
-    @endsection
 </x-layout >
     
