@@ -3,14 +3,15 @@
 <title>CMS</title>
 <link rel="stylesheet" href="{{ URL::asset ('css/app.css') }}">
 <link rel="stylesheet" href="{{ URL::asset ('css/vendor/fontawesome/css/all.min.css') }}">
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.2/tailwind.min.css'>
+<link rel="stylesheet" href="{{ URL::asset ('css/vendor/tailwind/all.min.css') }}">
+{{-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.1.2/tailwind.min.css'> --}}
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="{{ URL::asset ('js/vendor/alpine/alpine.min.js') }}"></script>
 
 <body class="font-family: Open Sans, sans-serif antialiased bg-gray-200 text-gray-900 font-sans">
     <div class="flex items-center h-screen w-full">
         <div class="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
-            <span class="block w-full text-xl uppercase font-bold mb-4">Login</span>      
+            <span class="block w-full text-center text-xl uppercase font-bold mb-4">Login</span>      
             <form class="mb-4" action="/" method="post">
                 <div class="mb-4 md:w-full">
                 <label for="email" class="block text-xs mb-1">Username or Email</label>
