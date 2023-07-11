@@ -73,11 +73,11 @@
                                 <select id="consignee" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
                                     <option>Choose Consignee</option>
                                     @foreach (\App\Models\Consignee::all() as $consignee)
-                                    <option
-                                        value="{{ $consignee->id }}"
-                                        {{ old('consignee_id') == $consignee->id ? 'selected' : '' }}
-                                    >{{ ucwords($consignee->name) }}</option>
-                                @endforeach
+                                        <option
+                                            value="{{ $consignee->id }}"
+                                            {{ old('consignee_id') == $consignee->id ? 'selected' : '' }}
+                                        >{{ ucwords($consignee->name) }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div>
@@ -103,25 +103,27 @@
                         <div>
                             <label for="content_type" class="block text-sm font-medium text-gray-700">Content Type</label>
                             <select id="content_type" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
+                                <option value="doc">Doc</option>
+                                <option value="non-doc">Non Doc</option>
                             </select>
                         </div>
                         <div>
                             <label for="merchandise_type" class="block text-sm font-medium text-gray-700">Merchandise Type</label>
                             <select id="merchandise_type" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
+                                <option>Choose Merchandise</option>
+                                    @foreach (\App\Models\Merchandise::all() as $merchandise)
+                                        <option
+                                            value="{{ $merchandise->id }}"
+                                            {{ old('merchandise_id') == $merchandise->id ? 'selected' : '' }}
+                                        >{{ ucwords($merchandise->name) }}</option>
+                                    @endforeach>
                             </select>
                         </div>
                         <div>
                             <label for="mode" class="block text-sm font-medium text-gray-700">Mode</label>
                             <select id="mode" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                                <option>Option 3</option>
+                                <option value="surface">Surface</option>
+                                <option value="by_air">By Air</option>
                             </select>
                         </div>
                         <div>
@@ -154,7 +156,7 @@
                         </div>
                         <div>
                             <label for="biller" class="block text-sm font-medium text-gray-700">Biller</label>
-                            <input id="biller" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                            <input id="biller" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="Sabin Bhurtel" readonly>
                         </div>
                     </div>
                 </div>
@@ -165,7 +167,7 @@
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <button type="submit" class="h-10 px-2  px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">Save Booking</button>
+                    <button type="submit" class="h-10   px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">Save Booking</button>
                 </div>
             </form>
         </div>
