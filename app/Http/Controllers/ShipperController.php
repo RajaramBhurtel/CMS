@@ -20,7 +20,7 @@ class ShipperController extends Controller
         return redirect('shipper/view')->with('success', 'Shipper created successfully.');
     }
     public function view( ) {
-        $shippers = Shipper::paginate(10);
+        $shippers = Shipper::paginate(5);
 
         if ($shippers->isEmpty()) {
             return redirect('shipper/create')->with('success', 'No shipper found. Please create a shipper.');

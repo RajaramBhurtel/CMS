@@ -63,6 +63,9 @@
                                 
                             </table>
                         </div>
+                        <div class="mt-4 place-items-center">
+                            {{ $merchandises->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

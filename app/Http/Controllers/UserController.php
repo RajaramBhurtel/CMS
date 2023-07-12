@@ -20,7 +20,7 @@ class UserController extends Controller
         return redirect('user/view')->with('success', 'User created successfully.');
     }
     public function view( ) {
-        $users = User::paginate(10);
+        $users = User::paginate(5);
 
         if ($users->isEmpty()) {
             return redirect('user/create')->with('success', 'No user found. Please create a user.');

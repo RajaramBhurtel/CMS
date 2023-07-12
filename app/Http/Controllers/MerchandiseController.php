@@ -21,7 +21,7 @@ class MerchandiseController extends Controller
         return redirect('merchandise/view')->with('success', 'Merchandise created successfully.');
     }
     public function view( ) {
-        $merchandises = Merchandise::paginate(10);
+        $merchandises = Merchandise::paginate(5);
 
         if ($merchandises->isEmpty()) {
             return redirect('merchandise/create')->with('success', 'No merchandise found. Please create a merchandise.');

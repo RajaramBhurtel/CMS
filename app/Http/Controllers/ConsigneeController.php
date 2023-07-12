@@ -20,7 +20,7 @@ class ConsigneeController extends Controller
         return redirect('consignee/view')->with('success', 'Consignee created successfully.');
     }
     public function view( ) {
-        $consignees = Consignee::paginate(10);
+        $consignees = Consignee::paginate(5);
 
         if ($consignees->isEmpty()) {
             return redirect('consignee/create')->with('success', 'No consignees found. Please create a consignee.');

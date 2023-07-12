@@ -81,6 +81,9 @@
                                 
                             </table>
                         </div>
+                        <div class="mt-4 place-items-center">
+                            {{ $shippers->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

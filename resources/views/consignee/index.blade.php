@@ -47,14 +47,14 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $consignee->address_1 }}
+                                                        {{ $consignee->consignee_address_1 }}
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $consignee->address_2 }}
+                                                        {{ $consignee->consignee_address_2 }}
                                                     </div>
                                                 </div>
                                             </td>
@@ -80,6 +80,9 @@
                                 </tbody>
                                 
                             </table>
+                        </div>
+                        <div class="mt-4 place-items-center">
+                            {{ $consignees->links() }}
                         </div>
                     </div>
                 </div>
