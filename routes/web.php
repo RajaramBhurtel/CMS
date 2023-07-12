@@ -66,4 +66,6 @@ Route::get('merchandise/{merchandise:id}/edit', [MerchandiseController::class, '
 Route::patch('merchandise/{merchandise:id}/update', [MerchandiseController::class, 'update']);
 Route::delete('merchandise/{merchandise:id}', [MerchandiseController::class, 'delete']);
 
+//booking routes
 Route::post( 'booking/getShipperAddress' , [BookingController::class, 'getShipperAddress'] );
+Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getConsigneeAddress'] );

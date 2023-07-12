@@ -38,7 +38,7 @@
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label for="shipper" class="block text-sm font-medium text-gray-700">Shipper</label>
-                                <select id="shipper" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md"  onChange="getShipperAddress();">
+                                <select id="shipper" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md"  onChange="getAddress('shipper', this.value);">
                                     <option>Choose Shipper</option>
                                     @foreach (\App\Models\Shipper::all() as $shipper)
                                     <option
@@ -55,13 +55,13 @@
                                 <label for="shipper_number" class="block text-sm font-medium text-gray-700">Number</label>
                                 <input id="shipper_number" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
                             </div>
-                            <div>
+                            <div id="find_address">
                                 <label for="shipper_address" class="block text-sm font-medium text-gray-700">Address</label>
-                                <div id="autocomplete" class="autocomplete-container billing"></div>
-                                <input type="hidden" name="address_1" id="address_1" >
-                                <input type="hidden" name="address_2" id="address_2" >
-                                <input type="hidden" name="longitude" id="longitude" >
-                                <input type="hidden" name="latitude" id="latitude" >
+                                <div id="autocomplete" class="autocomplete-container billing" data-address-type="shipper"></div>
+                                <input type="hidden" name="shipper_address_1" id="shipper_address_1" >
+                                <input type="hidden" name="shipper_address_2" id="shipper_address_2" >
+                                <input type="hidden" name="shipper_longitude" id="shipper_longitude" >
+                                <input type="hidden" name="shipper_latitude" id="shipper_latitude" >
                             </div>
                         
                         </div>
@@ -70,7 +70,7 @@
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label for="consignee" class="block text-sm font-medium text-gray-700">Shipper</label>
-                                <select id="consignee" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md " onChange="getConsigneeAddress();">
+                                <select id="consignee" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md " onChange="getAddress('consignee', this.value);">
                                     <option>Choose Consignee</option>
                                     @foreach (\App\Models\Consignee::all() as $consignee)
                                         <option
@@ -87,13 +87,13 @@
                                 <label for="consignee_number" class="block text-sm font-medium text-gray-700">Number</label>
                                 <input id="consignee_number" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
                             </div>
-                            <div>
+                            <div id="find_address">
                                 <label for="consignee_address" class="block text-sm font-medium text-gray-700">Address</label>
-                                <div id="autocomplete" class="autocomplete-container billing"></div>
-                                <input type="hidden" name="address_1" id="address_1" >
-                                <input type="hidden" name="address_2"  id="address_2" >
-                                <input type="hidden" name="longitude"  id="longitude" >
-                                <input type="hidden" name="latitude"  id="latitude" >
+                                <div id="autocomplete" class="autocomplete-container billing" data-address-type="consignee"></div>
+                                <input type="hidden" name="consignee_address_1" id="consignee_address_1" >
+                                <input type="hidden" name="consignee_address_2"  id="consignee_address_2" >
+                                <input type="hidden" name="consignee_longitude"  id="consignee_longitude" >
+                                <input type="hidden" name="consignee_latitude"  id="consignee_latitude" >
                             </div>
                         </div>
                     </div>
@@ -177,58 +177,84 @@
     </x-main >
 </x-layout >
 <script>
-    function getShipperAddress(){
-        var shipper_code = $("#shipper").val();
-        var url = "/booking/getShipperAddress";
-                $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+    // function getShipperAddress(){
+    //     var shipper_code = $("#shipper").val();
+    //     var url = "/booking/getShipperAddress";
+    //             $.ajaxSetup({
+    //             headers: {
+    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //             }
+    //         });
 
-            $.ajax({
-                type: "POST",
-                url: url,
-                async: true,
-                data: {shipper_id : shipper_code},
-                success : function(data) {
-                    if(data){
-                        // console.log(data.address_1);
-                        $("#address_1").val(data.address_1);
-                        $("#address_2").val(data.address_2);
-                        $("#longitude").val(data.longitude);
-                        $("#latitude").val(data.latitude);
+    //         $.ajax({
+    //             type: "POST",
+    //             url: url,
+    //             async: true,
+    //             data: {shipper_id : shipper_code},
+    //             success : function(data) {
+    //                 if(data){
+    //                     // console.log(data.address_1);
+    //                     $("#address_1").val(data.address_1);
+    //                     $("#address_2").val(data.address_2);
+    //                     $("#longitude").val(data.longitude);
+    //                     $("#latitude").val(data.latitude);
 
-                    }
+    //                 }
+    //             }
+    //         });
+    // }
+    // function getConsigneeAddress(){
+    //     var consignee_code = $("#consignee").val();
+    //     var url = "/booking/getConsigneeAddress";
+    //         $.ajaxSetup({
+    //             headers: {
+    //                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //             }
+    //         });
+
+    //         $.ajax({
+    //             type: "POST",
+    //             url: url,
+    //             async: true,
+    //             data: {consignee_id : consignee_code},
+    //             success : function(data) {
+    //                 if(data){
+    //                     // console.log(data.address_1);
+    //                     $("#address_1").val(data.address_1);
+    //                     $("#address_2").val(data.address_2);
+    //                     $("#longitude").val(data.longitude);
+    //                     $("#latitude").val(data.latitude);
+
+    //                 }
+    //             }
+    //         });
+    // }
+
+    function getAddress(entity, id) {
+        var url = "/booking/get" + entity.charAt(0).toUpperCase() + entity.slice(1) + "Address";
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            async: true,
+            data: { [entity + "_id"]: id },
+            success: function(data) {
+                if (data) {
+                    $("#" + entity + "_address_1").val(data.address_1);
+                    $("#" + entity + "_address_2").val(data.address_2);
+                    $("#" + entity + "_longitude").val(data.longitude);
+                    $("#" + entity + "_latitude").val(data.latitude);
                 }
-            });
+            }
+        });
     }
-    function getConsigneeAddress(){
-        var consignee_code = $("#consignee").val();
-        var url = "/booking/getConsigneeAddress";
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
 
-            $.ajax({
-                type: "POST",
-                url: url,
-                async: true,
-                data: {consignee_id : consignee_code},
-                success : function(data) {
-                    if(data){
-                        // console.log(data.address_1);
-                        $("#address_1").val(data.address_1);
-                        $("#address_2").val(data.address_2);
-                        $("#longitude").val(data.longitude);
-                        $("#latitude").val(data.latitude);
-
-                    }
-                }
-            });
-    }
 </script>
 @php
 function generateBookingCode()
