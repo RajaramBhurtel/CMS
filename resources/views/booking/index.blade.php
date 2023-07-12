@@ -24,7 +24,7 @@
                     <label class="block text-sm font-medium text-gray-700">Payment Mode</label>
                     <div class="mt-1">
                         <label class="inline-flex items-center">
-                        <input type="radio" class="h-10 px-2 form-radio text-indigo-500 focus:ring-indigo-500" name="payment-mode" value="cash">
+                        <input type="radio" class="h-10 px-2 form-radio text-indigo-500 focus:ring-indigo-500" name="payment-mode" value="cash" checked>
                             <span class="ml-2">Cash</span>
                         </label>
                         <label class="inline-flex items-center ml-6">
@@ -38,7 +38,7 @@
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label for="shipper" class="block text-sm font-medium text-gray-700">Shipper</label>
-                                <select id="shipper" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                                <select id="shipper" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md"  onChange="getShipperAddress();">
                                     <option>Choose Shipper</option>
                                     @foreach (\App\Models\Shipper::all() as $shipper)
                                     <option
@@ -70,7 +70,7 @@
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label for="consignee" class="block text-sm font-medium text-gray-700">Shipper</label>
-                                <select id="consignee" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                                <select id="consignee" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md " onChange="getConsigneeAddress();">
                                     <option>Choose Consignee</option>
                                     @foreach (\App\Models\Consignee::all() as $consignee)
                                         <option
@@ -176,6 +176,60 @@
        </x-panel>
     </x-main >
 </x-layout >
+<script>
+    function getShipperAddress(){
+        var shipper_code = $("#shipper").val();
+        var url = "/booking/getShipperAddress";
+                $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: true,
+                data: {shipper_id : shipper_code},
+                success : function(data) {
+                    if(data){
+                        // console.log(data.address_1);
+                        $("#address_1").val(data.address_1);
+                        $("#address_2").val(data.address_2);
+                        $("#longitude").val(data.longitude);
+                        $("#latitude").val(data.latitude);
+
+                    }
+                }
+            });
+    }
+    function getConsigneeAddress(){
+        var consignee_code = $("#consignee").val();
+        var url = "/booking/getConsigneeAddress";
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                async: true,
+                data: {consignee_id : consignee_code},
+                success : function(data) {
+                    if(data){
+                        // console.log(data.address_1);
+                        $("#address_1").val(data.address_1);
+                        $("#address_2").val(data.address_2);
+                        $("#longitude").val(data.longitude);
+                        $("#latitude").val(data.latitude);
+
+                    }
+                }
+            });
+    }
+</script>
 @php
 function generateBookingCode()
 {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShipperController;
@@ -64,3 +65,5 @@ Route::post( 'merchandise/create' , [MerchandiseController::class, 'create'] );
 Route::get('merchandise/{merchandise:id}/edit', [MerchandiseController::class, 'edit']);
 Route::patch('merchandise/{merchandise:id}/update', [MerchandiseController::class, 'update']);
 Route::delete('merchandise/{merchandise:id}', [MerchandiseController::class, 'delete']);
+
+Route::post( 'booking/getShipperAddress' , [BookingController::class, 'getShipperAddress'] );
