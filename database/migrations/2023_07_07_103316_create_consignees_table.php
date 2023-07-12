@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('consignee_id')->unique();
             $table->string('name');
-            $table->string('address_1');
-            $table->string('address_2');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->string('consignee_address_1');
+            $table->string('consignee_address_2');
+            $table->string('consignee_latitude');
+            $table->string('consignee_longitude');
             $table->string('phone');
             $table->string('email')->nullable();
             $table->timestamps();

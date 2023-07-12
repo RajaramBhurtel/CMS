@@ -53,13 +53,13 @@ class ConsigneeController extends Controller
         $consignee ??= new Consignee();
 
         return request()->validate([
-            'name' => 'required|min:3|max:255',
-            'email' => ['required', Rule::unique('consignees', 'email')->ignore($consignee)],
-            'phone' => 'required|min:10',
-            'address_1' => 'required',
-            'address_2' => 'required',
-            'longitude' => 'required',
-            'latitude' => 'required',
+            'name'                  => 'required|min:3|max:255',
+            'email'                 => ['required', Rule::unique('consignees', 'email')->ignore($consignee)],
+            'phone'                 => 'required|min:10',
+            'consignee_address_1'   => 'required',
+            'consignee_address_2'   => 'required',
+            'consignee_longitude'   => 'required',
+            'consignee_latitude'    => 'required',
         ]);
     }
 }
