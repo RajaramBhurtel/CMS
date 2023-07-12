@@ -27,12 +27,12 @@
                           Address&nbsp;<b class="">*</b>
                         </td>
                         <td><span class="ml-1">:</span></td>
-                        <td>
-                          <div id="autocomplete" class="autocomplete-container"></div>
-                          <input type="hidden" name="address_1" id="address_1" >
-                          <input type="hidden" name="address_2" id="address_2" >
-                          <input type="hidden" name="longitude" id="longitude" >
-                          <input type="hidden" name="latitude" id="latitude" >
+                        <td id="find_address">
+                          <div id="autocomplete" class="autocomplete-container" data-address-type="shipper"></div>
+                          <input type="hidden" name="shipper_address_1" id="shipper_address_1" >
+                          <input type="hidden" name="shipper_address_2" id="shipper_address_2" >
+                          <input type="hidden" name="shipper_longitude" id="shipper_longitude" >
+                          <input type="hidden" name="shipper_latitude" id="shipper_latitude" >
                         </td>
                         @error('address')
                           <p class="text-red-500">{{ $message }}</p>

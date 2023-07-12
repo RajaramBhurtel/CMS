@@ -57,10 +57,10 @@ class ShipperController extends Controller
             'name' => 'required|min:3|max:255',
             'email' => ['required', Rule::unique('shippers', 'email')->ignore($shipper)],
             'phone' => 'required|min:10',
-            'address_1' => 'required',
-            'address_2' => 'required',
-            'longitude' => 'required',
-            'latitude' => 'required',
+            'shipper_address_1' => 'required',
+            'shipper_address_2' => 'required',
+            'shipper_longitude' => 'required',
+            'shipper_latitude' => 'required',
         ]);
 
     }

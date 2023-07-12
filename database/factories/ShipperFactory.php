@@ -19,10 +19,10 @@ class ShipperFactory extends Factory
         return [
             'shipper_id' => $this->faker->unique()->uuid(),
             'name' => $this->faker->name(),
-            'address_1' => $this->faker->streetAddress(),
-            'address_2' => $this->faker->secondaryAddress(),
-            'latitude' => $this->faker->latitude(),
-            'longitude' => $this->faker->longitude(),
+            'shipper_address_1' => $this->faker->streetAddress(),
+            'shipper_address_2' => $this->faker->secondaryAddress(),
+            'shipper_latitude' => $this->faker->latitude(),
+            'shipper_longitude' => $this->faker->longitude(),
             'phone' => $this->faker->phoneNumber(),
             'email' => $this->faker->safeEmail(),
         ];

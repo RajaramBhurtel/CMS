@@ -47,14 +47,14 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $shipper->address_1 }}
+                                                        {{ $shipper->shipper_address_1 }}
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $shipper->address_2 }}
+                                                        {{ $shipper->shipper_address_2 }}
                                                     </div>
                                                 </div>
                                             </td>
