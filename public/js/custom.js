@@ -14,56 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Set the value of the input element to the formatted date
       document.getElementById('date').value = formattedDate;
     }
-
-    // Auto complete the location using geopapify
     
-    // if (document.getElementById('autocomplete') || document.getElementById('autocomplete_1')) {
-    //   const autocompleteInput = new autocomplete.GeocoderAutocomplete(
-    //                             document.getElementById("autocomplete"), 
-    //                             '3082d9f8f08846a987a1c0a3ed4ecd05', 
-    //                             {  });
-    //     autocompleteInput.on('select', (location) => {
-    //     const placeName = location.properties.address_line1;
-    //     const placeLocation = location.properties.address_line2;
-    //     const latitude = location.properties.lat;
-    //     const longitude = location.properties.lon;
-
-    //     if (!placeName || !placeLocation || !latitude || !longitude) {
-    //         alert("Invalid address. Please select a valid address.");
-    //         return;
-    //     }
-
-    //     // Set the selected location values to hidden inputs in the form
-    //     document.getElementById('address_1').value = placeName;
-    //     document.getElementById('address_2').value = placeLocation;
-    //     document.getElementById('latitude').value = latitude;
-    //     document.getElementById('longitude').value = longitude;
-    //     });
-    // }
-    // const inputs = document.getElementsByClassName("autocomplete-container");
-
-    // Array.from(inputs).forEach((input) => {
-    //   const autocompleteInput = new autocomplete.GeocoderAutocomplete(input, '3082d9f8f08846a987a1c0a3ed4ecd05');
-
-    //   autocompleteInput.on('select', (location) => {
-    //         const placeName = location.properties.address_line1;
-    //         const placeLocation = location.properties.address_line2;
-    //         const latitude = location.properties.lat;
-    //         const longitude = location.properties.lon;
-    
-    //         if (!placeName || !placeLocation || !latitude || !longitude) {
-    //             alert("Invalid address. Please select a valid address.");
-    //             return;
-    //         }
-    
-    //         // Set the selected location values to hidden inputs in the form
-    //         document.getElementById('address_1').value = placeName;
-    //         document.getElementById('address_2').value = placeLocation;
-    //         document.getElementById('latitude').value = latitude;
-    //         document.getElementById('longitude').value = longitude;
-    //         });
-    // });
-
     function initializeAutocomplete(input) {
       const autocompleteInput = new autocomplete.GeocoderAutocomplete(input, '3082d9f8f08846a987a1c0a3ed4ecd05');
     
@@ -77,19 +28,21 @@ document.addEventListener('DOMContentLoaded', function() {
           alert("Invalid address. Please select a valid address.");
           return;
         }
-        // console.log(input.parentNode.querySelector('#address_2').id, placeName)
-        // Set the selected location values to hidden inputs in the form
-        input.parentNode.querySelector('#address_1').value = placeName;
-        input.parentNode.querySelector('#address_2').value = placeLocation;
-        input.parentNode.querySelector('#latitude').value = latitude;
-        input.parentNode.querySelector('#longitude').value = longitude;
+        
+        const parent = $(input).closest('#find_address');
+        // Determine the type of address (shipper or consignee) based on the input's ID
+        const addressType = parent.find('.autocomplete-container').attr('data-address-type');
+        // Set the selected location values to the corresponding address fields
+        
+        parent.find(`#${addressType}_address_1`).val(placeName);
+        parent.find(`#${addressType}_address_2`).val(placeLocation);
+        parent.find(`#${addressType}_latitude`).val(latitude);
+        parent.find(`#${addressType}_longitude`).val(longitude);
       });
     }
     
-    const inputs = document.getElementsByClassName("autocomplete-container");
-    
-    Array.from(inputs).forEach((input) => {
-      initializeAutocomplete(input);
+    $('.autocomplete-container').each(function() {
+      initializeAutocomplete($(this)[0]);
     });
     
 
