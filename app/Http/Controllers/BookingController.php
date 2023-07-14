@@ -13,10 +13,10 @@ class BookingController extends Controller
         $shipper = Shipper::findOrFail($shipper_id);
 
         $address = [
-            'address_1' => $shipper->address_1,
-            'address_2' => $shipper->address_2,
-            'latitude' => $shipper->latitude,
-            'longitude' => $shipper->longitude,
+            'address_1' => $shipper->shipper_address_1,
+            'address_2' => $shipper->shipper_address_2,
+            'latitude' => $shipper->shipper_latitude,
+            'longitude' => $shipper->shipper_longitude,
         ];
     
         return response()->json($address);
@@ -26,10 +26,10 @@ class BookingController extends Controller
         $consignee = Consignee::findOrFail($consignee_id);
 
         $address = [
-            'address_1' => $consignee->address_1,
-            'address_2' => $consignee->address_2,
-            'latitude' => $consignee->latitude,
-            'longitude' => $consignee->longitude,
+            'address_1' => $consignee->consignee_address_1,
+            'address_2' => $consignee->consignee_address_2,
+            'latitude' => $consignee->consignee_latitude,
+            'longitude' => $consignee->consignee_longitude,
         ];
     
         return response()->json($address);

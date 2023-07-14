@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('shipper_longitude');
             $table->string('shipper_latitude');
             $table->string('consignee_id');
+            $table->string('one_time_consignee');
+            $table->string('consignee_number');
             $table->string('consignee_address1');
             $table->string('consignee_address2');
             $table->string('consignee_longitude');
