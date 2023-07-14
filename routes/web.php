@@ -67,6 +67,7 @@ Route::delete('merchandise/{merchandise:id}', [MerchandiseController::class, 'de
 //booking routes
 Route::get('booking/single', [BookingController::class, 'index'] );
 Route::get('booking/master', [BookingController::class, 'master'] );
+Route::get('booking/{booking:id}/view', [BookingController::class, 'view']);
 Route::post('booking/createSingle', [BookingController::class, 'createSingle'] );
 Route::post( 'booking/getShipperAddress' , [BookingController::class, 'getShipperAddress'] );
 Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getConsigneeAddress'] );

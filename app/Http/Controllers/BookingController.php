@@ -25,13 +25,19 @@ class BookingController extends Controller
         return view('booking.master', compact('bookings'));
     }
 
+    public function view(Booking $booking) {
+        return view('booking.view', [
+            'booking' => $booking
+        ]);
+    }
+
     public function createSingle()
     {
         $validatedData = $this->validateBooking();
 
         Booking::create($validatedData);
 
-        return back()->with('success', 'Booking created successfully.');
+        return redirect('booking/master')->with('success', 'Booking created successfully.');
     }
 
     public function getShipperAddress(Request $request ){
