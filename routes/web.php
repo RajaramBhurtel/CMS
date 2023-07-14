@@ -22,9 +22,7 @@ Route::get('/', function () {
     return view('booking.dashboard');
 });
 
-Route::get('booking/single', function () {
-    return view('booking.index');
-});
+
 
 Route::get('booking/bulk', function () {
     return view('booking.bulk');
@@ -67,5 +65,7 @@ Route::patch('merchandise/{merchandise:id}/update', [MerchandiseController::clas
 Route::delete('merchandise/{merchandise:id}', [MerchandiseController::class, 'delete']);
 
 //booking routes
+Route::get('booking/single', [BookingController::class, 'index'] );
+Route::post('booking/createSingle', [BookingController::class, 'createSingle'] );
 Route::post( 'booking/getShipperAddress' , [BookingController::class, 'getShipperAddress'] );
 Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getConsigneeAddress'] );
