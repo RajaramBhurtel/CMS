@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const quantityInput = document.getElementById('quantity');
       const weightInput = document.getElementById('weight');
       const individualPriceInput = document.getElementById('individual_price');
-      const priceBeforeDiscountInput = document.getElementById('price-before-discount');
+      const priceBeforeDiscountInput = document.getElementById('price_before_discount');
       const discountInput = document.getElementById('discount');
-      const priceAfterDiscountInput = document.getElementById('price-after-discount');
+      const priceAfterDiscountInput = document.getElementById('price_after_discount');
 
       // Add event listeners to the input fields
       quantityInput.addEventListener('input', calculatePrice);
