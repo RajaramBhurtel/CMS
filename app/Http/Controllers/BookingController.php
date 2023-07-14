@@ -15,6 +15,16 @@ class BookingController extends Controller
         return view( 'booking.index');
     }
 
+    public function master( ) {
+        $bookings = Booking::paginate(5);
+
+        if ($bookings->isEmpty()) {
+            return redirect('booking/single')->with('success', 'No bookings found. Please create a booking.');
+        }
+
+        return view('booking.master', compact('bookings'));
+    }
+
     public function createSingle()
     {
         $validatedData = $this->validateBooking();
