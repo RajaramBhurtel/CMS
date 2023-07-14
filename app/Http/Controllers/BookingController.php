@@ -2,12 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use App\Models\Shipper;
 use App\Models\Consignee;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Rules\ExclusiveFieldsRule;
 
 class BookingController extends Controller
 {
+    public function index( ) {
+        return view( 'booking.index');
+    }
+
+    public function createSingle()
+    {
+        $validatedData = $this->validateBooking();
+
+        Booking::create($validatedData);
+
+        return back()->with('success', 'Booking created successfully.');
+    }
+
     public function getShipperAddress(Request $request ){
         $shipper_id = $request->input('shipper_id');
         $shipper = Shipper::findOrFail($shipper_id);
@@ -17,6 +33,7 @@ class BookingController extends Controller
             'address_2' => $shipper->shipper_address_2,
             'latitude' => $shipper->shipper_latitude,
             'longitude' => $shipper->shipper_longitude,
+            'phone' => $shipper->phone,
         ];
     
         return response()->json($address);
@@ -30,8 +47,44 @@ class BookingController extends Controller
             'address_2' => $consignee->consignee_address_2,
             'latitude' => $consignee->consignee_latitude,
             'longitude' => $consignee->consignee_longitude,
+            'phone' => $consignee->phone,
         ];
     
         return response()->json($address);
-    } 
+    }
+    
+    protected function validateBooking(?Booking $booking = null): array {
+        $booking ??= new Booking();
+        return request()->validate([
+            'cn_no'                 => 'required',
+            'date'                  => 'required',
+            'category'              => 'required',
+            'payment_mode'          => 'required',
+            'shipper_id'            => ['required_without:one_time_shipper', new ExclusiveFieldsRule('one_time_shipper')],
+            'one_time_shipper'      => ['required_without:shipper_id', new ExclusiveFieldsRule('shipper_id')],
+            'shipper_number'        => 'required',
+            'shipper_address1'      => 'required',
+            'shipper_address2'      => 'required',
+            'shipper_longitude'     => 'required',
+            'shipper_latitude'      => 'required',
+            'consignee_id'          => ['required_without:one_time_consignee', new ExclusiveFieldsRule('one_time_consignee')],
+            'one_time_consignee'    => ['required_without:consignee_id', new ExclusiveFieldsRule('consignee_id')],
+            'consignee_number'      => 'required',
+            'consignee_address1'    => 'required',
+            'consignee_address2'    => 'required',
+            'consignee_longitude'   => 'required',
+            'consignee_latitude'    => 'required',
+            'content_type'          => 'required',
+            'merchandise_code'      => 'required',
+            'mode'                  => 'required',
+            'quantity'              => 'required',
+            'weight'                => 'required',
+            'individual_price'      => 'required',
+            'price_before_discount' => 'required',
+            'discount'              => 'required',
+            'price_after_discount'  => 'required',
+            'biller'                => 'required',
+            'description'           => 'nullable',
+        ]);
+    }
 }
