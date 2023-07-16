@@ -1,7 +1,6 @@
 <x-layout >
     <x-main title="View ">
         <x-panel>
-            
           <div class="flex max-w-4xl mx-auto my-10 border-2 border-black">
             <div class="left border-r-2 border-black w-3/4">
               <div class="flex top border-b border-black">
@@ -25,22 +24,37 @@
                       <td class="w-1/2">
                         <span class="text-sm">
                           {{-- Origin: <br> --}}
-                          Sender: <b class="text-base">Sabin Bhurtel </b>
+                          Sender: <b class="text-base">
+                                  @php
+                                    if ($booking->shipper_id) {
+                                        $shipperName = App\Models\Shipper::find($booking->shipper_id)->name;
+                                    } else {
+                                        $shipperName = $booking->one_time_shipper;
+                                    } 
+                                  @endphp 
+                                    {{ $shipperName }}  
+                                  </b>
                           <br>
-                          Number: <b class="text-base">Number</b><br>
-                          Address: <b class="text-base">Bhaktapur</b><br>
-                          Booked On: <b class="text-base">2080-3-29 BS<b>
+                          Number: <b class="text-base">{{$booking->shipper_number}}</b><br>
+                          Address: <b class="text-base">{{$booking->shipper_address1}}, {{$booking->shipper_address2}}</b><br>
                           </b></b>
                         </span>
                       </td>
                       <td class="w-1/2">
                         <span class="text-sm">
                           Receiver: <b class="text-base">
-                            RAM KRISHNA KAMI
+                           @php
+                                if ($booking->consignee_id) {
+                                    $consigneeName = App\Models\Consignee::find($booking->shipper_id)->name;
+                                } else {
+                                    $consigneeName = $booking->one_time_consignee;
+                                } 
+                            @endphp 
+                              {{$consigneeName}}
                           </b>
                           <br>
-                          Number: <b class="text-base">+911567702876</b><br>
-                          Address: <b class="text-base">United Arab Amirates, Ajman, New Sanaya UAE</b>
+                           Number: <b class="text-base">{{$booking->consignee_number}}</b><br>
+                          Address: <b class="text-base">{{$booking->consignee_address1}}, {{$booking->consignee_address2}}</b><br>
                         </span>
                       </td>
                     </tr>
@@ -48,32 +62,33 @@
                 </table>
                 <hr class="mb-4 border-black">
 
-                <span class="ml-8 mb-2 text-sm">Description: <b class="text-base"></b>&nbsp;&nbsp;</span>
+                <span class="ml-8 mb-2 text-sm">Description: &nbsp;{{$booking->description}} <b class="text-base"></b>&nbsp;&nbsp;</span>
                 <table class=" border-solid border-black mt-2 ml-5 border-2 min-w-[95%]" >
                   <tbody>
                     <tr>
                       <td class="text-center border p-2 border-black">Mailing Mode</td>
-                      <td class="text-center border p-2 border-black"><b class="text-base">Air</b></td>
+                      <td class="text-center border p-2 border-black"><b class="text-base">{{$booking->mode === 'by_air' ? 'Air' : 'Surface'}}
+</b></td>
                       <td class="text-center border p-2 border-black">Payment Mode</td>
-                      <td class="text-center border p-2 border-black"><b class="text-base">Cash</b></td>
+                      <td class="text-center border p-2 border-black"><b class="text-base">{{ucfirst($booking->payment_mode)}}</b></td>
                     </tr>
                     <tr>
                       <td class="text-center border p-2 border-black">Declared Value</td>
                       <td class="text-center border p-2 border-black"><b class="text-base">0</b></td>
                       <td class="text-center border p-2 border-black">Quantity</td>
-                      <td class="text-center border p-2 border-black"><b class="text-base">1</b></td>
+                      <td class="text-center border p-2 border-black"><b class="text-base">{{$booking->quantity}}</b></td>
                     </tr>
                     <tr>
                       <td class="text-center border p-2 border-black">Content</td>
-                      <td class="text-center border p-2 border-black"><b class="text-base">Doc</b></td>
+                      <td class="text-center border p-2 border-black"><b class="text-base">{{ucfirst($booking->content_type)}}</b></td>
                       <td class="text-center border p-2 border-black">Weight</td>
-                      <td class="text-center border p-2 border-black"><b class="text-base">0.5</b></td>
+                      <td class="text-center border p-2 border-black"><b class="text-base">{{$booking->weight}}</b></td>
                     </tr>
                     <tr>
                       <td class="text-center border p-2 border-black">Booked On:</td>
-                      <td class="text-center border p-2 border-black"><b class="text-base">2023-07-14 AD</b></td>
+                      <td class="text-center border p-2 border-black"><b class="text-base">{{$booking->date}} AD</b></td>
                       <td class="text-center border p-2 border-black">Amount:</td>
-                      <td class="text-center border p-2 border-black"><b class="text-base">Rs 2800</b></td>
+                      <td class="text-center border p-2 border-black"><b class="text-base">Rs {{$booking->price_after_discount}}</b></td>
                     </tr>
                     <tr>
                       <td colspan="4" class="text-center  border p-2 border-black">&nbsp;Don't Put Cash in Envelope</td>
@@ -82,7 +97,11 @@
                   </tbody>
                 </table>
                 <p class="ml-8 text-sm mt-3 mb-3">
-                  Received with thanks NRs <b class="text-base">2800</b>. In Words Two Thousand Eight Hundred Only
+                  @php
+                      $formatter = new NumberFormatter("en", NumberFormatter::SPELLOUT);
+                      $words = $formatter->format($booking->price_after_discount);
+                  @endphp
+                  Received with thanks NRs <b class="text-base">{{$booking->price_after_discount}}</b>. In Words {{$words}}
                 </p>
               </div>
             </div>
@@ -94,7 +113,7 @@
                 <p class="text-center"></p>
                 <div class="ml-15 p-0 overflow-auto w-176">
                   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlcyf1kJNUTZqLcHaLsR_gKfuoaumFl-Sd0m1Lgd3ADg&s" alt="">
-                  18875
+                 {{$booking->cn_no}}
                 </div>
               </div>
               <div class="bottom ">

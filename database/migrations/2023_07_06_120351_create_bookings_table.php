@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('cn_no')->unique();
             $table->date('date');
             $table->enum('category', ['domestic', 'international']);
-            $table->enum('payment_mode', ['cash', 'credit']);
+            $table->enum('payment_mode', ['Cash', 'Credit']);
             $table->string('shipper_id')->nullable();
             $table->string('one_time_shipper')->nullable();
             $table->string('shipper_number');
@@ -37,9 +37,9 @@ return new class extends Migration
             $table->integer('quantity');
             $table->integer('weight');
             $table->decimal('individual_price', 8, 2);
-            $table->decimal('price_before_discount', 12, 2)->change();
+            $table->decimal('price_before_discount', 12, 2);
             $table->decimal('discount', 8, 2);
-            $table->decimal('price_after_discount', 12, 2)->change();
+            $table->decimal('price_after_discount', 12, 2);
             $table->string('biller');
             $table->text('description')->nullable();
             $table->timestamps();
