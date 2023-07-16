@@ -111,8 +111,9 @@
                   <b>Courier Consignment <br>Note Non Negotiable</b>
                 </p>
                 <p class="text-center"></p>
-                <div class="ml-15 p-0 overflow-auto w-176">
-                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlcyf1kJNUTZqLcHaLsR_gKfuoaumFl-Sd0m1Lgd3ADg&s" alt="">
+                <div class="ml-15 pl-6 text-center overflow-auto w-176">
+                  {!! DNS1D::getBarcodeHTML('11111111', 'PHARMA',2,80, 'black', true) !!}
+                  {{-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlcyf1kJNUTZqLcHaLsR_gKfuoaumFl-Sd0m1Lgd3ADg&s" alt=""> --}}
                  {{$booking->cn_no}}
                 </div>
               </div>

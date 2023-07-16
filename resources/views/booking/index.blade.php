@@ -276,9 +276,10 @@ function generateBookingCode()
 
     if ($lastCode) {
         $codeNumber = intval(substr($lastCode, 2)) + 1;
-        return 'BK' . str_pad($codeNumber, 5, '0', STR_PAD_LEFT);
+        return str_pad($codeNumber, 8, '0', STR_PAD_LEFT);
     }
 
-    return 'BK00001';
+    return '00000001';
 }
+
 @endphp
