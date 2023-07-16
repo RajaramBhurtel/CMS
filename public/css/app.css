@@ -56,11 +56,12 @@
     background: #cecece;
 }
 
-input:focus , textarea{
+input:focus,
+textarea {
     outline: none;
 }
 
-nav.scroller{
+nav.scroller {
     width: inherit;
 }
 
@@ -82,19 +83,18 @@ nav.scroller{
     position: relative;
 }
 
-.geoapify-autocomplete-input{
+.geoapify-autocomplete-input {
     border: unset !important;
     width: fit-content !important;
 }
-input.geoapify-autocomplete-input{
+input.geoapify-autocomplete-input {
     color: rgb(96, 165, 250);
-    
 }
-.geoapify-autocomplete-items{
+.geoapify-autocomplete-items {
     font-size: 12px;
 }
 
-.geoapify-autocomplete-item .icon{
+.geoapify-autocomplete-item .icon {
     display: none !important;
 }
 
@@ -109,14 +109,15 @@ textarea[readonly] {
     cursor: not-allowed;
 }
 
-.billing .geoapify-autocomplete-input{
+.billing .geoapify-autocomplete-input {
     height: 2.5rem;
     margin-top: 4px;
     border-radius: 5px;
     width: 100% !important;
-    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color),
+        0 2px 4px -2px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-
-
