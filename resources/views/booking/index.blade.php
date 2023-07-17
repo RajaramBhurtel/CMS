@@ -279,7 +279,7 @@ function generateBookingCode()
         return str_pad($codeNumber, 8, '0', STR_PAD_LEFT);
     }
 
-    return '00000001';
+    return '10000001';
 }
 
 @endphp
