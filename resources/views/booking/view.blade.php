@@ -68,7 +68,7 @@
                     <tr>
                       <td class="text-center border p-2 border-black">Mailing Mode</td>
                       <td class="text-center border p-2 border-black"><b class="text-base">{{$booking->mode === 'by_air' ? 'Air' : 'Surface'}}
-</b></td>
+                      </b></td>
                       <td class="text-center border p-2 border-black">Payment Mode</td>
                       <td class="text-center border p-2 border-black"><b class="text-base">{{ucfirst($booking->payment_mode)}}</b></td>
                     </tr>

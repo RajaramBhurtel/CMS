@@ -35,9 +35,9 @@ class BookingController extends Controller
     {
         $validatedData = $this->validateBooking();
 
-        Booking::create($validatedData);
+        $booking = Booking::create($validatedData);
 
-        return redirect('booking/master')->with('success', 'Booking created successfully.');
+        return redirect('booking/'.$booking->id.'/view')->with('success', 'Booking created successfully.');
     }
 
     public function getShipperAddress(Request $request ){
