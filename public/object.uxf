@@ -1,0 +1,79 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>310</x><y>40</y><w>230</w><h>300</h></coordinates><panel_attributes>Bill1: Booking
+--
+-id: 1
+-cn_no: 400001
+-date: July 20 2023
+-category: Domestic
+-content_type: Doc
+-mode: surface
+-payment_mode: cash
+-shipper_id: SH001
+-consignee_id: CO001
+-merchandise_id: MO001
+-quantity: 1
+-weight: 2
+-individual_price: 100
+-discount: 50
+-amount: 150
+-biller: Sabin
+-description: Mobile Phone
+-status: Created
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>20</y><w>210</w><h>190</h></coordinates><panel_attributes>EIC:Shippers
+--
+-id: 1
+-shipper_id: SH001
+-name: EIC
+-shipper_address_1: Kalimati
+-shipper_address_2: Kathmandu
+-shipper_latitude: 27..02154
+-shipper_longitude: 26.2358
+-phone: 0140000
+-email: eic@eic.com
+-is_one_time: no
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>610</x><y>220</y><w>210</w><h>180</h></coordinates><panel_attributes>PIC: Consignees
+--
+-id: 1
+-consignee_id: CO001
+-name: PIC
+-consignee_address_1: Sahidchowk
+-consignee_address_2: Butwal
+-consignee_latitude: 27.856245
+-consignee_longitude: 26.58954
+-phone: 014798658
+-email: pic@oic.com
+-is_one_time: no
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>70</y><w>210</w><h>90</h></coordinates><panel_attributes>Mobile:Merchandise
+--
+-id: 1
+-merchandise_code: MO001
+-name: Samsung
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>190</y><w>210</w><h>130</h></coordinates><panel_attributes>Sabin:Users
+--
+-id: 1
+-name: Sabin
+-username: sabinb
+-password: password
+-email: sabin@gmail.com
+-role: biller
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>90</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>210</x><y>250</y><w>120</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=n
+</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>60</y><w>100</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;20;80;20</additional_attributes></element><element><id>Relation</id><coordinates><x>530</x><y>230</y><w>100</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;20;80;20</additional_attributes></element></diagram>
