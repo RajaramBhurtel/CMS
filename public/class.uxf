@@ -1,0 +1,109 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>440</x><y>40</y><w>230</w><h>380</h></coordinates><panel_attributes>Booking
+--
+-id: int
+-cn_no: string
+-date: date
+-category: enum
+-content_type: enum
+-mode: enum
+-payment_mode: enum
+-shipper_id: shipper
+-consignee_id: consignee
+-merchandise_id: merchandise
+-quantity: int
+-weight: int
+-individual_price: decimal
+-discount: decimal
+-amount: decimal
+-biller: user
+-description: text
+-status: boolean
+--
+#validateBooking(Booking)
++createSingle()
++getShipper(Shipper)
++getConsignee(Consignee)
++updateStatus()
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>770</x><y>20</y><w>210</w><h>280</h></coordinates><panel_attributes>Shippers
+--
+-id: int
+-shipper_id: string
+-name: string
+-shipper_address_1: string
+-shipper_address_2: string
+-shipper_latitude: string
+-shipper_longitude: string
+-phone: string
+-email: string
+-is_one_time: boolean
+--
+#validateShipper(Shipper)
++create()
++view()
++edit(Shipper)
++update(Shipper)
++delete(Shipper)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>770</x><y>330</y><w>210</w><h>280</h></coordinates><panel_attributes>Consignees
+--
+-id: int
+-consignee_id: string
+-name: string
+-consignee_address_1: string
+-consignee_address_2: string
+-consignee_latitude: string
+-consignee_longitude: string
+-phone: string
+-email: string
+-is_one_time: boolean
+--
+#validateConsignee(Consignee)
++create()
++view()
++edit(Consignee)
++update(Consignee)
++delete(Consignee)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>40</y><w>210</w><h>170</h></coordinates><panel_attributes>Merchandise
+--
+-id: int
+-merchandise_code: string
+-name: string
+--
+#validateMerchandise(Merchandise)
++create()
++view()
++edit(Merchandise)
++update(Merchandise)
++delete(Merchandise)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>150</x><y>300</y><w>210</w><h>220</h></coordinates><panel_attributes>Users
+--
+-id: int
+-name: string
+-username: string
+-password: string
+-email: string
+-role: enum
+--
+#validateUsers(Users)
++create()
++view()
++edit(Users)
++update(Users)
++delete(Users)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>330</x><y>100</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>360</y><w>110</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=n
+</panel_attributes><additional_attributes>10;20;90;20</additional_attributes></element><element><id>Relation</id><coordinates><x>660</x><y>140</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>660</x><y>360</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element></diagram>
