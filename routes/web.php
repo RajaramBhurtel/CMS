@@ -22,7 +22,9 @@ Route::get('/', function () {
     return view('booking.dashboard');
 });
 
-
+Route::get('/test', function () {
+    return view('booking.test');
+});
 
 Route::get('booking/bulk', function () {
     return view('booking.bulk');
