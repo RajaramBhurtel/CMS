@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ShipperController;
+use App\Http\Controllers\MenifestController;
 use App\Http\Controllers\ConsigneeController;
 use App\Http\Controllers\MerchandiseController;
 
@@ -73,3 +74,6 @@ Route::get('booking/{booking:id}/view', [BookingController::class, 'view']);
 Route::post('booking/createSingle', [BookingController::class, 'createSingle'] );
 Route::post( 'booking/getShipperAddress' , [BookingController::class, 'getShipperAddress'] );
 Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getConsigneeAddress'] );
+
+// Menifest
+Route::get('menifest/create', [MenifestController::class, 'index'] );
