@@ -1,13 +1,15 @@
 <x-layout >
     <x-main title="Create Menifest">
         <div class="max-w-4xl mx-auto my-10 ">
-            <form action="#">
+            <form action="/manifest/createMenifest" method="post">
+                @csrf
                 <div class="mb-10">
                     <div class="grid grid-cols-2 gap-2">
                         <div class="flex">
                             <div class="mr-10 flex-auto">
-                                
-                                <x-form.input-label name="booking_date" type="date"/>
+                                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+                                <input id="date" name="date" type="date" class="h-10 px-2  mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                    
                             </div>
                             <div>
                                 <label for="location" class="block text-sm font-medium text-gray-700">Location</label>
@@ -36,25 +38,28 @@
                         </tr>
                         <tr>
                             <td class="p-1">
-                                <x-form.input name="cn_no[]"  />
+                                <input id="1" name="cn_no[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" onchange="cnBox(this.id);" autofocus="">
                                
                             </td>
                             <td class="p-1">
-                                <input id="cn_no" name="consignee[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly>
+                                <input id="con_1" name="consignee[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly>
                             </td>
                             <td class="p-1">
-                                <input id="cn_no" name="address[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly>
+                                <input id="addr_1" name="address[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly>
 
                             </td>
                             <td class="p-1">
-                                <input id="cn_no" name="contact[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly>
+                                <input id="cont_1" name="contact[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly>
                             </td>
                           
                             <td class="p-1">
-                                <input id="cn_no" name="booked_on[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly>
+                                <input id="booked_1" name="booked_on[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly>
                             </td>
                         </tr>
                     </table>
+                    <div class="flex justify-center">
+                        <button type="submit" class="h-10   px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">Save Manifest</button>
+                    </div>
                 </div>
                 
             </form>
@@ -74,40 +79,50 @@
             $("#"+a).val(" ").replace(/\s+/g, '');
             return false;
         }
-        var url = "https://techvisit.net/software/logistics/branch/manifest/getRequiredmanifest";
+        var url = "/menifest/getRequiredmanifest";
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
             $.ajax({
                 type: "POST",
                 url: url,
                 async: true,
-                data: {cn : cnNo, location : location},
+                data: {cn_no : cnNo},
                 //dataType: "json",
                 success : function(data) {
                     if(data){
-                        //alert(data);
                         if(data == 'false'){
                             alert("MANIFEST ALREADY CREATED");
                             $("#"+a).val(" ").replace(/\s+/g, '');
                             $("#"+a).focus();
                             return false;
                         }
-                            var obj = JSON.parse(data);
-                            if(obj.con_address != location){
-                                alert("CNNO NOT MATCH ACCORDING TO RECEIVER LOCATION !");
-                            }
-                            if(obj.one_time_con){
-                                $("#con_"+a).val(obj.one_time_con);
+                        // var obj = JSON.parse(data);
+                        if(data.consignee_address2 != location){
+                            alert("CNNO NOT MATCH ACCORDING TO RECEIVER LOCATION !");
+                        }
+                        if(data.one_time_consignee){
+                                console.log(data.one_time_consignee);
+                                $("#con_"+a).val(data.one_time_consignee);
                             }else{
-                                $("#con_"+a).val(obj.consignee_name);
+                                $("#con_"+a).val(data.consignee_name);
                             }
-                            $("#addr_"+a).val(obj.location_name);
-                            $("#cont_"+a).val(obj.con_mobile);
-                            $("#booked_"+a).val(obj.booking_date_bs);
+                            $("#addr_"+a).val(data.consignee_address1);
+                            $("#cont_"+a).val(data.consignee_number);
+                            $("#booked_"+a).val(data.date);
     
                             i++;
-                            document.getElementById("mytable").insertRow(-1).innerHTML = '<td><input type="text" name="cnno[]" class="form-control" id="'+i+'" onChange="cnBox(this.id);" autofocus="true" /></td><td><input type="text" name="consignee_name[]" class="form-control" id="con_'+i+'" readonly></td><td><input type="text" name="address[]" class="form-control" id="addr_'+i+'" readonly></td><td><input type="text" name="contact[]" class="form-control" id="cont_'+i+'" readonly></td><td><input type="text" name="book[]" class="form-control" id="booked_'+i+'" readonly></td>';
-                                $("#mytable tr:last td:first input").focus();
-                            
-                        
+
+                            var html1 = '<td class="p-1"><input id="'+i+'" name="cn_no[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" onchange="cnBox(this.id);" autofocus=""></td><td class="p-1"><input id="con_'+i+'" name="consignee[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td>';
+                            var html2 =  '<td class="p-1"><input id="addr_'+i+'" name="address[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td><td class="p-1"><input id="cont_'+i+'" name="contact[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td><td class="p-1"><input id="booked_'+i+'" name="booked_on[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td>';
+                            document.getElementById("mytable").insertRow(-1).innerHTML = html1 + html2;
+                                                        
+//document.getElementById("mytable").insertRow(-1).innerHTML = '<td class="p-1"><input id="'+i+'" name="cn_no[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" onchange="cnBox(this.id);" autofocus=""></td><td class="p-1"><input id="con_'+i+'" name="consignee[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td><td class="p-1"><input id="addr_'+i+'" name="address[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td>
+// <td class="p-1"><input id="cont_'+i+'" name="contact[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td><td class="p-1"><input id="booked_'+i+'" name="booked_on[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td>';
+    
+    $("#mytable tr:last td:first input").focus();
                     }
                 }
             });
