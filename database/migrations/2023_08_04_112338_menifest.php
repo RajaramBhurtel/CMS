@@ -16,11 +16,6 @@ return new class extends Migration
             $table->string('menifests_code')->unique();
             $table->string('date');
             $table->string('location');
-            $table->string('cn_no');
-            $table->string('consignee');
-            $table->string('address');
-            $table->string('contact');
-            $table->string('booked_on');
             $table->timestamps();
         });
     }

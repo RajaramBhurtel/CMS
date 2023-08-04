@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Models\Menifest;
 use App\Models\Consignee;
+use Illuminate\Http\Request;
+use PharIo\Manifest\Manifest;
+use App\Http\Controllers\Controller;
 
 class MenifestController extends Controller
 {
@@ -21,7 +23,21 @@ class MenifestController extends Controller
         return view( 'menifest.create', compact('address'));
     }
     public function create( Request $request  ) {
-        ddd($request);
+       // Create a new manifest
+            $manifest = Menifest::create([
+                'date' => $request['date'],
+                'location' => $request['location'],
+            ]);
+
+            // Associate existing bookings with the newly created manifest
+            foreach ($request['cn_no'] as $bookingCn) {
+                $booking = Booking::where('cn_no', $bookingCn)->first();
+                if ($booking) {
+                    $booking->update(['menifests_code' => $manifest->menifests_code]);
+                }
+            }
+            return redirect('consignee/view')->with('success', 'Menifest created successfully.');
+
     }
     public function getRequiredmanifest( Request $request  ) {
         $cn = $request->input('cn_no');

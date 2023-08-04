@@ -42,6 +42,7 @@ return new class extends Migration
             $table->decimal('price_after_discount', 12, 2);
             $table->string('biller');
             $table->text('description')->nullable();
+            $table->string('menifests_code')->nullable();
             $table->timestamps();
         });
     }
