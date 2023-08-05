@@ -275,11 +275,11 @@ function generateBookingCode()
     $lastCode = \App\Models\Booking::orderByDesc('id')->value('cn_no');
 
     if ($lastCode) {
-        $codeNumber = intval(substr($lastCode, 2)) + 1;
-        return str_pad($codeNumber, 8, '0', STR_PAD_LEFT);
+        $codeNumber = intval(substr($lastCode, 1)) + 1;
+        return '4' . str_pad($codeNumber, 7, '0', STR_PAD_LEFT);
     }
 
-    return '10000001';
+    return '40000001';
 }
 
 @endphp
