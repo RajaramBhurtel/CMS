@@ -79,3 +79,4 @@ Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getCons
 Route::get('menifest/create', [MenifestController::class, 'index'] );
 Route::post( '/menifest/getRequiredmanifest' , [MenifestController::class, 'getRequiredmanifest'] );
 Route::post( 'manifest/createMenifest' , [MenifestController::class, 'create'] );
+Route::get('manifest/master', [MenifestController::class, 'master'] );
