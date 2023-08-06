@@ -22,4 +22,9 @@ class Consignee extends Model
             $model->consignee_id = 'CO' . str_pad((int)substr($lastConsigneeId, 2) + 1, 3, '0', STR_PAD_LEFT);
         });
     }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class, 'consignee_id', 'consignee_id');
+    }
 }
