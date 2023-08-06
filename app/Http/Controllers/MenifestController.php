@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Menifest;
 use App\Models\Consignee;
+use App\Models\Merchandise;
+// use PharIo\Manifest\Manifest;
 use Illuminate\Http\Request;
-use PharIo\Manifest\Manifest;
 use App\Http\Controllers\Controller;
 
 class MenifestController extends Controller
@@ -55,7 +56,7 @@ class MenifestController extends Controller
         return response()->json($menifest);
     }
 
-      public function master( ) {
+    public function master( ) {
         $menifests = Menifest::paginate(5);
 
         if ($menifests->isEmpty()) {
@@ -63,5 +64,42 @@ class MenifestController extends Controller
         }
 
         return view('menifest.master', compact('menifests'));
+    }
+
+    public function view($menifest) {
+        $manifest = Menifest::where('id', $menifest)->first();
+
+        if (!$manifest) {
+            // Handle error, manifest not found
+            // ...
+        }
+
+        $bookings = $manifest->bookings()->select(
+            'cn_no',
+            'consignee_id',
+            'one_time_consignee',
+            'consignee_address1',
+            'merchandise_code',
+            'weight',
+            'quantity'
+        )->get();
+
+        foreach ($bookings as $booking) {
+            if ($booking->one_time_consignee) {
+                // One-time consignee, add it to return value
+                $booking->consignee_name = $booking->one_time_consignee;
+            } else {
+                // Get consignee name from consignee_id
+                $consignee = Consignee::find($booking->consignee_id);
+                $booking->consignee_name = $consignee ? $consignee->name : null;
+            }
+
+            // Get merchandise name from merchandise_code
+            $merchandise = Merchandise::where('id', $booking->merchandise_code)->first();
+            // dd($merchandise);
+            $booking->merchandise_name = $merchandise ? $merchandise->name : null;
+        }
+
+        return view('menifest.view', ['menifest' => $manifest, 'bookings' => $bookings]);
     }
 }

@@ -80,3 +80,4 @@ Route::get('menifest/create', [MenifestController::class, 'index'] );
 Route::post( '/menifest/getRequiredmanifest' , [MenifestController::class, 'getRequiredmanifest'] );
 Route::post( 'manifest/createMenifest' , [MenifestController::class, 'create'] );
 Route::get('manifest/master', [MenifestController::class, 'master'] );
+Route::get('menifest/{menifest:id}/view', [MenifestController::class, 'view']);
