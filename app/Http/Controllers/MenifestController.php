@@ -27,6 +27,7 @@ class MenifestController extends Controller
         $manifest = Menifest::create([
             'date' => $request['date'],
             'location' => $request['location'],
+            'mode' => $request['mode'],
         ]);
 
         // Associate existing bookings with the newly created manifest

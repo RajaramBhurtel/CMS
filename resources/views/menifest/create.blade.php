@@ -4,8 +4,8 @@
             <form action="/manifest/createMenifest" method="post">
                 @csrf
                 <div class="mb-10">
-                    <div class="grid grid-cols-2 gap-2">
-                        <div class="flex">
+                    <div class="grid grid-cols-3 gap-2 ">
+                       
                             <div class="mr-10 flex-auto">
                                 <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
                                 <input id="date" name="date" type="date" class="h-10 px-2  mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
@@ -23,7 +23,15 @@
                                         @endforeach>
                                 </select>
                             </div>
-                        </div>
+                            <div >
+                                <label for="mode" class="block text-sm font-medium text-gray-700">Mode</label>
+                                <select id="mode" name="mode"class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                                    <option value>Choose Mode</option>
+                                    <option value="by_air">By Air</option>
+                                    <option value="surface">Surface</option>
+                                </select>
+                            </div>
+                       
                     </div>
                 </div>
                               

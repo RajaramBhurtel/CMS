@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('menifests_code')->unique();
             $table->string('date');
             $table->string('location');
+            $table->enum('mode', ['surface', 'by_air']);
             $table->timestamps();
         });
     }
