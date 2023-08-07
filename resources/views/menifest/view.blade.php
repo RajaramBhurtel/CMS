@@ -23,15 +23,15 @@
     <br>
     <table>
         <tr>
-            <td>Orgin: EICCS KTM</td>
-            <td><span class="ml-2">Destination:</span> {{$menifest->location}}</td>
-            <td><span class="ml-2">Mode:</span> {{$menifest->mode}}</td>
-            <td><span class="ml-2">Date:</span> {{$menifest->date}}</td>
+            <td class="text-sm font-medium text-gray-900">Orgin: EICCS KTM</td>
+            <td class="text-sm font-medium text-gray-900"><span class="ml-4" >Destination:</span> {{$menifest->location}}</td>
+            <td class="text-sm font-medium text-gray-900"><span class="ml-4">Mode:</span> {{$menifest->mode}}</td>
+            <td class="text-sm font-medium text-gray-900"><span class="ml-4">Date:</span> {{$menifest->date}}</td>
         </tr>
     </table>
     <br>
     <center>
-        <table class="table table-bordered" id="branch_table">
+        {{-- <table class="" id="">
             <tr class="text-xs bg-blue-500 text-white">
                 <td>S.No</td>
                 <td>CN.No</td>
@@ -59,21 +59,91 @@
                     $i++;
                 @endphp
             @endforeach
-        </table>
+        </table> --}}
+        <table class="min-w-full divide-y divide-gray-200">
+          <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">S.No</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cn No</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Consignee</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Content </th> 
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantaty </th> 
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Weight </th> 
+              </tr>
+              @php
+                $i = 1;
+                // dd($bookings);
+            @endphp
+              @foreach ($bookings as $booking)
+                  <tr>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
+                                {{$i}}
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
+                                {{$booking->cn_no}}
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
+                                {{$booking->consignee_name}}
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
+                                {{$booking->consignee_address1}}
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
+                                {{$booking->quantity}}
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
+                                {{$booking->weight}}
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
+                                {{$booking->consignee_name}}
+                              </div>
+                          </div>
+                      </td>
+                  </tr>
+                  @php
+                    $i++;
+                @endphp
+              @endforeach
+          </tbody>
+          
+      </table>
     </center>
-    <table class="table">
-        <tr>
-            <td>PREPARED BY<br></td>
-            <td>RECEIVED BY<br></td>
-            <td>DATE<br></td>
-            <td>INCHARGE<br></td>
+    <table class="table mt-5 min-w-full divide-y divide-gray-200">
+        <tr class="justify-items-center">
+            <td class="text-sm font-medium text-gray-900">PREPARED BY : Sabin Bhurtel</td>
+            <td class="text-sm font-medium text-gray-900">RECEIVED BY :</td>
+            <td class="text-sm font-medium text-gray-900">DATE :</td>
+            <td class="text-sm font-medium text-gray-900">INCHARGE:  EICSS</td>
         </tr>
     </table>
-</div><!-- /.box-body -->
-
-        </div>
-
-            
+</div><!-- /.box-body -->           
           
       </x-panel>      
   </x-main >
