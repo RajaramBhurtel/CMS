@@ -24,7 +24,7 @@ class DeliveryController extends Controller
         return view( 'delivery.create');
     }
     public function create( Request $request  ) {
-       // Create a new manifest
+       // Create a new delivery
         $delivery = Delivery::create([
             'date' => $request['date'],
             'route' => $request['route'],
@@ -74,22 +74,23 @@ class DeliveryController extends Controller
         return view('delivery.master', compact('deliverys'));
     }
 
-    public function view($menifest) {
-        $manifest = Delivery::where('id', $menifest)->first();
+    public function view($delivery) {
+        $delivery = Delivery::where('id', $delivery)->first();
 
-        if (!$manifest) {
-            // Handle error, manifest not found
+        if (!$delivery) {
+            // Handle error, delivery not found
             // ...
         }
 
-        $bookings = $manifest->bookings()->select(
+        $bookings = $delivery->bookings()->select(
             'cn_no',
             'consignee_id',
             'one_time_consignee',
             'consignee_address1',
             'merchandise_code',
             'weight',
-            'quantity'
+            'quantity',
+            'menifests_code'
         )->get();
 
         foreach ($bookings as $booking) {
@@ -106,8 +107,13 @@ class DeliveryController extends Controller
             $merchandise = Merchandise::where('id', $booking->merchandise_code)->first();
             // dd($merchandise);
             $booking->merchandise_name = $merchandise ? $merchandise->name : null;
+
+            // Get merchandise name from merchandise_code
+            $menifest = Menifest::where('menifests_code', $booking->menifests_code)->first();
+            // dd($menifest);
+            $booking->shipped_date = $menifest ? $menifest->date : null;
         }
 
-        return view('menifest.view', ['menifest' => $manifest, 'bookings' => $bookings]);
+        return view('delivery.view', ['delivery' => $delivery, 'bookings' => $bookings]);
     }
 }
