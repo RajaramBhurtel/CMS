@@ -43,6 +43,8 @@ return new class extends Migration
             $table->string('biller');
             $table->text('description')->nullable();
             $table->string('menifests_code')->nullable();
+            $table->string('delivery_code')->nullable();
+            $table->string('status')->default('booked');
             $table->timestamps();
         });
     }
