@@ -6,6 +6,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ShipperController;
 use App\Http\Controllers\MenifestController;
 use App\Http\Controllers\ConsigneeController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\MerchandiseController;
 
 /*
@@ -79,5 +80,12 @@ Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getCons
 Route::get('menifest/create', [MenifestController::class, 'index'] );
 Route::post( '/menifest/getRequiredmanifest' , [MenifestController::class, 'getRequiredmanifest'] );
 Route::post( 'manifest/createMenifest' , [MenifestController::class, 'create'] );
+Route::get('manifest/master', [MenifestController::class, 'master'] );
+Route::get('menifest/{menifest:id}/view', [MenifestController::class, 'view']);
+
+// Menifest
+Route::get('delivery/create', [DeliveryController::class, 'index'] );
+Route::post( '/delivery/getRequireddelivery' , [DeliveryController::class, 'getRequireddelivery'] );
+Route::post( 'delivery/createDelivery' , [DeliveryController::class, 'create'] );
 Route::get('manifest/master', [MenifestController::class, 'master'] );
 Route::get('menifest/{menifest:id}/view', [MenifestController::class, 'view']);

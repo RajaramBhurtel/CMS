@@ -22,4 +22,8 @@ class Booking extends Model
     {
         return $this->belongsTo(Manifest::class, 'menifests_code', 'menifests_code');
     }
+    public function delivery()
+    {
+        return $this->belongsTo(Delivery::class, 'delivery_code', 'delivery_code');
+    }
 }
