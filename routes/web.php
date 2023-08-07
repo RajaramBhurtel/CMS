@@ -75,6 +75,7 @@ Route::get('booking/{booking:id}/view', [BookingController::class, 'view']);
 Route::post('booking/createSingle', [BookingController::class, 'createSingle'] );
 Route::post( 'booking/getShipperAddress' , [BookingController::class, 'getShipperAddress'] );
 Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getConsigneeAddress'] );
+Route::delete('booking/{booking:id}', [BookingController::class, 'delete']);
 
 // Menifest
 Route::get('menifest/create', [MenifestController::class, 'index'] );
