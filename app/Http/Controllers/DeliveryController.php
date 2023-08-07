@@ -65,13 +65,13 @@ class DeliveryController extends Controller
     }
 
     public function master( ) {
-        $menifests = Delivery::paginate(5);
+        $deliverys = Delivery::paginate(5);
 
-        if ($menifests->isEmpty()) {
-            return redirect('menifest/create')->with('success', 'No menifests found. Please create a menifest.');
+        if ($deliverys->isEmpty()) {
+            return redirect('delivery/create')->with('success', 'No deliverys found. Please create a delivery.');
         }
 
-        return view('menifest.master', compact('menifests'));
+        return view('delivery.master', compact('deliverys'));
     }
 
     public function view($menifest) {

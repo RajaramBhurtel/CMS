@@ -87,5 +87,5 @@ Route::get('menifest/{menifest:id}/view', [MenifestController::class, 'view']);
 Route::get('delivery/create', [DeliveryController::class, 'index'] );
 Route::post( '/delivery/getRequireddelivery' , [DeliveryController::class, 'getRequireddelivery'] );
 Route::post( 'delivery/createDelivery' , [DeliveryController::class, 'create'] );
-Route::get('manifest/master', [MenifestController::class, 'master'] );
-Route::get('menifest/{menifest:id}/view', [MenifestController::class, 'view']);
+Route::get('delivery/master', [DeliveryController::class, 'master'] );
+Route::get('delivery/{delivery:id}/view', [DeliveryController::class, 'view']);
