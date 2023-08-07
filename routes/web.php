@@ -82,6 +82,8 @@ Route::post( '/menifest/getRequiredmanifest' , [MenifestController::class, 'getR
 Route::post( 'manifest/createMenifest' , [MenifestController::class, 'create'] );
 Route::get('manifest/master', [MenifestController::class, 'master'] );
 Route::get('menifest/{menifest:id}/view', [MenifestController::class, 'view']);
+Route::delete('menifest/{menifest:id}', [MenifestController::class, 'delete']);
+
 
 // Menifest
 Route::get('delivery/create', [DeliveryController::class, 'index'] );
@@ -89,3 +91,4 @@ Route::post( '/delivery/getRequireddelivery' , [DeliveryController::class, 'getR
 Route::post( 'delivery/createDelivery' , [DeliveryController::class, 'create'] );
 Route::get('delivery/master', [DeliveryController::class, 'master'] );
 Route::get('delivery/{delivery:id}/view', [DeliveryController::class, 'view']);
+Route::delete('delivery/{delivery:id}', [DeliveryController::class, 'delete']);

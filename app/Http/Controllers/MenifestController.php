@@ -105,4 +105,17 @@ class MenifestController extends Controller
 
         return view('menifest.view', ['menifest' => $manifest, 'bookings' => $bookings]);
     }
+
+    public function delete(Menifest $menifest) {
+        // Update related bookings when deleting a menifest
+        $menifest->bookings()->update([
+            'status' => 'booked',
+            'menifests_code' => null
+        ]);
+    
+        $menifest->delete();
+    
+        return back()->with('success', 'Menifest Deleted!');
+    }
+    
 }

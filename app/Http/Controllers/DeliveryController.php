@@ -116,4 +116,16 @@ class DeliveryController extends Controller
 
         return view('delivery.view', ['delivery' => $delivery, 'bookings' => $bookings]);
     }
+
+    public function delete(Delivery $delivery) {
+
+        $delivery->bookings()->update([
+            'status' => 'shipped',
+            'delivery_code' => null
+        ]);
+        
+        $delivery->delete();
+
+        return back()->with('success', 'Delivery Runsheet Deleted!');
+    }
 }
