@@ -35,7 +35,10 @@ class MenifestController extends Controller
         foreach ($request['cn_no'] as $bookingCn) {
             $booking = Booking::where('cn_no', $bookingCn)->first();
             if ($booking) {
-                $booking->update(['menifests_code' => $manifest->menifests_code]);
+                $booking->update([
+                    'menifests_code' => $manifest->menifests_code,
+                    'status' => 'shipped'
+                ]);
             }
         }
         return redirect('consignee/view')->with('success', 'Menifest created successfully.');
@@ -102,4 +105,17 @@ class MenifestController extends Controller
 
         return view('menifest.view', ['menifest' => $manifest, 'bookings' => $bookings]);
     }
+
+    public function delete(Menifest $menifest) {
+        // Update related bookings when deleting a menifest
+        $menifest->bookings()->update([
+            'status' => 'booked',
+            'menifests_code' => null
+        ]);
+    
+        $menifest->delete();
+    
+        return back()->with('success', 'Menifest Deleted!');
+    }
+    
 }

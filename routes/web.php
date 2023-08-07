@@ -6,6 +6,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ShipperController;
 use App\Http\Controllers\MenifestController;
 use App\Http\Controllers\ConsigneeController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\MerchandiseController;
 
 /*
@@ -74,6 +75,7 @@ Route::get('booking/{booking:id}/view', [BookingController::class, 'view']);
 Route::post('booking/createSingle', [BookingController::class, 'createSingle'] );
 Route::post( 'booking/getShipperAddress' , [BookingController::class, 'getShipperAddress'] );
 Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getConsigneeAddress'] );
+Route::delete('booking/{booking:id}', [BookingController::class, 'delete']);
 
 // Menifest
 Route::get('menifest/create', [MenifestController::class, 'index'] );
@@ -81,3 +83,13 @@ Route::post( '/menifest/getRequiredmanifest' , [MenifestController::class, 'getR
 Route::post( 'manifest/createMenifest' , [MenifestController::class, 'create'] );
 Route::get('manifest/master', [MenifestController::class, 'master'] );
 Route::get('menifest/{menifest:id}/view', [MenifestController::class, 'view']);
+Route::delete('menifest/{menifest:id}', [MenifestController::class, 'delete']);
+
+
+// Menifest
+Route::get('delivery/create', [DeliveryController::class, 'index'] );
+Route::post( '/delivery/getRequireddelivery' , [DeliveryController::class, 'getRequireddelivery'] );
+Route::post( 'delivery/createDelivery' , [DeliveryController::class, 'create'] );
+Route::get('delivery/master', [DeliveryController::class, 'master'] );
+Route::get('delivery/{delivery:id}/view', [DeliveryController::class, 'view']);
+Route::delete('delivery/{delivery:id}', [DeliveryController::class, 'delete']);

@@ -1,5 +1,5 @@
 <x-layout >
-  <x-main title="View Menifest">
+  <x-main title="View Deliveries">
     {{-- <a href=""  class="btn btn-primary" ><i class=""></i>&nbsp;&nbsp;PRINT CNNO</a> --}}
       <x-panel >
     <button type="submit" id="pbill" onclick="preview();" class="h-10   px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">  <x-component.icons name="fa fa-print" /> Print</button>
@@ -24,9 +24,9 @@
     <table>
         <tr>
             <td class="text-sm font-medium text-gray-900">Orgin: EICCS KTM</td>
-            <td class="text-sm font-medium text-gray-900"><span class="ml-4" >Destination:</span> {{$menifest->location}}</td>
-            <td class="text-sm font-medium text-gray-900"><span class="ml-4">Mode:</span> {{$menifest->mode}}</td>
-            <td class="text-sm font-medium text-gray-900"><span class="ml-4">Date:</span> {{$menifest->date}}</td>
+            <td class="text-sm font-medium text-gray-900"><span class="ml-4" >Route:</span> {{$delivery->route}}</td>
+            <td class="text-sm font-medium text-gray-900"><span class="ml-4">Vehicle:</span> {{$delivery->vehicle}}</td>
+            <td class="text-sm font-medium text-gray-900"><span class="ml-4">Date:</span> {{$delivery->date}}</td>
         </tr>
     </table>
     <br>
@@ -70,6 +70,7 @@
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Content </th> 
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantaty </th> 
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Weight </th> 
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shipped date </th> 
               </tr>
               @php
                 $i = 1;
@@ -108,6 +109,13 @@
                       <td class="px-6 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
+                                {{$booking->merchandise_name}}
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
                                 {{$booking->quantity}}
                               </div>
                           </div>
@@ -122,7 +130,7 @@
                       <td class="px-6 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
-                                {{$booking->consignee_name}}
+                                {{$booking->shipped_date}}
                               </div>
                           </div>
                       </td>
@@ -137,10 +145,7 @@
     </center>
     <table class="table mt-5 min-w-full divide-y divide-gray-200">
         <tr class="justify-items-center">
-            <td class="text-sm font-medium text-gray-900">PREPARED BY : Sabin Bhurtel</td>
-            <td class="text-sm font-medium text-gray-900">RECEIVED BY :</td>
-            <td class="text-sm font-medium text-gray-900">DATE :</td>
-            <td class="text-sm font-medium text-gray-900">INCHARGE:  EICSS</td>
+            <td class="text-sm font-medium text-gray-900">Delivery BY : {{$delivery->user}}</td>
         </tr>
     </table>
 </div><!-- /.box-body -->           

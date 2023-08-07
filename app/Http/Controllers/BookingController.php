@@ -68,6 +68,14 @@ class BookingController extends Controller
     
         return response()->json($address);
     }
+
+    public function delete(Booking $booking) {
+
+       
+        $booking->delete();
+
+        return back()->with('success', 'Booking  Deleted!');
+    }
     
     protected function validateBooking(?Booking $booking = null): array {
         $booking ??= new Booking();
