@@ -1,7 +1,8 @@
 <x-layout >
     <x-main title="Create Menifest">
         <div class="max-w-4xl mx-auto my-10 ">
-            <form action="/manifest/createMenifest" method="post">
+            <h3>Using Scanner or ID</h3>
+            <form action="/manifest/createMenifest" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-10">
                     <div class="grid grid-cols-3 gap-2 ">
@@ -72,6 +73,16 @@
                 
             </form>
         </div>
+        <div class="max-w-4xl mx-auto my-10 ">
+            <h3>Using Image Upload</h3>
+            <form action="/menifest/getMenifestCode" method="post" enctype="multipart/form-data">
+                @csrf
+                <input id="img" name="cn_img" type="file" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value=""  autofocus="" accept="image/*">
+                  <div class="flex justify-center">
+                        <button type="submit" class="h-10   px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">Scan image</button>
+                    </div>
+            </form>
+        </div>
     </x-main >
 </x-layout >
     
@@ -137,5 +148,58 @@
     
             
         
-    }
+    } 
+    // function cnIMG(a){
+    //     // var i = a;
+    //     var cnImg = $("#"+a)[0].files[0];
+        
+        
+    //     console.log(cnImg);
+    //     var url = "/menifest/getMenifestCode";
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     });
+    //     $.ajax({
+    //         type: "POST",
+    //         url: url,
+    //         async: true,
+    //         data: {image : cnImg},
+    //         //dataType: "json",
+    //         success : function(data) {
+    //             if(data){
+    //                 console.log(data);
+    //             }
+    //         }
+    //     }); 
+    // }
+    // const form = document.getElementById("fileUploadForm");
+    // const fileInput = document.getElementById("img");
+    // fileInput.addEventListener("change", async (event) => {
+    // const selectedFile = event.target.files[0];
+    // const formData = new FormData();
+
+    // formData.append("image", selectedFile);
+
+    // let response = await fetch("/menifest/getMenifestCode", {
+    //     method: "POST",
+    //     body: formData,  // Use the FormData directly, not JSON.stringify(data)
+    //     headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    // });
+
+    // let result = await response.json();
+    // console.log(result);
+    // });
+    // document.getElementById("img").addEventListener("change", function(){
+    //     const reader = new FileReader();
+    //     reader.addEventListener("load", ()=>{
+    //         console.log(reader.result);
+    //     })
+
+    //     reader.readAsDataURL(this.files[0]);
+    // })
+
     </script>
