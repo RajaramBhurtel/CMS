@@ -109,12 +109,12 @@
           </div>
           <div class="right w-1/4">
             <div class="top border-b border-black">
-              <p class="text-xs text-center border ">
+              <p class="text-xs text-center  ">
                 <b>Courier Consignment</b>
               </p>
               <p class="text-center"></p>
-              <div class=" text-center text-xs  w-176">
-                {!! DNS1D::getBarcodeHTML( $booking->cn_no, 'PHARMA',2,80, 'black', true) !!}
+              <div class=" text-center text-xs  w-176 m-2 flex flex-col items-center">
+                {!! DNS2D::getBarcodeHTML( $booking->cn_no, 'QRCODE',3  ,3, 'black', true) !!}
                 {{-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlcyf1kJNUTZqLcHaLsR_gKfuoaumFl-Sd0m1Lgd3ADg&s" alt=""> --}}
                {{$booking->cn_no}}
               </div>
