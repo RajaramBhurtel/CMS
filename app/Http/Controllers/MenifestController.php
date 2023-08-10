@@ -120,29 +120,16 @@ class MenifestController extends Controller
 
     public function getMenifestCode(Request $request)
     {
-        // $imageData  = $request->file('cn_img')->getPathname();
-         $imageName = time().'.'.$request->cn_img->extension();  
+
+        $imageName = time().'.'.$request->cn_img->extension();  
      
-        $request->cn_img->move(public_path('images'), $imageName);
-        $path = public_path('images').'/' . $imageName;
-        $command = "zbarimg -d " .$path;
-        // //  $imagePath = $imageData->store('uploads');
-        $barcodeData = system($command);
-        // $zbar = new \TarfinLabs\ZbarPhp\Zbar($path);
-        // $code = $zbar->scan();
-        dd($barcodeData);
-        // $imageData = str_replace('data:image/png;base64,', '', $imageData);
-        // $decodedImage = base64_decode($imageData);
-        
-        // // Save the image temporarily
-        // $tempImagePath = resource_path('temp.png');;
-        // file_put_contents($tempImagePath, $decodedImage);
-        
-        
-        // $command = " zbarimg -d $tempImagePath";
-        // $barcodeData = shell_exec($command);
-        // dd($tempImagePath);
-        // return response()->json($barcodeData);
+        $request->cn_img->move('c:\\images\\', $imageName);
+        $path = 'c:\\images\\' . $imageName;
+        $command = 'C:\\"Program Files (x86)"\\ZBar\\bin\\zbarimg -q ' . $path ;
+        exec( $command , $result);
+        unlink($path);
+        // print_r($result);
+        return response()->json($result);
     }
     
 }

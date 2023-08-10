@@ -1,7 +1,6 @@
 <x-layout >
     <x-main title="Create Menifest">
         <div class="max-w-4xl mx-auto my-10 ">
-            <h3>Using Scanner or ID</h3>
             <form action="/manifest/createMenifest" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-10">
@@ -47,6 +46,8 @@
                         </tr>
                         <tr>
                             <td class="p-1">
+                                <input id="img" name="cn_img" type="file" data-i="1" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value=""  autofocus="" accept="image/*">
+
                                 <input id="1" name="cn_no[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" onchange="cnBox(this.id);" autofocus="">
                                
                             </td>
@@ -73,16 +74,7 @@
                 
             </form>
         </div>
-        <div class="max-w-4xl mx-auto my-10 ">
-            <h3>Using Image Upload</h3>
-            <form action="/menifest/getMenifestCode" method="post" enctype="multipart/form-data">
-                @csrf
-                <input id="img" name="cn_img" type="file" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value=""  autofocus="" accept="image/*">
-                  <div class="flex justify-center">
-                        <button type="submit" class="h-10   px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">Scan image</button>
-                    </div>
-            </form>
-        </div>
+
     </x-main >
 </x-layout >
     
@@ -134,14 +126,10 @@
     
                             i++;
 
-                            var html1 = '<td class="p-1"><input id="'+i+'" name="cn_no[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" onchange="cnBox(this.id);" autofocus=""></td><td class="p-1"><input id="con_'+i+'" name="consignee[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td>';
+                            var html1 = '<td class="p-1"><input id="img" name="cn_img" data-i="'+i+'" type="file" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value=""  autofocus="" accept="image/*"><input id="'+i+'" name="cn_no[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" onchange="cnBox(this.id);" autofocus=""></td><td class="p-1"><input id="con_'+i+'" name="consignee[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td>';
                             var html2 =  '<td class="p-1"><input id="addr_'+i+'" name="address[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td><td class="p-1"><input id="cont_'+i+'" name="contact[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td><td class="p-1"><input id="booked_'+i+'" name="booked_on[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td>';
-                            document.getElementById("mytable").insertRow(-1).innerHTML = html1 + html2;
-                                                        
-//document.getElementById("mytable").insertRow(-1).innerHTML = '<td class="p-1"><input id="'+i+'" name="cn_no[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" onchange="cnBox(this.id);" autofocus=""></td><td class="p-1"><input id="con_'+i+'" name="consignee[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td><td class="p-1"><input id="addr_'+i+'" name="address[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td>
-// <td class="p-1"><input id="cont_'+i+'" name="contact[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td><td class="p-1"><input id="booked_'+i+'" name="booked_on[]" type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="" readonly></td>';
-    
-    $("#mytable tr:last td:first input").focus();
+                            document.getElementById("mytable").insertRow(-1).innerHTML = html1 + html2;                              
+                            $("#mytable tr:last td:first input").focus();
                     }
                 }
             });
@@ -149,57 +137,27 @@
             
         
     } 
-    // function cnIMG(a){
-    //     // var i = a;
-    //     var cnImg = $("#"+a)[0].files[0];
-        
-        
-    //     console.log(cnImg);
-    //     var url = "/menifest/getMenifestCode";
-    //     $.ajaxSetup({
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         }
-    //     });
-    //     $.ajax({
-    //         type: "POST",
-    //         url: url,
-    //         async: true,
-    //         data: {image : cnImg},
-    //         //dataType: "json",
-    //         success : function(data) {
-    //             if(data){
-    //                 console.log(data);
-    //             }
-    //         }
-    //     }); 
-    // }
-    // const form = document.getElementById("fileUploadForm");
-    // const fileInput = document.getElementById("img");
-    // fileInput.addEventListener("change", async (event) => {
-    // const selectedFile = event.target.files[0];
-    // const formData = new FormData();
 
-    // formData.append("image", selectedFile);
+    $("#img").on("change", async function(event) {
+        var i = $(this).data("i");
+        var selectedFile = event.target.files[0];
+        var formData = new FormData();
 
-    // let response = await fetch("/menifest/getMenifestCode", {
-    //     method: "POST",
-    //     body: formData,  // Use the FormData directly, not JSON.stringify(data)
-    //     headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //         }
-    // });
+        formData.append("cn_img", selectedFile);
 
-    // let result = await response.json();
-    // console.log(result);
-    // });
-    // document.getElementById("img").addEventListener("change", function(){
-    //     const reader = new FileReader();
-    //     reader.addEventListener("load", ()=>{
-    //         console.log(reader.result);
-    //     })
+        var response = await fetch("/menifest/getMenifestCode", {
+            method: "POST",
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-    //     reader.readAsDataURL(this.files[0]);
-    // })
+        var result = await response.json();
+        var code = result[0].split(':')[1];
+        $("#" + i).val(code);
+        cnBox(i);
+    });
+
 
     </script>
