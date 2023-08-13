@@ -104,7 +104,7 @@
                 //dataType: "json",
                 success : function(data) {
                     if(data){
-                        if(data == 'false'){
+                        if(data.message){
                             alert("MANIFEST ALREADY CREATED");
                             $("#"+a).val(" ").replace(/\s+/g, '');
                             $("#"+a).focus();

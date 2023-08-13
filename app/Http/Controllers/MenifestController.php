@@ -49,14 +49,19 @@ class MenifestController extends Controller
         // $location = $request->input('location');
         $menifest = Booking::where('cn_no', $cn)
                   ->first();
-        $consignee=$menifest['consignee_id'];
-        $consignee_name = Consignee::where('id', $menifest['consignee_id'])
-        ->pluck('name')
-        ->first();
+        
+         if ($menifest['menifest_code'] !== null) {
+            $consignee = $menifest['consignee_id'];
+            $consignee_name = Consignee::where('id', $menifest['consignee_id'])
+                ->pluck('name')
+                ->first();
 
-        $menifest['consignee_name'] = $consignee_name;
+            $menifest['consignee_name'] = $consignee_name;
 
-        return response()->json($menifest);
+            return response()->json($menifest);
+        } else {
+            return response()->json(['message' => 'Manifest not found.']);
+        }
     }
 
     public function master( ) {
