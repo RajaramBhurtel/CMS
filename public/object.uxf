@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>217</x><y>14</y><w>161</w><h>210</h></coordinates><panel_attributes>Bill1: Booking
+<diagram program="umletino" version="15.1"><zoom_level>9</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>405</x><y>57</y><w>207</w><h>270</h></coordinates><panel_attributes>Bill1: Booking
 --
 -id: 1
 -cn_no: 400001
@@ -20,7 +20,7 @@
 -status: Created
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>427</x><y>0</y><w>147</w><h>133</h></coordinates><panel_attributes>EIC:Shippers
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>675</x><y>39</y><w>189</w><h>171</h></coordinates><panel_attributes>EIC:Shippers
 --
 -id: 1
 -shipper_id: SH001
@@ -34,7 +34,7 @@
 -is_one_time: no
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>427</x><y>140</y><w>147</w><h>126</h></coordinates><panel_attributes>PIC: Consignees
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>675</x><y>219</y><w>189</w><h>162</h></coordinates><panel_attributes>PIC: Consignees
 --
 -id: 1
 -consignee_id: CO001
@@ -48,14 +48,14 @@
 -is_one_time: no
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>35</y><w>147</w><h>63</h></coordinates><panel_attributes>Mobile:Merchandise
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>126</x><y>84</y><w>189</w><h>81</h></coordinates><panel_attributes>Mobile:Merchandise
 --
 -id: 1
 -merchandise_code: MO001
 -name: Samsung
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>7</x><y>119</y><w>147</w><h>91</h></coordinates><panel_attributes>Sabin:Users
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>135</x><y>192</y><w>189</w><h>117</h></coordinates><panel_attributes>Sabin:Users
 --
 -id: 1
 -name: Sabin
@@ -64,19 +64,19 @@
 -email: sabin@gmail.com
 -role: biller
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>140</x><y>49</y><w>91</w><h>35</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>306</x><y>102</y><w>117</w><h>45</h></coordinates><panel_attributes>lt=-
 m1=n
 m2=1
-</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>147</x><y>161</y><w>84</w><h>35</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>315</x><y>246</y><w>108</w><h>45</h></coordinates><panel_attributes>lt=-
 m1=1
 m2=n
-</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>Relation</id><coordinates><x>371</x><y>28</y><w>70</w><h>35</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;100;20</additional_attributes></element><element><id>Relation</id><coordinates><x>603</x><y>75</y><w>90</w><h>45</h></coordinates><panel_attributes>lt=-
 m1=n
 m2=1
-</panel_attributes><additional_attributes>10;20;80;20</additional_attributes></element><element><id>Relation</id><coordinates><x>371</x><y>147</y><w>70</w><h>35</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;80;20</additional_attributes></element><element><id>Relation</id><coordinates><x>603</x><y>228</y><w>90</w><h>45</h></coordinates><panel_attributes>lt=-
 m1=n
 m2=1
-</panel_attributes><additional_attributes>10;20;80;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>224</x><y>259</y><w>147</w><h>91</h></coordinates><panel_attributes>Menifest1: Menifest
+</panel_attributes><additional_attributes>10;20;80;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>414</x><y>390</y><w>189</w><h>117</h></coordinates><panel_attributes>Menifest1: Menifest
 --
 -id: 1
 -menifests_code: MN0001
@@ -86,4 +86,20 @@ m2=1
 -user: sabin
 
 
-</panel_attributes><additional_attributes></additional_attributes></element></diagram>
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>162</x><y>372</y><w>189</w><h>117</h></coordinates><panel_attributes>Delivery1:Delivery
+--
+-id: 1
+-delivery_code: DV001
+-date: 24 july 2023
+-route: Kalanki
+-vehicle: Bike
+-user: Sabin
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>225</x><y>291</y><w>198</w><h>99</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1
+</panel_attributes><additional_attributes>10;90;10;50;160;50;160;10;200;10</additional_attributes></element><element><id>Relation</id><coordinates><x>477</x><y>318</y><w>36</w><h>90</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=n
+</panel_attributes><additional_attributes>10;80;10;10</additional_attributes></element></diagram>
