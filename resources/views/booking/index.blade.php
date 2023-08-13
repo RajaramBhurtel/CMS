@@ -96,7 +96,7 @@
                             </div>
                             <div>
                                 <label for="consignee_number" class="block text-sm font-medium text-gray-700">Number</label>
-                                <input id="consignee_number" name="consignee_number"  type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                                <input id="consignee_number" name="consignee_number"  type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" >
                             </div>
                             <div id="find_address">
                                 <label for="consignee_address" class="block text-sm font-medium text-gray-700">Address</label>
@@ -113,7 +113,7 @@
                     <div class="grid grid-cols-5 gap-2">
                         <div>
                             <label for="content_type" class="block text-sm font-medium text-gray-700">Content Type</label>
-                            <select id="content_type" name="content_type"  class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                            <select id="content_type" name="content_type"  class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" >
                                 <option value="doc">Doc</option>
                                 <option value="non_doc">Non Doc</option>
                             </select>
@@ -143,7 +143,7 @@
                         </div>
                         <div>
                             <label for="weight" class="block text-sm font-medium text-gray-700">Weight</label>
-                            <input id="weight" name="weight" type="number" value="0" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                            <input id="weight" name="weight" type="number" value="0" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" onChange="calcPrice()">
                         </div>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
             async: true,
             data: { [entity + "_id"]: id },
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 if (data) {
                     $("#" + entity + "_address_1").val(data.address_1);
                     $("#" + entity + "_address_2").val(data.address_2);
@@ -267,7 +267,38 @@
             }
         });
     }
+   function calcPrice() {
+            
+        var shipperLat = $("#shipper_latitude").val();
+        var shipperLong = $("#shipper_longitude").val();
+        var consigneeLat = $("#consignee_latitude").val();
+        var consigneeLong = $("#consignee_longitude").val();
+        var url = "/booking/getDistancePrice";
+        
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
+        $.ajax({
+            type: "POST",
+            url: url,
+            async: true,
+            data : {
+                shipperLat :shipperLat,
+                shipperLong:shipperLong,
+                consigneeLat:consigneeLat,
+                consigneeLong:consigneeLong
+            },
+            success: function(data) {
+                // console.log(data);
+                if (data) {
+                    $("#individual_price").val(data);
+                }
+            }
+        });
+    }  
 </script>
 @php
 function generateBookingCode()
