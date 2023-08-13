@@ -1,4 +1,4 @@
-<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>430</x><y>20</y><w>230</w><h>380</h></coordinates><panel_attributes>Booking
+<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>266</x><y>14</y><w>161</w><h>266</h></coordinates><panel_attributes>Booking
 --
 -id: int
 -cn_no: string
@@ -25,7 +25,7 @@
 +getConsignee(Consignee)
 +updateStatus()
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>760</x><y>0</y><w>210</w><h>280</h></coordinates><panel_attributes>Shippers
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>497</x><y>0</y><w>147</w><h>196</h></coordinates><panel_attributes>Shippers
 --
 -id: int
 -shipper_id: string
@@ -45,7 +45,7 @@
 +update(Shipper)
 +delete(Shipper)
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>760</x><y>310</y><w>210</w><h>280</h></coordinates><panel_attributes>Consignees
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>497</x><y>217</y><w>147</w><h>196</h></coordinates><panel_attributes>Consignees
 --
 -id: int
 -consignee_id: string
@@ -65,7 +65,7 @@
 +update(Consignee)
 +delete(Consignee)
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>120</x><y>20</y><w>210</w><h>170</h></coordinates><panel_attributes>Merchandise
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>49</x><y>14</y><w>147</w><h>119</h></coordinates><panel_attributes>Merchandise
 --
 -id: int
 -merchandise_code: string
@@ -78,7 +78,7 @@
 +update(Merchandise)
 +delete(Merchandise)
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>140</x><y>280</y><w>210</w><h>220</h></coordinates><panel_attributes>Users
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>49</x><y>154</y><w>147</w><h>154</h></coordinates><panel_attributes>Users
 --
 -id: int
 -name: string
@@ -94,16 +94,55 @@
 +update(Users)
 +delete(Users)
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>320</x><y>80</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>56</y><w>91</w><h>35</h></coordinates><panel_attributes>lt=-
 m1=n
 m2=1
-</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>340</x><y>340</y><w>110</w><h>50</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>196</y><w>91</w><h>35</h></coordinates><panel_attributes>lt=-
 m1=1
 m2=n
-</panel_attributes><additional_attributes>10;20;90;20</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>120</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>84</y><w>91</w><h>35</h></coordinates><panel_attributes>lt=-
 m1=n
 m2=1
-</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>650</x><y>340</y><w>130</w><h>50</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>238</y><w>91</w><h>35</h></coordinates><panel_attributes>lt=-
 m1=n
 m2=1
-</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element></diagram>
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>49</x><y>329</y><w>147</w><h>154</h></coordinates><panel_attributes>Delivery
+--
+-id: int
+-delivery_code: string
+-date: date
+-route: string
+-vehicle: enum
+-user: id
+--
++getRequireddelivery(Delivery)
++create()
++view()
++edit(Delivery)
++update(Delivery)
++delete(Delivery)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>329</y><w>147</w><h>154</h></coordinates><panel_attributes>Menifest
+--
+-id: int
+-menifests_code: string
+-date: date
+-location: string
+-mode: enum
+-user: id
+--
++getMenifestCode(Menifest)
++getRequiredmanifest(Menifest)
++create()
++view()
++edit(Menifest)
++update(Menifest)
++delete(Menifest)
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>238</y><w>91</w><h>133</h></coordinates><panel_attributes>lt=-
+m1= 1
+m2= 1
+</panel_attributes><additional_attributes>10;160;40;160;40;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>273</y><w>28</w><h>70</h></coordinates><panel_attributes>lt=-
+m1=n
+m2=1
+</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element></diagram>
