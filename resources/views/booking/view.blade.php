@@ -49,7 +49,7 @@
                               Receiver: <b class="text-xs">
                               @php
                                     if ($booking->consignee_id) {
-                                        $consigneeName = App\Models\Consignee::find($booking->shipper_id)->name;
+                                        $consigneeName = App\Models\Consignee::find($booking->consignee_id)->name;
                                     } else {
                                         $consigneeName = $booking->one_time_consignee;
                                     } 

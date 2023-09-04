@@ -39,7 +39,14 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        {{ $booking->one_time_consignee }}
+                                                        @php
+                                                        if ($booking->consignee_id) {
+                                                            $consigneeName = App\Models\Shipper::find($booking->consignee_id)->name;
+                                                        } else {
+                                                            $consigneeName = $booking->one_time_consignee;
+                                                        } 
+                                                    @endphp 
+                                                        {{ $consigneeName }} 
                                                     </div>
                                                 </div>
                                             </td>
