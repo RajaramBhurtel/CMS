@@ -20,6 +20,9 @@ use App\Http\Controllers\MerchandiseController;
 |
 */
 
+Route::get('/dashboard', function () {
+    return view('booking.dashboard');
+});
 Route::get('/', function () {
     return view('booking.dashboard');
 });
@@ -32,9 +35,10 @@ Route::get('booking/bulk', function () {
     return view('booking.bulk');
 });
 
-Route::get('login', function () {
-    return view('auth.login');
-});
+// Route::get('login/login', function () {
+//     return view('auth.login');
+// });
+Route::post('user/login', [UserController::class, 'login']);
 
 // Shipper Routes
 Route::get('shipper/create', [ShipperController::class, 'index']);

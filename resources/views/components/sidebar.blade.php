@@ -51,12 +51,12 @@
                                     </a>
                                 </li>
                                 <!-- Item -->
-                                <li class="text-sm text-gray-500 ">
+                                {{-- <li class="text-sm text-gray-500 ">
                                     <a href="{{ url('/booking/bulk') }}"
                                         class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
                                         <div> Bulk Booking </div>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <!-- Item -->
                                 <li class="text-sm text-gray-500 ">
                                     <a href="{{ url('booking/master')}}"

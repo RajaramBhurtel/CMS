@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -46,6 +48,24 @@ class UserController extends Controller
         $user->update($attributes);
 
         return redirect('user/view')->with('success', 'User has been updated' );
+    }
+
+    public function login() {
+        $attributes = request()->validate([
+            'email' => 'required|email',
+            'password' => ['required', 'min:7', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'],
+        ]);
+
+        if( ! Auth::attempt(attributes)){   
+
+            throw ValidationException::withMessages([
+                'email' => 'Your provided credentials could not be verified.'
+            ]);
+        }
+        
+        session()->regenerate();
+        
+        return redirect('/dashboard')->with('success', 'Welcome Back !');
     }
 
     protected function validateUser(?User $user = null): array {

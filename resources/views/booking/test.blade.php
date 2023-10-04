@@ -17,7 +17,7 @@ $jsonData = '[
 ';
 
 // Command to execute Python script
-$command = 'python geo.py';
+$command = 'python2 vrp.py';
 
 // Create a pipe to write data to the Python script
 $descriptorspec = array(

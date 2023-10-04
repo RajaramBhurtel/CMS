@@ -11,8 +11,12 @@
 <body class="font-family: Open Sans, sans-serif antialiased bg-gray-200 text-gray-900 font-sans">
     <div class="flex items-center h-screen w-full">
         <div class="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-sm md:mx-auto">
+            @error('email')
+                <p class="text-red-500">{{ $message }}</p>
+            @enderror
             <span class="block w-full text-center text-xl uppercase font-bold mb-4">Login</span>      
-            <form class="mb-4" action="/" method="post">
+            <form class="mb-4" action="user/login" method="post">
+                @csrf
                 <div class="mb-4 md:w-full">
                 <label for="email" class="block text-xs mb-1">Username or Email</label>
                 <input class="w-full border rounded p-2 outline-none focus:shadow-outline" type="email" name="email" id="email" placeholder="Username or Email">
