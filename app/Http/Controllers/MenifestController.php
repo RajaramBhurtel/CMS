@@ -41,7 +41,7 @@ class MenifestController extends Controller
                 ]);
             }
         }
-        return redirect('consignee/view')->with('success', 'Menifest created successfully.');
+        return redirect('manifest/master')->with('success', 'Menifest created successfully.');
 
     }
     public function getRequiredmanifest( Request $request  ) {
@@ -49,7 +49,7 @@ class MenifestController extends Controller
         // $location = $request->input('location');
         $menifest = Booking::where('cn_no', $cn)
                   ->first();
-                  
+
          if ($menifest['menifest_code'] == null) {
             $consignee = $menifest['consignee_id'];
             $consignee_name = Consignee::where('id', $menifest['consignee_id'])

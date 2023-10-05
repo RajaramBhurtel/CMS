@@ -41,7 +41,7 @@ class DeliveryController extends Controller
                 ]);
             }
         }
-        return redirect('consignee/view')->with('success', 'Delivery created successfully.');
+        return redirect('delivery.master')->with('success', 'Delivery created successfully.');
 
     }
     public function getRequireddelivery( Request $request  ) {
