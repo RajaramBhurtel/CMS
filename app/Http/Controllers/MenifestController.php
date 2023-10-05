@@ -49,8 +49,8 @@ class MenifestController extends Controller
         // $location = $request->input('location');
         $menifest = Booking::where('cn_no', $cn)
                   ->first();
-        
-         if ($menifest['menifest_code'] !== null) {
+                  
+         if ($menifest['menifest_code'] == null) {
             $consignee = $menifest['consignee_id'];
             $consignee_name = Consignee::where('id', $menifest['consignee_id'])
                 ->pluck('name')
