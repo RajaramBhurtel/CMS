@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -16,6 +16,7 @@ class UserController extends Controller
     public function create()
     {
         $validatedData = $this->validateUser();
+        $validatedData['password'] =  Hash::make( $validatedData['password'] );
 
         User::create($validatedData);
 
@@ -50,24 +51,6 @@ class UserController extends Controller
         return redirect('user/view')->with('success', 'User has been updated' );
     }
 
-    public function login() {
-        $attributes = request()->validate([
-            'email' => 'required|email',
-            'password' => ['required', 'min:7', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'],
-        ]);
-
-        if( ! Auth::attempt(attributes)){   
-
-            throw ValidationException::withMessages([
-                'email' => 'Your provided credentials could not be verified.'
-            ]);
-        }
-        
-        session()->regenerate();
-        
-        return redirect('/dashboard')->with('success', 'Welcome Back !');
-    }
-
     protected function validateUser(?User $user = null): array {
         $user ??= new User();
 
@@ -76,7 +59,7 @@ class UserController extends Controller
             'username' => ['required', 'min:7', Rule::unique('users', 'username')->ignore($user)],
             'email'    => ['required', Rule::unique('users', 'email')->ignore($user)],
             'role'     => 'required',
-             'password' => $user->exists ? ['nullable', 'min:7', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'] : ['required', 'min:7', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'],
+            'password' => $user->exists ? ['nullable', 'min:7', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'] : ['required', 'min:7', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]+$/'],
         ]);
         
     }

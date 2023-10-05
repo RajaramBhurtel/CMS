@@ -1,12 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ShipperController;
+use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\MenifestController;
 use App\Http\Controllers\ConsigneeController;
-use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\MerchandiseController;
 
 /*
@@ -31,14 +32,19 @@ Route::get('/test', function () {
     return view('booking.test');
 });
 
+
+
+
 Route::get('booking/bulk', function () {
     return view('booking.bulk');
 });
 
 // Route::get('login/login', function () {
-//     return view('auth.login');
-// });
-Route::post('user/login', [UserController::class, 'login']);
+    //     return view('auth.login');
+    // });
+
+Route::get('login', [AuthController::class, 'index']);
+Route::post('user/login', [AuthController::class, 'store']);
 
 // Shipper Routes
 Route::get('shipper/create', [ShipperController::class, 'index']);
