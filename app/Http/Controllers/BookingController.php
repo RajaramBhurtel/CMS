@@ -17,12 +17,14 @@ class BookingController extends Controller
 
     public function master( ) {
         $bookings = Booking::paginate(5);
+        $consignees = Consignee::all();
+        $shippers = Shipper::all();
 
         if ($bookings->isEmpty()) {
             return redirect('booking/single')->with('success', 'No bookings found. Please create a booking.');
         }
 
-        return view('booking.master', compact('bookings'));
+        return view('booking.master', compact('bookings', 'consignees', 'shippers'));
     }
 
     public function view(Booking $booking) {
@@ -146,6 +148,20 @@ class BookingController extends Controller
         $booking->delete();
 
         return back()->with('success', 'Booking  Deleted!');
+    }
+
+    public function searchBooking(Request $request)
+    {
+        $query = Booking::query();
+
+        foreach (['shipper_id', 'consignee_id', 'shipper_address2', 'consignee_address2', 'date'] as $param) {
+            if ($value = $request->input($param)) {
+                $query->where($param, 'like', '%' . $value . '%');
+            }
+        }
+
+        $bookings = $query->get();
+        return view('booking.master', compact('bookings'));
     }
     
     protected function validateBooking(?Booking $booking = null): array {

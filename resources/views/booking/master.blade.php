@@ -1,5 +1,82 @@
 <x-layout >
     <x-main title="Master Booking">
+        <div class="p-4 bg-gray-100">
+            <form action="/booking/search" method="GET" class="flex space-x-4">
+              <!-- Consignee -->
+              <div class="flex-grow">
+                <label for="consignee" class="block text-gray-600">Consignee</label>
+                <select id="consignee_id" name="consignee_id"class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                    <option value>Choose Consignee</option>
+                        @foreach ($consignees as $consignee)
+                            <option
+                                value="{{ $consignee->id }}"
+                                {{ old('consignee->name') == $consignee->name ? 'selected' : '' }}
+                            >{{ ucwords($consignee->name) }}</option>
+                        @endforeach>
+                </select>
+              </div>
+          
+              <!-- Shipper -->
+              <div class="flex-grow">
+                <label for="shipper" class="block text-gray-600">Shipper</label>
+                <select id="shipper_id" name="shipper_id"class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                    <option value>Choose Consignee</option>
+                        @foreach ($shippers as $shipper)
+                            <option
+                                value="{{ $shipper->id }}"
+                                {{ old('shipper->name') == $shipper->name ? 'selected' : '' }}
+                            >{{ ucwords($shipper->name) }}</option>
+                        @endforeach>
+                </select>
+              </div>
+          
+              <!-- Date -->
+              <div class="flex-grow">
+                <label for="date" class="block text-gray-600">Date</label>
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                />
+              </div>
+          
+              <!-- Location -->
+              <div class="flex-grow">
+                <label for="location" class="block text-gray-600">Shipper Location</label>
+                <input
+                  type="text"
+                  id="shipper_address2"
+                  name="shipper_address2"
+                  placeholder="Search by Location"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                />
+              </div>
+              <div class="flex-grow">
+                <label for="location" class="block text-gray-600">Consignee Location</label>
+                <input
+                  type="text"
+                  id="consignee_address2"
+                  name="consignee_address2"
+                  placeholder="Search by Location"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                />
+              </div>
+
+          
+              <!-- Submit Button -->
+              <div class="flex-grow">
+                <label for="search" class="block text-gray-600 invisible">Search</label>
+                <button
+                  type="submit"
+                  class="w-full px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
+                >
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
+          
         <x-panel>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">

@@ -87,6 +87,7 @@ Route::post( 'booking/getShipperAddress' , [BookingController::class, 'getShippe
 Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getConsigneeAddress'] );
 Route::delete('booking/{booking:id}', [BookingController::class, 'delete']);
 Route::post('/booking/getDistancePrice', [BookingController::class, 'getDistancePrice']);
+Route::post('//booking/search', [BookingController::class, 'searchBooking']);
 
 // Menifest
 Route::get('menifest/create', [MenifestController::class, 'index'] );
