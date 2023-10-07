@@ -138,7 +138,7 @@
                         </div>
                     </li>
                     <!-- List ITEM -->
-                    <li class="text-sm text-gray-500 ">
+                    {{-- <li class="text-sm text-gray-500 ">
                         <a href="#" @click.prevent="selected = (selected === 'Reports' ? '':'Reports')"
                             class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700">
                             <div class="pr-2">
@@ -171,7 +171,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> --}}
                     <!-- List ITEM -->
                     <li class="text-sm text-gray-500 ">
                         <a href="#" @click.prevent="selected = (selected === 'Shipper' ? '':'Shipper')"
