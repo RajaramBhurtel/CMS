@@ -20,7 +20,7 @@ use App\Http\Controllers\MerchandiseController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::middleware(['auth'])->group(function () {
 Route::get('/dashboard', function () {
     return view('booking.dashboard');
 });
@@ -43,8 +43,6 @@ Route::get('booking/bulk', function () {
     //     return view('auth.login');
     // });
 
-Route::get('login', [AuthController::class, 'index']);
-Route::post('user/login', [AuthController::class, 'store']);
 
 // Shipper Routes
 Route::get('shipper/create', [ShipperController::class, 'index']);
@@ -106,3 +104,9 @@ Route::post( 'delivery/createDelivery' , [DeliveryController::class, 'create'] )
 Route::get('delivery/master', [DeliveryController::class, 'master'] );
 Route::get('delivery/{delivery:id}/view', [DeliveryController::class, 'view']);
 Route::delete('delivery/{delivery:id}', [DeliveryController::class, 'delete']);
+
+Route::post('user/logout', [AuthController::class, 'destroy']);
+});
+
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('user/login', [AuthController::class, 'store']);

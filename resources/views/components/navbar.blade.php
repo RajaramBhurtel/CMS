@@ -61,8 +61,8 @@
                             </div>
 
                             <div class="flex flex-col ml-4">
-                                <span>Sabin Bhurtel</span>
-                                <span>Admin</span>
+                                <span>{{ auth()->user()->name }} </span>
+                                <span>{{ auth()->user()->role }}</span>
                             </div>
                         </div>
 
@@ -75,15 +75,17 @@
                             x-transition:leave-start="transform opacity-100 scale-100"
                             x-transition:leave-end="transform opacity-0 scale-95" role="menu"
                             aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                            <a href="/user/{{ auth()->user()->id }}/edit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem" tabindex="-1" id="user-menu-item-0">My Profile</a>
 
                             {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                 role="menuitem" tabindex="-1" id="user-menu-item-1">Projects</a> --}}
 
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                role="menuitem" tabindex="-1" id="user-menu-item-1">Sign
-                                out</a>
+                             <form method="POST" action="/user/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                role="menuitem" tabindex="-1" id="user-menu-item-1">
+                                @csrf
+                                <button type="submit">Sign out</button>
+                            </form>
                         </div>
                     </div>
 
