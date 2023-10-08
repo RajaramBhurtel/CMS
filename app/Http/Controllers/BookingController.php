@@ -13,6 +13,9 @@ class BookingController extends Controller
 {
     public function index( ) {
         return view( 'booking.index');
+    } 
+    public function viewStatus( ) {
+        return view( 'booking.status');
     }
 
     public function master( ) {

@@ -21,12 +21,8 @@ use App\Http\Controllers\MerchandiseController;
 |
 */
 Route::middleware(['auth'])->group(function () {
-Route::get('/dashboard', function () {
-    return view('booking.dashboard');
-});
-Route::get('/', function () {
-    return view('booking.dashboard');
-});
+
+
 
 Route::get('/test', function () {
     return view('booking.test');
@@ -111,6 +107,13 @@ Route::get('delivery/search', [DeliveryController::class, 'searchDelivery']);
 
 Route::post('user/logout', [AuthController::class, 'destroy']);
 });
+Route::get('/dashboard', function () {
+    return view('booking.dashboard');
+});
 
+Route::get('/', function () {
+    return view('booking.dashboard');
+});
+Route::get('/status', [BookingController::class, 'viewStatus']);
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('user/login', [AuthController::class, 'store']);

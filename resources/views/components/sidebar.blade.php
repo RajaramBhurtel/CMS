@@ -25,6 +25,9 @@
                             <div>Dashboard </div>
                         </a>
                     </li>
+                    @auth
+                        
+                    
                     <!-- List ITEM -->
                     <li class="text-sm text-gray-500 ">
                         <a href="#" @click.prevent="selected = (selected === 'Booking' ? '':'Booking')"
@@ -310,6 +313,17 @@
                             </ul>
                         </div>
                     </li>
+                    @else
+                     <li class="text-sm text-gray-500 ">
+                        <a href="/status"
+                            class="flex items-center w-full py-1 px-2 rounded relative hover:text-white hover:bg-gray-700 ">
+                            <div class="pr-2">
+                                <x-component.icons name="fa-regular fa-square-check" />
+                            </div>
+                            <div>Status </div>
+                        </a>
+                    </li>
+                    @endauth
                 </ul>
             </nav>
         </div>
