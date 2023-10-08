@@ -17,6 +17,12 @@ class BookingController extends Controller
     public function viewStatus( ) {
         return view( 'booking.status');
     }
+    public function checkStatus( Request $request ) {
+       
+        $cn = $request->input('cn_no');
+        $booking  = Booking::where('cn_no', $cn)->first();
+        return view('booking.status', compact('booking'));
+    }
 
     public function master( ) {
         $bookings = Booking::paginate(10);

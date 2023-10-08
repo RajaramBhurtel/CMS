@@ -115,5 +115,6 @@ Route::get('/', function () {
     return view('booking.dashboard');
 });
 Route::get('/status', [BookingController::class, 'viewStatus']);
+Route::get('/check', [BookingController::class, 'checkStatus']);
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('user/login', [AuthController::class, 'store']);
