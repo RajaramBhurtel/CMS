@@ -29,8 +29,8 @@ class DeliveryController extends Controller
             $delivery = Delivery::create([
                 'date' => $request['date'],
                 'route' => $request['route'],
-                've
-                hicle' => $request['vehicle'],
+                'vehicle' => $request['vehicle'],
+                'user' => $request['name'],
             ]);
 
             // Associate existing bookings with the newly created delivery
@@ -43,9 +43,9 @@ class DeliveryController extends Controller
                     ]);
                 }
             }
-            return redirect('delivery.master')->with('success', 'Delivery created successfully.');
+            return view('delivery.master')->with('success', 'Delivery created successfully.');
         }catch(Exception $e){
-            return redirect('delivery.master')->with('success',  $e->getMessage());
+            return view('delivery.master')->with('success',  $e->getMessage());
         }
 
     }
