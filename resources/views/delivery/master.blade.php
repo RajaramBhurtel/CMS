@@ -1,5 +1,56 @@
 <x-layout >
     <x-main title="Master Delivery">
+        <div class="p-4 bg-gray-100">
+            <form id="searchForm" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="flex-grow">
+                    <label for="delivery code" class="block text-gray-600">Delivery Code</label>
+                    <input
+                    type="text"
+                    id="delivery_code"
+                    name="delivery_code"
+                    value="{{ request('delivery_code') }}"
+                    placeholder="Search by Code"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                    />
+                </div>
+            <!-- Date -->
+                <div class="flex-grow">
+                    <label for="date" class="block text-gray-600">Date</label>
+                    <input
+                    type="date"
+                    id="sdate"
+                    name="sdate"
+                    value=""
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                    />
+                </div>
+
+            <!-- Location -->
+                <div class="flex-grow">
+                    <label for="location" class="block text-gray-600">Route</label>
+                    <input
+                    type="text"
+                    id="route"
+                    name="route"
+                    value="{{ request('route') }}"
+                    placeholder="Search by route"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                    />
+                </div>
+
+            <!-- Submit Button -->
+                <div class="flex-grow">
+                    <label for="search" class="block text-gray-600 invisible">Search</label>
+                    <button
+                    type="button"
+                    id="searchButton"
+                    class="w-full px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
+                    >
+                    Search
+                    </button>
+                </div>
+            </form>
+        </div>
         <x-panel>
             <div class="flex flex-col">
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -81,5 +132,29 @@
             </div>
         </x-panel>
     </x-main >
+    <script>
+        $(document).ready(function () {
+            $('#searchButton').on('click', function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                // Gather form data
+                var formData = {
+                    delivery_code: $('#delivery_code').val(),
+                    date: $('#sdate').val(),
+                    route: $('#route').val(),
+                };
+
+                // Send an AJAX request
+                $.ajax({
+                    type: 'GET', // or 'POST', depending on your route and controller
+                    url: '/delivery/search', // Replace with your route
+                    data: formData,
+                    success: function (data) {
+                        $('body').html(data); // Update the results on the page
+                    }
+                });
+            });
+        });
+    </script>
 </x-layout >
     

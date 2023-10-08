@@ -105,6 +105,7 @@ Route::post( 'delivery/createDelivery' , [DeliveryController::class, 'create'] )
 Route::get('delivery/master', [DeliveryController::class, 'master'] );
 Route::get('delivery/{delivery:id}/view', [DeliveryController::class, 'view']);
 Route::delete('delivery/{delivery:id}', [DeliveryController::class, 'delete']);
+Route::get('delivery/search', [DeliveryController::class, 'searchDelivery']);
 
 Route::post('user/logout', [AuthController::class, 'destroy']);
 });

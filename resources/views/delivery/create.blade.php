@@ -24,7 +24,7 @@
                             </div>
                             <div >
                                 <label for="vehicle" class="block text-sm font-medium text-gray-700">Mode</label>
-                                <select id="vehicle" name="vehicle"class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
+                                <select id="vehicle" name="vehicle"class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" required>
                                     <option value>Choose Vehicle</option>
                                     <option value="bike">Bike</option>
                                     <option value="van">Van</option>
@@ -69,7 +69,7 @@
                         </tr>
                     </table>
                     <div class="flex justify-center">
-                        <button type="submit" class="h-10   px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">Save Manifest</button>
+                        <button type="submit" class="h-10   px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 rounded-md">Save Delivery</button>
                     </div>
                 </div>
                 
@@ -105,7 +105,7 @@
                 success : function(data) {
                     if(data){
                         if(data == 'false'){
-                            alert("MANIFEST ALREADY CREATED");
+                            alert("Delivery ALREADY CREATED");
                             $("#"+a).val(" ").replace(/\s+/g, '');
                             $("#"+a).focus();
                             return false;
