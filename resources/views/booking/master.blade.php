@@ -1,7 +1,7 @@
 <x-layout >
     <x-main title="Master Booking">
         <div class="p-4 bg-gray-100">
-            <form action="/booking/search" method="GET" class="flex space-x-4">
+            <form id="searchForm" class="flex space-x-4">
               <!-- Consignee -->
               <div class="flex-grow">
                 <label for="consignee" class="block text-gray-600">Consignee</label>
@@ -18,9 +18,9 @@
           
               <!-- Shipper -->
               <div class="flex-grow">
-                <label for="shipper" class="block text-gray-600">Shipper</label>
+                <label for="shipper" class="block text-gray-600">Sender</label>
                 <select id="shipper_id" name="shipper_id"class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
-                    <option value>Choose Consignee</option>
+                    <option value>Choose Sender</option>
                         @foreach ($shippers as $shipper)
                             <option
                                 value="{{ $shipper->id }}"
@@ -48,6 +48,7 @@
                   type="text"
                   id="shipper_address2"
                   name="shipper_address2"
+                  value="{{ request('shipper_address2') }}"
                   placeholder="Search by Location"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
                 />
@@ -68,10 +69,11 @@
               <div class="flex-grow">
                 <label for="search" class="block text-gray-600 invisible">Search</label>
                 <button
-                  type="submit"
+                  type="button"
+                  id="searchButton"
                   class="w-full px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
                 >
-                  Search
+                Search
                 </button>
               </div>
             </form>
@@ -165,5 +167,34 @@
             </div>
         </x-panel>
     </x-main >
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#searchButton').on('click', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Gather form data
+            var formData = {
+                consignee_id: $('#consignee_id').val(),
+                shipper_id: $('#shipper_id').val(),
+                // date: $('#date').val(),
+                shipper_address2: $('#shipper_address2').val(),
+                consignee_address2: $('#consignee_address2').val(),
+            };
+
+            // Send an AJAX request
+            $.ajax({
+                type: 'GET', // or 'POST', depending on your route and controller
+                url: '/booking/search', // Replace with your route
+                data: formData,
+                success: function (data) {
+                    console.log(data);
+                    $('body').html(data); // Update the results on the page
+                }
+            });
+        });
+    });
+</script>
+
 </x-layout >
-    

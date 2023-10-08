@@ -153,6 +153,8 @@ class BookingController extends Controller
     public function searchBooking(Request $request)
     {
         $query = Booking::query();
+        $consignees = Consignee::all();
+        $shippers = Shipper::all();
 
         foreach (['shipper_id', 'consignee_id', 'shipper_address2', 'consignee_address2', 'date'] as $param) {
             if ($value = $request->input($param)) {
@@ -160,8 +162,8 @@ class BookingController extends Controller
             }
         }
 
-        $bookings = $query->get();
-        return view('booking.master', compact('bookings'));
+        $bookings = $query->paginate(10);
+        return view('booking.master', compact('bookings', 'consignees', 'shippers'));
     }
     
     protected function validateBooking(?Booking $booking = null): array {
