@@ -129,7 +129,7 @@
                 Rs.100, the shipper agrees that he has read and understands the terms and conditions.
               </p>
               <p class="text-center text-xs mt-4">
-                <b class="">Sabin Bhurtel</b>
+                <b class="">{{ auth()->user()->name }}</b>
                 <br><br>
                 -------------------<br>
                 <span>
