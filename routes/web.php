@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Report;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -106,6 +107,11 @@ Route::delete('delivery/{delivery:id}', [DeliveryController::class, 'delete']);
 Route::get('delivery/search', [DeliveryController::class, 'searchDelivery']);
 
 Route::post('user/logout', [AuthController::class, 'destroy']);
+
+Route::get('report/cash', [Report::class, 'index'] );
+Route::get('report/search', [Report::class, 'cash'] );
+Route::get('report/credit', [Report::class, 'view'] );
+Route::get('report/view', [Report::class, 'credit'] );
 });
 Route::get('/dashboard', function () {
     return view('booking.dashboard');
