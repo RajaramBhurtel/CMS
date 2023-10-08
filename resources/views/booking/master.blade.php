@@ -1,7 +1,7 @@
 <x-layout >
     <x-main title="Master Booking">
         <div class="p-4 bg-gray-100">
-            <form id="searchForm" class="flex space-x-4">
+            <form id="searchForm" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               <!-- Consignee -->
               <div class="flex-grow">
                 <label for="consignee" class="block text-gray-600">Consignee</label>
@@ -35,8 +35,9 @@
                 <label for="date" class="block text-gray-600">Date</label>
                 <input
                   type="date"
-                  id="date"
-                  name="date"
+                  id="sdate"
+                  name="sdate"
+                  value=""
                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
                 />
               </div>
@@ -60,6 +61,29 @@
                   id="consignee_address2"
                   name="consignee_address2"
                   placeholder="Search by Location"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                />
+              </div>
+
+              <!-- Location -->
+              <div class="flex-grow">
+                <label for="location" class="block text-gray-600">Shipper Number</label>
+                <input
+                  type="text"
+                  id="shipper_number"
+                  name="shipper_number"
+                  value="{{ request('shipper_number') }}"
+                  placeholder="Search by number"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                />
+              </div>
+              <div class="flex-grow">
+                <label for="location" class="block text-gray-600">Consignee Number</label>
+                <input
+                  type="text"
+                  id="consignee_number"
+                  name="consignee_number"
+                  placeholder="Search by Number"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
                 />
               </div>
@@ -178,9 +202,11 @@
             var formData = {
                 consignee_id: $('#consignee_id').val(),
                 shipper_id: $('#shipper_id').val(),
-                // date: $('#date').val(),
+                date: $('#sdate').val(),
                 shipper_address2: $('#shipper_address2').val(),
                 consignee_address2: $('#consignee_address2').val(),
+                shipper_number: $('#shipper_number').val(),
+                consignee_number: $('#consignee_number').val(),
             };
 
             // Send an AJAX request
