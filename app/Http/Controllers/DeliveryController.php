@@ -88,6 +88,7 @@ class DeliveryController extends Controller
         }
 
         $bookings = $delivery->bookings()->select(
+            'id',
             'cn_no',
             'consignee_id',
             'one_time_consignee',
@@ -95,7 +96,9 @@ class DeliveryController extends Controller
             'merchandise_code',
             'weight',
             'quantity',
-            'menifests_code'
+            'menifests_code',
+            'status',
+            'updated_at'
         )->get();
 
         foreach ($bookings as $booking) {
@@ -111,12 +114,12 @@ class DeliveryController extends Controller
             // Get merchandise name from merchandise_code
             $merchandise = Merchandise::where('id', $booking->merchandise_code)->first();
             // dd($merchandise);
-            $booking->merchandise_name = $merchandise ? $merchandise->name : null;
+            $booking->merchandise_name = $merchandise ? $merchandise->name : 'DOCUMENT';
 
             // Get merchandise name from merchandise_code
-            $menifest = Menifest::where('menifests_code', $booking->menifests_code)->first();
+            // $menifest = Menifest::where('menifests_code', $booking->menifests_code)->first();
             // dd($menifest);
-            $booking->shipped_date = $menifest ? $menifest->date : null;
+            $booking->shipped_date =  $booking->updated_at;
         }
 
         return view('delivery.view', ['delivery' => $delivery, 'bookings' => $bookings]);
@@ -132,6 +135,22 @@ class DeliveryController extends Controller
         $delivery->delete();
 
         return back()->with('success', 'Delivery Runsheet Deleted!');
+    }
+    public function update( $request ) {
+        $booking = Booking::where('id', $request)->first();
+        $booking->update([
+            'status' => 'delivered'
+        ]);
+    
+        return back()->with('success', 'Delivery status updated!');
+    }
+    public function cancel( $request ) {
+        $booking = Booking::where('id', $request)->first();
+        $booking->update([
+            'status' => 'cancelled'
+        ]);
+    
+        return back()->with('success', 'Delivery status updated!');
     }
 
      public function searchDelivery(Request $request)

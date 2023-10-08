@@ -104,6 +104,8 @@ Route::post( '/delivery/getRequireddelivery' , [DeliveryController::class, 'getR
 Route::post( 'delivery/createDelivery' , [DeliveryController::class, 'create'] );
 Route::get('delivery/master', [DeliveryController::class, 'master'] );
 Route::get('delivery/{delivery:id}/view', [DeliveryController::class, 'view']);
+Route::post('delivery/{booking:id}/update', [DeliveryController::class, 'update']);
+Route::post('delivery/{booking:id}/cancel', [DeliveryController::class, 'cancel']);
 Route::delete('delivery/{delivery:id}', [DeliveryController::class, 'delete']);
 Route::get('delivery/search', [DeliveryController::class, 'searchDelivery']);
 
