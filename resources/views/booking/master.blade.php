@@ -1,7 +1,18 @@
 <x-layout >
     <x-main title="Master Booking">
         <div class="p-4 bg-gray-100">
-            <form id="searchForm" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+           <form id="searchForm" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="flex-grow">
+                <label for="booking code" class="block text-gray-600">Booking Code</label>
+                <input
+                  type="text"
+                  id="booking_code"
+                  name="booking_code"
+                  value="{{ request('booking_code') }}"
+                  placeholder="Search by number"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                />
+              </div>
               <!-- Consignee -->
               <div class="flex-grow">
                 <label for="consignee" class="block text-gray-600">Consignee</label>
@@ -101,7 +112,7 @@
                 </button>
               </div>
             </form>
-          </div>
+        </div>
           
         <x-panel>
             <div class="flex flex-col">
@@ -200,6 +211,7 @@
 
             // Gather form data
             var formData = {
+                cn_no: $('#booking_code').val(),
                 consignee_id: $('#consignee_id').val(),
                 shipper_id: $('#shipper_id').val(),
                 date: $('#sdate').val(),
@@ -215,7 +227,6 @@
                 url: '/booking/search', // Replace with your route
                 data: formData,
                 success: function (data) {
-                    console.log(data);
                     $('body').html(data); // Update the results on the page
                 }
             });

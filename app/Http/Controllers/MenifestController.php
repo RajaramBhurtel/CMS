@@ -136,5 +136,19 @@ class MenifestController extends Controller
         // print_r($result);
         return response()->json($result);
     }
+
+    public function searchMenifest(Request $request)
+    {
+        $query = Menifest::query();
+
+        foreach (['menifests_code', 'location', 'date'] as $param) {
+            if ($value = $request->input($param)) {
+                $query->where($param, 'like', '%' . $value . '%');
+            }
+        }
+
+        $menifests = $query->paginate(100);
+        return view('menifest.master', compact('menifests'));
+    }
     
 }

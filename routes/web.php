@@ -95,6 +95,7 @@ Route::get('manifest/master', [MenifestController::class, 'master'] );
 Route::get('menifest/{menifest:id}/view', [MenifestController::class, 'view']);
 Route::delete('menifest/{menifest:id}', [MenifestController::class, 'delete']);
 Route::post( '/menifest/getMenifestCode' , [MenifestController::class, 'getMenifestCode'] );
+Route::get('menifest/search', [MenifestController::class, 'searchMenifest']);
 
 
 // Delivery

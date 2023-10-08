@@ -156,7 +156,7 @@ class BookingController extends Controller
         $consignees = Consignee::all();
         $shippers = Shipper::all();
 
-        foreach (['shipper_id', 'consignee_id', 'shipper_address2', 'consignee_address2', 'date', 'shipper_number', 'consignee_number'] as $param) {
+        foreach (['cn_no','shipper_id', 'consignee_id', 'shipper_address2', 'consignee_address2', 'date', 'shipper_number', 'consignee_number'] as $param) {
             if ($value = $request->input($param)) {
                 $query->where($param, 'like', '%' . $value . '%');
             }
