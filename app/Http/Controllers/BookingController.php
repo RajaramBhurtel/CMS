@@ -16,7 +16,7 @@ class BookingController extends Controller
     }
 
     public function master( ) {
-        $bookings = Booking::paginate(5);
+        $bookings = Booking::paginate(10);
         $consignees = Consignee::all();
         $shippers = Shipper::all();
 
