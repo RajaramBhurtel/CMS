@@ -1,148 +1,148 @@
-<diagram program="umletino" version="15.1"><zoom_level>7</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>266</x><y>14</y><w>161</w><h>266</h></coordinates><panel_attributes>Booking
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><help_text></help_text><element><id>UMLClass</id><coordinates><x>248</x><y>40</y><w>184</w><h>304</h></coordinates><panel_attributes>*Booking*
 --
--id: int
--cn_no: string
--date: date
--category: enum
--content_type: enum
--mode: enum
--payment_mode: enum
--shipper_id: shipper
--consignee_id: consignee
--merchandise_id: merchandise
--quantity: int
--weight: int
--individual_price: decimal
--discount: decimal
--amount: decimal
--biller: user
--description: text
--status: boolean
+*-id: int*
+*-cn_no: string*
+*-date: date*
+*-category: enum*
+*-content_type: enum*
+*-mode: enum*
+*-payment_mode: enum*
+*-shipper_id: shipper*
+*-consignee_id: consignee*
+*-merchandise_id: merchandise*
+*-quantity: int*
+*-weight: int*
+*-individual_price: decimal*
+*-discount: decimal*
+*-amount: decimal*
+*-biller: user*
+*-description: text*
+*-status: boolean*
 --
-#validateBooking(Booking)
-+createSingle()
-+getShipper(Shipper)
-+getConsignee(Consignee)
-+updateStatus()
+*#validateBooking(Booking)*
+*+createSingle()*
+*+getShipper(Shipper)*
+*+getConsignee(Consignee)*
+*+updateStatus()*
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>497</x><y>0</y><w>147</w><h>196</h></coordinates><panel_attributes>Shippers
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>512</x><y>24</y><w>168</w><h>224</h></coordinates><panel_attributes>*Shippers*
 --
--id: int
--shipper_id: string
--name: string
--shipper_address_1: string
--shipper_address_2: string
--shipper_latitude: string
--shipper_longitude: string
--phone: string
--email: string
--is_one_time: boolean
+*-id: int*
+*-shipper_id: string*
+*-name: string*
+*-shipper_address_1: string*
+*-shipper_address_2: string*
+*-shipper_latitude: string*
+*-shipper_longitude: string*
+*-phone: string*
+*-email: string*
+*-is_one_time: boolean*
 --
-#validateShipper(Shipper)
-+create()
-+view()
-+edit(Shipper)
-+update(Shipper)
-+delete(Shipper)
+*#validateShipper(Shipper)*
+*+create()*
+*+view()*
+*+edit(Shipper)*
+*+update(Shipper)*
+*+delete(Shipper)*
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>497</x><y>217</y><w>147</w><h>196</h></coordinates><panel_attributes>Consignees
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>512</x><y>272</y><w>168</w><h>224</h></coordinates><panel_attributes>*Consignees*
 --
--id: int
--consignee_id: string
--name: string
--consignee_address_1: string
--consignee_address_2: string
--consignee_latitude: string
--consignee_longitude: string
--phone: string
--email: string
--is_one_time: boolean
+*-id: int*
+*-consignee_id: string*
+*-name: string*
+*-consignee_address_1: string*
+*-consignee_address_2: string*
+*-consignee_latitude: string*
+*-consignee_longitude: string*
+*-phone: string*
+*-email: string*
+*-is_one_time: boolean*
 --
-#validateConsignee(Consignee)
-+create()
-+view()
-+edit(Consignee)
-+update(Consignee)
-+delete(Consignee)
+#validateConsignee(Consignee)*
+*+create()*
+*+view()*
+*+edit(Consignee)*
+*+update(Consignee)*
+*+delete(Consignee)*
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>49</x><y>14</y><w>147</w><h>119</h></coordinates><panel_attributes>Merchandise
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>40</y><w>168</w><h>136</h></coordinates><panel_attributes>*Merchandise*
 --
--id: int
--merchandise_code: string
--name: string
+*-id: int*
+*-merchandise_code: string*
+*-name: string*
 --
-#validateMerchandise(Merchandise)
-+create()
-+view()
-+edit(Merchandise)
-+update(Merchandise)
-+delete(Merchandise)
+*#validateMerchandise(Merchandise)*
+*+create()*
+*+view()*
+*+edit(Merchandise)*
+*+update(Merchandise)*
+*+delete(Merchandise)*
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>49</x><y>154</y><w>147</w><h>154</h></coordinates><panel_attributes>Users
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>200</y><w>168</w><h>176</h></coordinates><panel_attributes>*Users*
 --
--id: int
--name: string
--username: string
--password: string
--email: string
--role: enum
+*-id: int*
+*-name: string*
+*-username: string*
+*-password: string*
+*-email: string*
+*-role: enum*
 --
-#validateUsers(Users)
-+create()
-+view()
-+edit(Users)
-+update(Users)
-+delete(Users)
+*#validateUsers(Users)*
+*+create()*
+*+view()*
+*+edit(Users)*
+*+update(Users)*
+*+delete(Users)*
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>56</y><w>91</w><h>35</h></coordinates><panel_attributes>lt=-
-m1=n
-m2=1
-</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>196</y><w>91</w><h>35</h></coordinates><panel_attributes>lt=-
-m1=1
-m2=n
-</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>84</y><w>91</w><h>35</h></coordinates><panel_attributes>lt=-
-m1=n
-m2=1
-</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>238</y><w>91</w><h>35</h></coordinates><panel_attributes>lt=-
-m1=n
-m2=1
-</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>49</x><y>329</y><w>147</w><h>154</h></coordinates><panel_attributes>Delivery
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>88</y><w>104</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=*n*
+m2=*1*
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>248</y><w>104</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=*1*
+m2=*n*
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>120</y><w>104</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=*n*
+m2=*1*
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>Relation</id><coordinates><x>424</x><y>296</y><w>104</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=*n*
+m2=*1*
+</panel_attributes><additional_attributes>10;20;110;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>0</x><y>400</y><w>168</w><h>176</h></coordinates><panel_attributes>*Delivery*
 --
--id: int
--delivery_code: string
--date: date
--route: string
--vehicle: enum
--user: id
+*-id: int*
+*-delivery_code: string*
+*-date: date*
+*-route: string*
+*-vehicle: enum*
+*-user: id*
 --
-+getRequireddelivery(Delivery)
-+create()
-+view()
-+edit(Delivery)
-+update(Delivery)
-+delete(Delivery)
+*+getRequireddelivery(Delivery)*
+*+create()*
+*+view()*
+*+edit(Delivery)*
+*+update(Delivery)*
+*+delete(Delivery)*
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>280</x><y>329</y><w>147</w><h>154</h></coordinates><panel_attributes>Menifest
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>264</x><y>400</y><w>168</w><h>176</h></coordinates><panel_attributes>*Menifest*
 --
--id: int
--menifests_code: string
--date: date
--location: string
--mode: enum
--user: id
+*-id: int*
+*-menifests_code: string*
+*-date: date*
+*-location: string*
+*-mode: enum*
+*-user: id*
 --
-+getMenifestCode(Menifest)
-+getRequiredmanifest(Menifest)
-+create()
-+view()
-+edit(Menifest)
-+update(Menifest)
-+delete(Menifest)
+*+getMenifestCode(Menifest)*
+*+getRequiredmanifest(Menifest)*
+*+create()*
+*+view()*
+*+edit(Menifest)*
+*+update(Menifest)*
+*+delete(Menifest)*
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>189</x><y>238</y><w>91</w><h>133</h></coordinates><panel_attributes>lt=-
-m1= 1
-m2= 1
-</panel_attributes><additional_attributes>10;160;40;160;40;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>350</x><y>273</y><w>28</w><h>70</h></coordinates><panel_attributes>lt=-
-m1=n
-m2=1
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>160</x><y>296</y><w>104</w><h>152</h></coordinates><panel_attributes>lt=-
+m1=*1*
+m2=*1*
+</panel_attributes><additional_attributes>10;160;40;160;40;10;110;10</additional_attributes></element><element><id>Relation</id><coordinates><x>344</x><y>336</y><w>32</w><h>80</h></coordinates><panel_attributes>lt=-
+m1=*n*
+m2=*1*
 </panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element></diagram>
