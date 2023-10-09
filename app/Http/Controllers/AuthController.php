@@ -12,23 +12,12 @@ class AuthController extends Controller
     public function index( ) {
         return view( 'auth.login');
     }
-    // public function login() {
-    //     $attributes = request()->validate([
-    //         'email' => 'required|email',
-    //         'password' => 
-    //     ]);
-
-    //     // if( ! Auth::attempt(attributes)){   
-
-    //     //     throw ValidationException::withMessages([
-    //     //         'email' => 'Your provided credentials could not be verified.'
-    //     //     ]);
-    //     // }
-        
-    //     session()->regenerate();
-        
-    //     return redirect('/dashboard')->with('success', 'Welcome Back !');
-    // }
+   
+    public function destroy(){
+        auth()->logout();
+        // session_destroy();
+        return redirect('/login')->with('success', 'Goodbye!');
+    }
 
     public function store() {
         $attributes = request()->validate([

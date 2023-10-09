@@ -1,7 +1,18 @@
 <x-layout >
     <x-main title="Master Booking">
         <div class="p-4 bg-gray-100">
-            <form action="/booking/search" method="GET" class="flex space-x-4">
+           <form id="searchForm" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="flex-grow">
+                <label for="booking code" class="block text-gray-600">Booking Code</label>
+                <input
+                  type="text"
+                  id="booking_code"
+                  name="booking_code"
+                  value="{{ request('booking_code') }}"
+                  placeholder="Search by number"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                />
+              </div>
               <!-- Consignee -->
               <div class="flex-grow">
                 <label for="consignee" class="block text-gray-600">Consignee</label>
@@ -18,9 +29,9 @@
           
               <!-- Shipper -->
               <div class="flex-grow">
-                <label for="shipper" class="block text-gray-600">Shipper</label>
+                <label for="shipper" class="block text-gray-600">Sender</label>
                 <select id="shipper_id" name="shipper_id"class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md">
-                    <option value>Choose Consignee</option>
+                    <option value>Choose Sender</option>
                         @foreach ($shippers as $shipper)
                             <option
                                 value="{{ $shipper->id }}"
@@ -35,8 +46,9 @@
                 <label for="date" class="block text-gray-600">Date</label>
                 <input
                   type="date"
-                  id="date"
-                  name="date"
+                  id="sdate"
+                  name="sdate"
+                  value=""
                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
                 />
               </div>
@@ -48,6 +60,7 @@
                   type="text"
                   id="shipper_address2"
                   name="shipper_address2"
+                  value="{{ request('shipper_address2') }}"
                   placeholder="Search by Location"
                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
                 />
@@ -63,19 +76,43 @@
                 />
               </div>
 
+              <!-- Location -->
+              <div class="flex-grow">
+                <label for="location" class="block text-gray-600">Shipper Number</label>
+                <input
+                  type="text"
+                  id="shipper_number"
+                  name="shipper_number"
+                  value="{{ request('shipper_number') }}"
+                  placeholder="Search by number"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                />
+              </div>
+              <div class="flex-grow">
+                <label for="location" class="block text-gray-600">Consignee Number</label>
+                <input
+                  type="text"
+                  id="consignee_number"
+                  name="consignee_number"
+                  placeholder="Search by Number"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring focus:ring-blue-200"
+                />
+              </div>
+
           
               <!-- Submit Button -->
               <div class="flex-grow">
                 <label for="search" class="block text-gray-600 invisible">Search</label>
                 <button
-                  type="submit"
+                  type="button"
+                  id="searchButton"
                   class="w-full px-6 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
                 >
-                  Search
+                Search
                 </button>
               </div>
             </form>
-          </div>
+        </div>
           
         <x-panel>
             <div class="flex flex-col">
@@ -90,12 +127,10 @@
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Consignee</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Destination</th>
                                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Phone</th>
-                                        <th scope="col" class="relative px-6 py-3">
-                                            <span class="sr-only">Edit</span>
-                                        </th>
-                                        <th scope="col" class="relative px-6 py-3">
-                                            <span class="sr-only">Delete</span>
-                                        </th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                                       
                                     </tr>
                                     @foreach ($bookings as $booking)
                                         <tr>
@@ -140,6 +175,13 @@
                                                         {{ $booking->consignee_number }}
                                                     </div>
                                                 </div>
+                                            </td> 
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $booking->status }}
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="/booking/{{ $booking->id }}/view" class="text-blue-500 hover:text-blue-600"> <x-component.icons name="fa-regular fa-eye" /> View</a>
@@ -165,5 +207,36 @@
             </div>
         </x-panel>
     </x-main >
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#searchButton').on('click', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Gather form data
+            var formData = {
+                cn_no: $('#booking_code').val(),
+                consignee_id: $('#consignee_id').val(),
+                shipper_id: $('#shipper_id').val(),
+                date: $('#sdate').val(),
+                shipper_address2: $('#shipper_address2').val(),
+                consignee_address2: $('#consignee_address2').val(),
+                shipper_number: $('#shipper_number').val(),
+                consignee_number: $('#consignee_number').val(),
+            };
+
+            // Send an AJAX request
+            $.ajax({
+                type: 'GET', // or 'POST', depending on your route and controller
+                url: '/booking/search', // Replace with your route
+                data: formData,
+                success: function (data) {
+                    $('body').html(data); // Update the results on the page
+                }
+            });
+        });
+    });
+</script>
+
 </x-layout >
-    

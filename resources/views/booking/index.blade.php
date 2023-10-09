@@ -167,7 +167,7 @@
                         </div>
                         <div>
                             <label for="biller" class="block text-sm font-medium text-gray-700">Biller</label>
-                            <input id="biller" name="biller"  type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="Sabin Bhurtel" readonly>
+                            <input id="biller" name="biller"  type="text" class="h-10 px-2 mt-1  block w-full shadow-md sm:text-sm border-gray-300 rounded-md" value="{{ auth()->user()->name }}" readonly>
                         </div>
                     </div>
                 </div>

@@ -129,7 +129,7 @@
                 Rs.100, the shipper agrees that he has read and understands the terms and conditions.
               </p>
               <p class="text-center text-xs mt-4">
-                <b class="">Sabin Bhurtel</b>
+                <b class="">{{ $booking->biller }}</b>
                 <br><br>
                 -------------------<br>
                 <span>

@@ -25,23 +25,28 @@ class DeliveryController extends Controller
     }
     public function create( Request $request  ) {
        // Create a new delivery
-        $delivery = Delivery::create([
-            'date' => $request['date'],
-            'route' => $request['route'],
-            'vehicle' => $request['vehicle'],
-        ]);
+        try{
+            $delivery = Delivery::create([
+                'date' => $request['date'],
+                'route' => $request['route'],
+                'vehicle' => $request['vehicle'],
+                'user' => $request['name'],
+            ]);
 
-        // Associate existing bookings with the newly created delivery
-        foreach ($request['cn_no'] as $bookingCn) {
-            $booking = Booking::where('cn_no', $bookingCn)->first();
-            if ($booking) {
-                $booking->update([
-                    'delivery_code' => $delivery->delivery_code,
-                    'status' => 'processing delivery'
-                ]);
+            // Associate existing bookings with the newly created delivery
+            foreach ($request['cn_no'] as $bookingCn) {
+                $booking = Booking::where('cn_no', $bookingCn)->first();
+                if ($booking) {
+                    $booking->update([
+                        'delivery_code' => $delivery->delivery_code,
+                        'status' => 'processing delivery'
+                    ]);
+                }
             }
+            return view('delivery.master')->with('success', 'Delivery created successfully.');
+        }catch(Exception $e){
+            return view('delivery.master')->with('success',  $e->getMessage());
         }
-        return redirect('delivery.master')->with('success', 'Delivery created successfully.');
 
     }
     public function getRequireddelivery( Request $request  ) {
@@ -83,6 +88,7 @@ class DeliveryController extends Controller
         }
 
         $bookings = $delivery->bookings()->select(
+            'id',
             'cn_no',
             'consignee_id',
             'one_time_consignee',
@@ -90,7 +96,9 @@ class DeliveryController extends Controller
             'merchandise_code',
             'weight',
             'quantity',
-            'menifests_code'
+            'menifests_code',
+            'status',
+            'updated_at'
         )->get();
 
         foreach ($bookings as $booking) {
@@ -106,12 +114,12 @@ class DeliveryController extends Controller
             // Get merchandise name from merchandise_code
             $merchandise = Merchandise::where('id', $booking->merchandise_code)->first();
             // dd($merchandise);
-            $booking->merchandise_name = $merchandise ? $merchandise->name : null;
+            $booking->merchandise_name = $merchandise ? $merchandise->name : 'DOCUMENT';
 
             // Get merchandise name from merchandise_code
-            $menifest = Menifest::where('menifests_code', $booking->menifests_code)->first();
+            // $menifest = Menifest::where('menifests_code', $booking->menifests_code)->first();
             // dd($menifest);
-            $booking->shipped_date = $menifest ? $menifest->date : null;
+            $booking->shipped_date =  $booking->updated_at;
         }
 
         return view('delivery.view', ['delivery' => $delivery, 'bookings' => $bookings]);
@@ -127,5 +135,35 @@ class DeliveryController extends Controller
         $delivery->delete();
 
         return back()->with('success', 'Delivery Runsheet Deleted!');
+    }
+    public function update( $request ) {
+        $booking = Booking::where('id', $request)->first();
+        $booking->update([
+            'status' => 'delivered'
+        ]);
+    
+        return back()->with('success', 'Delivery status updated!');
+    }
+    public function cancel( $request ) {
+        $booking = Booking::where('id', $request)->first();
+        $booking->update([
+            'status' => 'cancelled'
+        ]);
+    
+        return back()->with('success', 'Delivery status updated!');
+    }
+
+     public function searchDelivery(Request $request)
+    {
+        $query = Delivery::query();
+
+        foreach (['delivery_code', 'route', 'date'] as $param) {
+            if ($value = $request->input($param)) {
+                $query->where($param, 'like', '%' . $value . '%');
+            }
+        }
+
+        $deliverys = $query->paginate(100);
+        return view('delivery.master', compact('deliverys'));
     }
 }

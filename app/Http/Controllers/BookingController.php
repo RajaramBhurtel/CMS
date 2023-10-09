@@ -13,10 +13,20 @@ class BookingController extends Controller
 {
     public function index( ) {
         return view( 'booking.index');
+    } 
+    
+    public function viewStatus( ) {
+        return view( 'booking.status');
+    }
+    public function checkStatus( Request $request ) {
+       
+        $cn = $request->input('cn_no');
+        $booking  = Booking::where('cn_no', $cn)->first();
+        return view('booking.status', compact('booking'));
     }
 
     public function master( ) {
-        $bookings = Booking::paginate(5);
+        $bookings = Booking::paginate(10);
         $consignees = Consignee::all();
         $shippers = Shipper::all();
 
@@ -153,15 +163,17 @@ class BookingController extends Controller
     public function searchBooking(Request $request)
     {
         $query = Booking::query();
+        $consignees = Consignee::all();
+        $shippers = Shipper::all();
 
-        foreach (['shipper_id', 'consignee_id', 'shipper_address2', 'consignee_address2', 'date'] as $param) {
+        foreach (['cn_no','shipper_id', 'consignee_id', 'shipper_address2', 'consignee_address2', 'date', 'shipper_number', 'consignee_number'] as $param) {
             if ($value = $request->input($param)) {
                 $query->where($param, 'like', '%' . $value . '%');
             }
         }
 
-        $bookings = $query->get();
-        return view('booking.master', compact('bookings'));
+        $bookings = $query->paginate(100);
+        return view('booking.master', compact('bookings', 'consignees', 'shippers'));
     }
     
     protected function validateBooking(?Booking $booking = null): array {

@@ -24,7 +24,8 @@
         <div class="flex-1 flex-col flex">
 
             <!-- Top navbar -->
-            <x-navbar />
+               <x-navbar /> 
+            
             <!-- End Top navbar -->
 
             <!-- Main Content -->

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Report;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -20,13 +21,9 @@ use App\Http\Controllers\MerchandiseController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware(['auth'])->group(function () {
 
-Route::get('/dashboard', function () {
-    return view('booking.dashboard');
-});
-Route::get('/', function () {
-    return view('booking.dashboard');
-});
+
 
 Route::get('/test', function () {
     return view('booking.test');
@@ -43,8 +40,6 @@ Route::get('booking/bulk', function () {
     //     return view('auth.login');
     // });
 
-Route::get('login', [AuthController::class, 'index']);
-Route::post('user/login', [AuthController::class, 'store']);
 
 // Shipper Routes
 Route::get('shipper/create', [ShipperController::class, 'index']);
@@ -87,7 +82,7 @@ Route::post( 'booking/getShipperAddress' , [BookingController::class, 'getShippe
 Route::post( 'booking/getConsigneeAddress' , [BookingController::class, 'getConsigneeAddress'] );
 Route::delete('booking/{booking:id}', [BookingController::class, 'delete']);
 Route::post('/booking/getDistancePrice', [BookingController::class, 'getDistancePrice']);
-Route::post('//booking/search', [BookingController::class, 'searchBooking']);
+Route::get('booking/search', [BookingController::class, 'searchBooking']);
 
 // Menifest
 Route::get('menifest/create', [MenifestController::class, 'index'] );
@@ -97,6 +92,7 @@ Route::get('manifest/master', [MenifestController::class, 'master'] );
 Route::get('menifest/{menifest:id}/view', [MenifestController::class, 'view']);
 Route::delete('menifest/{menifest:id}', [MenifestController::class, 'delete']);
 Route::post( '/menifest/getMenifestCode' , [MenifestController::class, 'getMenifestCode'] );
+Route::get('menifest/search', [MenifestController::class, 'searchMenifest']);
 
 
 // Delivery
@@ -105,4 +101,26 @@ Route::post( '/delivery/getRequireddelivery' , [DeliveryController::class, 'getR
 Route::post( 'delivery/createDelivery' , [DeliveryController::class, 'create'] );
 Route::get('delivery/master', [DeliveryController::class, 'master'] );
 Route::get('delivery/{delivery:id}/view', [DeliveryController::class, 'view']);
+Route::post('delivery/{booking:id}/update', [DeliveryController::class, 'update']);
+Route::post('delivery/{booking:id}/cancel', [DeliveryController::class, 'cancel']);
 Route::delete('delivery/{delivery:id}', [DeliveryController::class, 'delete']);
+Route::get('delivery/search', [DeliveryController::class, 'searchDelivery']);
+
+Route::post('user/logout', [AuthController::class, 'destroy']);
+
+Route::get('report/cash', [Report::class, 'index'] );
+Route::get('report/search', [Report::class, 'cash'] );
+Route::get('report/credit', [Report::class, 'view'] );
+Route::get('report/view', [Report::class, 'credit'] );
+});
+Route::get('/dashboard', function () {
+    return view('booking.dashboard');
+});
+
+Route::get('/', function () {
+    return view('booking.dashboard');
+});
+Route::get('/status', [BookingController::class, 'viewStatus']);
+Route::get('/check', [BookingController::class, 'checkStatus']);
+Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::post('user/login', [AuthController::class, 'store']);

@@ -24,8 +24,8 @@
     <table>
         <tr>
             <td class="text-sm font-medium text-gray-900">Orgin: EICCS KTM</td>
-            <td class="text-sm font-medium text-gray-900"><span class="ml-4" >Route:</span> {{$delivery->route}}</td>
-            <td class="text-sm font-medium text-gray-900"><span class="ml-4">Vehicle:</span> {{$delivery->vehicle}}</td>
+            <td class="text-sm font-medium text-gray-900"><span class="ml-4" >Route:</span> {{  ucfirst( $delivery->route )}}</td>
+            <td class="text-sm font-medium text-gray-900"><span class="ml-4">Vehicle:</span> {{  ucfirst(  $delivery->vehicle )}}</td>
             <td class="text-sm font-medium text-gray-900"><span class="ml-4">Date:</span> {{$delivery->date}}</td>
         </tr>
     </table>
@@ -71,6 +71,8 @@
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantaty </th> 
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Weight </th> 
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Shipped date </th> 
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status </th> 
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Action </th> 
               </tr>
               @php
                 $i = 1;
@@ -78,59 +80,82 @@
             @endphp
               @foreach ($bookings as $booking)
                   <tr>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-4 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
                                 {{$i}}
                               </div>
                           </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-4 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
                                 {{$booking->cn_no}}
                               </div>
                           </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-4 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
                                 {{$booking->consignee_name}}
                               </div>
                           </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-4 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
                                 {{$booking->consignee_address1}}
                               </div>
                           </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-4 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
                                 {{$booking->merchandise_name}}
                               </div>
                           </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-4 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
                                 {{$booking->quantity}}
                               </div>
                           </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-4 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
                                 {{$booking->weight}}
                               </div>
                           </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-4 py-4 whitespace-nowrap">
                           <div class="flex items-center">
                               <div class="text-sm font-medium text-gray-900">
                                 {{$booking->shipped_date}}
+                              </div>
+                          </div>
+                      </td> 
+                      <td class="px-4 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
+                                {{ ucfirst( $booking->status )}}
+                              </div>
+                          </div>
+                      </td>
+                      <td class="px-4 py-4 whitespace-nowrap">
+                          <div class="flex items-center">
+                              <div class="text-sm font-medium text-gray-900">
+                               <form method="POST" action="/delivery/{{ $booking->id }}/update">
+                                    @csrf
+                                    @method('POST')
+                                    <button class="text-xs text-green-400 hover:text-green-400"><x-component.icons name="fa-solid fa-trash-can" /> Delivered</button>
+                                </form>
+                                <form method="POST" action="/delivery/{{ $booking->id }}/cancel">
+                                    @csrf
+                                    @method('POST')
+                                    <button class="text-xs text-red-400 hover:text-red-600"><x-component.icons name="fa-solid fa-trash-can" /> Cancelled</button>
+                                </form>
                               </div>
                           </div>
                       </td>
