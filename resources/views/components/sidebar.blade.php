@@ -1,3 +1,6 @@
+@php
+    $userRole = Auth::user()->role;
+@endphp
 <div class="sidebar max-h-screen top-0 h-screen bg-gray-800 text-blue-100 w-64 fixed inset-y-0 left-0 transform transition duration-200 ease-in-out z-50"
             x-data="{ open: true }" x-on:togglesidebar.window=" open = !open" x-show="true"
             :class="open === true ? 'md:translate-x-0 md:sticky ':'-translate-x-full' ">
@@ -27,7 +30,7 @@
                     </li>
                     @auth
                         
-                    
+                    @if ($userRole === 'Manager' || $userRole === 'User')
                     <!-- List ITEM -->
                     <li class="text-sm text-gray-500 ">
                         <a href="#" @click.prevent="selected = (selected === 'Booking' ? '':'Booking')"
@@ -105,6 +108,8 @@
                             </ul>
                         </div>
                     </li>
+                    @endif
+                    @if ($userRole === 'Manager' || $userRole === 'Delivery')
                     <!-- List ITEM -->
                     <li class="text-sm text-gray-500 ">
                         <a href="#" @click.prevent="selected = (selected === 'Delivery' ? '':'Delivery')"
@@ -140,6 +145,8 @@
                             </ul>
                         </div>
                     </li>
+                    @endif
+                    @if ($userRole === 'Manager')
                     <!-- List ITEM -->
                     <li class="text-sm text-gray-500 ">
                         <a href="#" @click.prevent="selected = (selected === 'Reports' ? '':'Reports')"
@@ -313,6 +320,7 @@
                             </ul>
                         </div>
                     </li>
+                    @endif
                     @else
                      <li class="text-sm text-gray-500 ">
                         <a href="/status"

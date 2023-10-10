@@ -5,3 +5,7 @@
 .link {
     color: rgba(88, 100, 235, 0.744);
 }
+input[readonly],
+textarea[readonly] {
+    background-color: transparent;
+}
