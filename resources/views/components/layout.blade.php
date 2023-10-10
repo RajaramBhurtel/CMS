@@ -41,7 +41,7 @@
             </div>
             @endif
             <footer class="border-t p-4 pb-3 text-xs bg-gray-100">
-                2023 © Design & Develop by Sabin.
+                2023 © Design & Develop by <a href="https://www.rajarambhurtel.com.np" class="link">Rajaram</a>.
             </footer>
         </div>
 
