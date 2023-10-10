@@ -54,6 +54,7 @@
                         <td>
                           <select name="role" id="name" class="ml-2 w-300 h-10 text-blue-400">
                             <option value="User">General User</option>
+                            <option value="Delivery">Delivery</option>
                             <option value="Manager">Manager</option>
                           </select>
                         </td>
