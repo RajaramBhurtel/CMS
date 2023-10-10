@@ -172,6 +172,9 @@
         <tr class="justify-items-center">
             <td class="text-sm font-medium text-gray-900">Delivery BY : {{$delivery->user}}</td>
         </tr>
+        <tr class="justify-items-center">
+            <td class="text-sm font-medium text-gray-900">Route : {{ $route }}</td>
+        </tr>
     </table>
 </div><!-- /.box-body -->           
           

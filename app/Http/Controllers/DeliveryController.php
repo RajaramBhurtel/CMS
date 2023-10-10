@@ -98,10 +98,15 @@ class DeliveryController extends Controller
             'quantity',
             'menifests_code',
             'status',
-            'updated_at'
+            'updated_at',
+            'shipper_longitude',
+            'shipper_latitude',
+            'consignee_longitude',
+            'consignee_latitude'
         )->get();
-
-        foreach ($bookings as $booking) {
+        
+        $locData[0] = [ "id" => "Office", "lat" => 27.69767654394376 , "lon" => 85.2920395565951 ];
+        foreach ($bookings as $i => $booking) {
             if ($booking->one_time_consignee) {
                 // One-time consignee, add it to return value
                 $booking->consignee_name = $booking->one_time_consignee;
@@ -120,9 +125,30 @@ class DeliveryController extends Controller
             // $menifest = Menifest::where('menifests_code', $booking->menifests_code)->first();
             // dd($menifest);
             $booking->shipped_date =  $booking->updated_at;
+
+            $locData[++$i] = [
+                'id' => $booking->consignee_address1,
+                'lat'=> $booking->consignee_latitude,
+                'lon'=> $booking->consignee_longitude
+            ];
+
+            if ( count($bookings) < ++$i ) {
+                $locData[$i] = [ "id" => "Office", "lat" => 27.69767654394376 , "lon" => 85.2920395565951 ];
+            }
         }
 
-        return view('delivery.view', ['delivery' => $delivery, 'bookings' => $bookings]);
+        $vehicleCapacity = 100;
+        $result = $this->nearestNeighbor($this->buildDistanceMatrix($locData), $vehicleCapacity);
+        $routes = $result["routes"];
+
+        $orders[] = '';
+        foreach ($routes as $i => $route) {
+            $orders = implode(" --->", array_map(function ($customer) use ($locData) {
+                return $locData[$customer]["id"];
+            }, $route)) ;
+        }
+
+        return view('delivery.view', ['delivery' => $delivery, 'bookings' => $bookings, 'route' =>$orders]);
     }
 
     public function delete(Delivery $delivery) {
@@ -165,5 +191,104 @@ class DeliveryController extends Controller
 
         $deliverys = $query->paginate(100);
         return view('delivery.master', compact('deliverys'));
+    }
+
+    public function haversineDistance($lat1, $lon1, $lat2, $lon2) {
+        $lat1 = deg2rad($lat1);
+        $lon1 = deg2rad($lon1);
+        $lat2 = deg2rad($lat2);
+        $lon2 = deg2rad($lon2);
+        
+        $earthRadius = 6371;
+
+        $dlat = $lat2 - $lat1;
+        $dlon = $lon2 - $lon1;
+        $a = sin($dlat / 2) ** 2 + cos($lat1) * cos($lat2) * sin($dlon / 2) ** 2;
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+        $distance = $earthRadius * $c;
+        
+        return $distance;
+    }
+
+    function buildDistanceMatrix($coordinates) {
+        $numPoints = count($coordinates);
+        $distanceMatrix = [];
+
+        for ($i = 0; $i < $numPoints; $i++) {
+            $distanceMatrix[$i] = [];
+
+            for ($j = 0; $j < $numPoints; $j++) {
+                if ($i == $j) {
+                    $distanceMatrix[$i][$j] = 0; // Distance to itself is 0
+                } else {
+                    $lat1 = $coordinates[$i]["lat"];
+                    $lon1 = $coordinates[$i]["lon"];
+                    $lat2 = $coordinates[$j]["lat"];
+                    $lon2 = $coordinates[$j]["lon"];
+
+                    $distance = $this->haversineDistance($lat1, $lon1, $lat2, $lon2);
+                    $distanceMatrix[$i][$j] = $distance;
+                }
+            }
+        }
+
+        return $distanceMatrix;
+    }
+
+    function findNearestCustomer($currentCustomer, $visited, $distanceMatrix) {
+        $minDistance = PHP_INT_MAX;
+        $nearestCustomer = -1;
+        $numCustomers = count($visited);
+
+        for ($i = 0; $i < $numCustomers; $i++) {
+            if (!$visited[$i] && $distanceMatrix[$currentCustomer][$i] < $minDistance) {
+                $minDistance = $distanceMatrix[$currentCustomer][$i];
+                $nearestCustomer = $i;
+            }
+        }
+
+        return $nearestCustomer;
+    }
+
+    function nearestNeighbor($distanceMatrix, $vehicleCapacity) {
+        $numCustomers = count($distanceMatrix) - 1;
+        $visited = array_fill(0, $numCustomers, false);
+        $routes = [];
+
+        $currentCustomer = 0;
+
+        $totalDistance = 0; 
+        $currentRoute = [];
+        $currentLoad = 0;
+
+        while (in_array(false, $visited)) {
+            $nearestCustomer = $this->findNearestCustomer($currentCustomer, $visited, $distanceMatrix);
+
+            if ($nearestCustomer == -1) {
+                break; 
+            }
+
+            if ($currentLoad + 1 <= $vehicleCapacity) {
+                $currentRoute[] = $nearestCustomer;
+                $visited[$nearestCustomer] = true;
+                $currentLoad += 1;
+                $totalDistance += $distanceMatrix[$currentCustomer][$nearestCustomer];
+                $currentCustomer = $nearestCustomer;
+            } else {
+                $currentRoute[] = 0; 
+                $routes[] = $currentRoute;
+                $currentRoute = [0]; 
+                $currentLoad = 0;
+                $totalDistance += $distanceMatrix[$currentCustomer][0]; 
+                $currentCustomer = 0;
+            }
+        }
+
+        if (!empty($currentRoute)) {
+            $currentRoute[] = 0;
+            $routes[] = $currentRoute;
+        }
+
+        return ["routes" => $routes, "totalDistance" => $totalDistance];
     }
 }
